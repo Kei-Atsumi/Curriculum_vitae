@@ -9,7 +9,7 @@ output: html_document
 <div style="margin-bottom:60px;">
 </div>
 
-Email: k.atsumi115<at>gmail.com
+Email: k.atsumi115_at_gmail.com
 
 [Website](https://ugui-guigui.wixsite.com/ugui-guigui)
 
