@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+/docs/pics
+/docs/index_files
+*.csv

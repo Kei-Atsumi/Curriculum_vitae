@@ -1,0 +1,77 @@
+---
+title: "Curriculum Vitae"
+subtitle: "Keisuke Atsumi"
+author: "Ph.D. environmental science"
+date: '`r format(Sys.time(), "%y/%m/%d")`'
+output: html_document
+---
+
+<div style="margin-bottom:60px;">
+</div>
+
+Email: k.atsumi115<at>gmail.com
+
+[Website](https://ugui-guigui.wixsite.com/ugui-guigui)
+
+[Google scholar](https://scholar.google.com/citations?user=PMk-FAx8vzAC&hl=ja)
+
+<div style="margin-bottom:60px;">
+</div>
+
+# Education
+
+| Year | Course | School |
+| ---- | ---- | ---- |
+| 2016 - 2020 | Ph.D. | Grad. Environmental Earth Science, <b>Hokkaido Univ.</b> |
+| 2014 - 2016 | M.Sc. | Grad. Agricultural and Life Sciences, <b>Univ. Tokyo</b> |
+| 2010 - 2014 | B.Sc. | Fac. Fisheries Science, <b>Hokkaido Univ.</b> |
+
+<div style="margin-bottom:60px;">
+</div>
+
+# Awards and research funding
+
+- 2020.4 - 2022.3 | JSPS Overseas Research Fellow (JSPS)
+
+- 2018.4 - 2020.3 | Grant in Aid for JSPS Research Fellow (JSPS)
+
+- 2017.4 - 2018.3 | Grant for Zoological Research (Fujiwara Natural History Foundation)
+
+- 2017.4 - 2018.3 | Sasakawa Scientific Research Grant (The Japan Science Society)
+
+<div style="margin-bottom:60px;">
+</div>
+
+# Skills
+
+### Computer (Software)
+
+- Statistical analyses (e.g. phylogenetic meta analysis and Bayesian models) using *R*
+
+- Genome analysis (using *plink*)
+
+- Image processing (using *inkscape*, *gimp* and *sai*)
+
+- CUI operation on Linux
+
+<div style="margin-bottom:30px;">
+</div>
+
+### Field survey
+
+- Collected fishes using an electric shocker and cast net for behavioral experiments
+
+- Tracked migration of fish by using bio logging techniques
+
+<div style="margin-bottom:30px;">
+</div>
+
+### Experiments
+
+- Behavioral experiments: measuring personalities and mate preferences in fish
+
+- Field/laboratory experiments for predator--prey interaction in amphibians
+
+- DNA experiments: designing primer; microsatellite analysis; RFLP analysis; sanger sequencing
+
+- Specimen dissection: musculoskeletal structure; gut parasite infection status
