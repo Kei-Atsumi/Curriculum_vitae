@@ -55,7 +55,7 @@ Email: k.atsumi115_at_gmail.com
 
 |  |  |  |
 | ---- | ---- | ---- |
-| 2016.4 - 2020.3 | 博士 | 北海道大学大学院 環境科学院 生物圏科学専攻 |
+| 2016.4 - 2020.3 | 博士 | 北海道大学大学院 環境科学院 生物圏科学専攻 <br> 指導教官、[小泉逸郎博士](https://noah.ees.hokudai.ac.jp/envmi/koizumilab/) |
 | 2014.4 - 2016.3 | 修士 | 東京大学大学院 農学生命科学研究科 水圏生物科学専攻 |
 | 2010.4 - 2014.3 | 学士 | 北海道大学 水産学部 海洋生物科学科 |
 | 2007.4 - 2010.3 | | 名古屋市立 菊里高等学校 普通科 |
@@ -70,11 +70,11 @@ Email: k.atsumi115_at_gmail.com
 | | |
 | ---- | ---- |
 | 2021.3 - | 米国・テキサスA&M大学（Gil Rosenthal研究室）に<br>日本学術振興会 海外特別研究員として滞在 |
-| 2017.10-12、2019.10-12 | 豪州・ニューサウスウェールズ大学<br>（Shinichi Nakagawa研究室）に留学 |
+| 2017.10-12、2019.10-12 | 豪州・ニューサウスウェールズ大学<br>（[Shinichi Nakagawa研究室](http://www.i-deel.org/)）に留学 |
 | 2018.4 - 2020.3 | 日本学術振興会 博士課程特別研究員DC2 |
 | 2016.5 - 2017.2 | 北海道大学 リサーチアシスタント |
 | 2016.5 - 2017.2 | 北海道大学 ティーチングアシスタント |
-| 2015 - 2016 | 国立科学博物館 研究補助（魚類標本作成･管理･展示） |
+| 2015 - 2016 | 国立科学博物館 研究補助（魚類標本管理） |
 | 2013 - 2014 | 北海道大学総合博物館ボランティア（魚類標本作成･管理･展示） |
 
 <div style="margin-bottom:60px;">
@@ -117,11 +117,22 @@ Email: k.atsumi115_at_gmail.com
 
 ### 未掲載論文
 
-- *Atsumi K*, Ross SRPJ, Kishida O. Interpopulation differences in developmental plasticity of carnivores determine the emergence of a trophic interaction   
+- *Atsumi K*, Ross SRPJ, Kishida O. Interpopulation differences in developmental plasticity of carnivores determine the emergence of a trophic interaction.    
 
 - *Atsumi K*, Lagisz M Nakagawa S. Non-additive genetic effects induce novel phenotypic distributions in male mating traits of F1 hybrids. *Under revision at* Evolution   
 
 いずれも*EcoEvoRxiv*にプレプリントとして公開しております。
+
+<div style="margin-bottom:30px;">
+</div>
+
+### 集会企画
+
+| | |
+| ---- | ---- |
+| 2016-2020 | **EZOゼミ** - 北海道大学の生態・進化生物学者のための分野横断型セミナーシリーズ |
+| 2018.3 | 日本生態学会大会での自由集会　**動物の個性の理解とその生態学的可能性を求めて**。本集会の内容は日本生態学会誌の同名の特集として出版されました |
+
 
 <div style="margin-bottom:30px;">
 </div>
@@ -132,8 +143,8 @@ Email: k.atsumi115_at_gmail.com
 | ---- | ---- | ---- |
 | 題目 | 掲載元 | 発行・実施年 |
 | 釣り人の写真は貴重な資料！Web上の写真をもとに川魚ウグイの繁殖生態を明らかにす
-る | academist journal<br>(academist) | 2017 |
-| ウグイ類のメスが派手な理由とは：魚たちのお見合い実験奮闘記 | BuNa<br>Bun-ichi Nature Web Magazine<br>（文一総合出版) | 2019 |
+る | [academist journal](https://academist-cf.com/journal/?p=4492)<br>(academist) | 2017 |
+| ウグイ類のメスが派手な理由とは：魚たちのお見合い実験奮闘記 | [BuNa](https://buna.info/article/2242/)<br>Bun-ichi Nature Web Magazine<br>（文一総合出版) | 2019 |
 | 寄生虫を使ってウグイの育ちを調べる | 西岡公園<br>札幌市カルチャーナイト | 2018 |
 
 <div style="margin-bottom:30px;">
@@ -156,7 +167,7 @@ Email: k.atsumi115_at_gmail.com
 | | |
 | ---- | ---- |
 | 2019.3 | 日本生態学会 最優秀ポスター賞（共著） |
-| 2018.3 | 生態学国際誌*Ecological research*の論文賞（主著） |
+| 2018.3 | 生態学国際誌*Ecological research*の[論文賞](https://link.springer.com/article/10.1007/s11284-017-1466-z)（主著） |
 | 2017.12 | 日本生態学会北海道地区会　優秀研究賞（共著） |
 | 2017.3 | 北海道大学環境科学院 ポスター発表セッション 優秀研究賞（主著） |
 | 2016.6 | JASSO 奨学金返済半額免除（修士課程） |
@@ -184,6 +195,8 @@ Email: k.atsumi115_at_gmail.com
 ### 野外調査
 
 - 電気ショッカー・投網などによる魚の捕獲  
+
+- 大規模わな等を使った両生類の捕獲
 
 - バイオロギングによる魚の行動追跡
 
