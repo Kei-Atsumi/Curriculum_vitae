@@ -8,4 +8,11 @@ output:
     df_print: "kable"
     code_download: false
     code_folding: hide
+navbar: 
+  left:
+    - text: "English"
+      href: index.html
+  right:
+    - text: "日本語"
+      href: CV_Japanese.html
 output_dir: "docs"
