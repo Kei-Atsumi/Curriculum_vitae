@@ -1,0 +1,193 @@
+---
+title: "メタ解析"
+output: html_document
+---
+
+<div style="margin-bottom:30px;">
+</div>
+
+豪州New South Wales大学の中川震一さんの研究室にお邪魔したことをきっかけに、2017年ごろからメタ解析をやっています。メタ解析は日本国内ではあまり普及していないので、進める過程で得たノウハウを共有しようと思います。もとは自分用に作ったメモなので、日本語が適当です。ご容赦ください。
+
+より良い方法がある、あるいは間違いがありましたら是非教えてください。内容によって生じた損害に責任は負いません。
+
+<div style="margin-bottom:30px;">
+</div>
+
+# あらまし  
+
+<div style="margin-bottom:30px;">
+</div>
+
+メタ解析は量的なレビューです。もとは医学で、「いろんな場所でいろんな人がいろんな年代に研究をしているけど、結局その療法はどれくらい効くの？」という問いに答えるべく発展した手法です。
+
+以下のような手順で進みます。
+
+１．**一定の方法･基準で研究例を集める（Systematic review）**
+
+２．それぞれの研究から、効果量（Effect size）を算出  
+
+　　― **効き目の大きさをその研究の確かさ（分散）で重みづけ**したもの
+
+３．効果量の全体や主要グループ毎での平均（Meta-analytic mean）や異質性（Heterogeneity）を求める
+
+４．回帰分析により効果量に影響している要因をあぶりだす（Meta-regression）
+
+
+この前準備として、
+
+０．メタ解析に足る研究例がありそうか（>20が目安）調べておく（Pilot search）
+
+をしておくと良いです。もし研究例がなければ、質的レビューを伴った意見論文にするとよいでしょう。
+
+
+様々な分類群・地点の研究例を集めることができれば、研究系に縛られない一般性の高い結論を得ることができます。お家時間でも進められます。人的・資金的コストが実証研究に比べ小さいです。
+
+流行りの研究題材に沿って進めることもできますが、ローコストでできることの利点を生かすならばちょっと**うがった目線の研究をやりやすい**こともメタ解析の大きな特徴だと思います。ご自身の奇抜なアイデアだったり、顧みられていない古いけど面白いアイデアだったり。
+
+このように多くの利点があるので、実証・数理予測に加えた3本目の柱としてメタ解析が盛んになると良いと思っています。
+
+
+ここで最も慎重に進めるべきなのが、データ元として使う論文集め、Systematic reviewです。２以降はコードを書き直せば修正は終わりますが、Systematic reviewは作業量がとても多いのでやり直しがききません。将来的にはText miningである程度自動化できるようになるとは思いますが。
+
+<div style="margin-bottom:60px;">
+</div>
+
+# Systematic review  
+
+<div style="margin-bottom:30px;">
+</div>
+
+偏りなく、再現可能な文献の取捨選択＝Systematic reviewです。
+
+次のような手順で進みます。
+
+１．Title･Abstract･Keywordに対する検索文と取捨選択基準を前もって決める
+
+２．検索
+
+３．Title･Abstract･Keywordで選抜
+
+４．選抜した文献に対して、全文でさらに選抜 
+
+PRISMAというガイドラインに基づいて進めると良いです。
+
+<div style="margin-bottom:30px;">
+</div>
+
+## １ 検索文と取捨選択基準
+
+<div style="margin-bottom:30px;">
+</div>
+
+1. データのとり方等に基づいた、含めるか否かの基準
+
+2. 探すデータベース範囲（検索エンジン、年代、雑誌群など）
+
+3. Title･Abstract･Keywordに対する検索文（XXX AND YYYなど）
+
+を決めます。
+
+
+1はご自身の研究の目的に沿って自ずと決まるでしょう。
+
+2は複数の検索エンジン（Scopus・Google scholar・Web of Science 等）を使うことが推奨。検索エンジンによって、同じ検索フレーズを使っても出てくる論文群がかなり異なることがあるようです。年代や雑誌を絞るのは文献数が十分多い時や証拠としての質がそれらに応じて大きく違いそうなときに限られるでしょう。
+
+
+すると難しいのは3検索文の設定です。
+
+かなり決め打ちした検索文を使うと取捨選択する一次研究（メタ解析のデータとなる研究、Primary studies）が減ってreviewが楽になりますが、解析に含められるデータが減って結果の一般性が落ちてしまいます。中川震一さん曰く、最低でも20一次研究（50くらいあれば結果は安定してくるらしい）がメタ解析には必要で、ScopusでのTitle･Abstract･Keywordで合計1000文献くらいひっかかる検索文が良いそうです。
+
+
+欲しいデータを含んだ一次研究が、複数の研究分野でなされていることはままあります。例えば私が進めている雑種表現型に焦点を当てた解析では、種分化研究から生理学、農業育種まで幅広い分野の研究が有用です。効率よい検索単語が研究分野ごとに違うこともあるでしょう。研究分野ごとに成果報告の偏りがあるかもしれませんから、データの多く偏りの少ないより良いメタ解析をするためには、様々な視点でなされた一次研究を集める必要があります。古い総説・研究の引用・被引用論文（**Forward/backward citation**）をつたって、**関連する複数分野の研究を何個か見つけ、それらが使っているキーワードを把握**しておくことが大事です。この事前の知識から、検索文に含める単語の候補が決まります。
+
+あまりに大量の無関係な論文が検索で引っかかってしまうことがあります。その際は、ScopusやWeb of Scienceが持つ、研究分野によるフィルタリングをしたり、無関係な論文が共通して持つ単語を特定してその単語を含む論文を除去すると良いです。後者そして一次研究の取捨選択を進める際に便利な無料Webサービスが[Rayyan](https://rayyan.qcri.org/welcome)です。検索エンジンの出力結果を一旦Rayyanに読み込ませ、Rayyan上で取捨選択をすると、要不要な文献にそれぞれ共通なキーワードをあぶりだしてくれます。このようなプロセスで、1000くらいの出力結果をもたらす検索文を目指しましょう。
+
+<div style="margin-bottom:30px;">
+</div> 
+
+## ２ 検索
+
+<div style="margin-bottom:30px;">
+</div>
+
+検索文が決まったら、ScopusやWeb of Science等の複数検索エンジンで探した文献リストを、Mendereyに読み込ませて重複を削除します。各検索エンジンから何個一次研究候補を見出したか、重複削除後には何個残ったか記録しておきましょう。
+
+- Scopus：RIS形式で全件出力できる。Mendeleyに直接exportは役に立たない。
+
+- WoS：5K exportは他ソフトとの互換性が一切ない。Bibtexで500件ずつExportせねばならない。
+
+<div style="margin-bottom:30px;">
+</div>
+
+手順
+
+1. あらかじめMendeley desktop版にフォルダを作っておき，そのフォルダ上で File>Import でBibtex/risファイルを選択。
+
+2. Ctrl+Aで全件選択し，　Tools>Check for duplicates　で重複を検索。重複か怪しいものについては指示に従って判断していく。
+
+3. 終わったら全件選択し，Ctrl+EでRISにExport（BibtexはRayyanに不評）
+
+4. 出力したRISファイルをRayyanに読み込ませ，さらに重複チェック。重複可能性が8割以下だったらしっかり確認して判断しよう。
+
+<div style="margin-bottom:30px;">
+</div>
+
+## ３ Title･Abstract･Keywordで選抜
+
+<div style="margin-bottom:30px;">
+</div>
+
+活躍するのは、RayyanでのKeyword for include/exclude機能です。検索文設定でも活躍するが、取捨選択でもこの機能が活躍します。
+
+要る/要らない研究にありがちな単語を考え入力しておくと、候補となる研究のTitle+Abstにおいて単語が強調表示されます：includeは緑，excludeは赤（wildcard機能は無いので単数･複数それぞれ入れる、複数単語は読み取らないe.g. “between species”）。指定した単語を含む論文を一括表示でき、選抜もはかどります。
+
+Excludeの理由は自分で設定できる（但し消去できないので入力に注意）。
+
+関係ない分野の研究は雑誌から，理論研究は著者から選ぶと，効率よく消去できる。
+
+<div style="margin-bottom:30px;">
+</div>
+
+### 複数人でScreeningしたときの意見の食い違い修正　
+
+<div style="margin-bottom:30px;">
+</div>
+
+PRISMAガイドラインでは取捨選択を複数人でやることが推奨されています。Rayyanでは、取捨選択に他者を招くことができます。自動でBlind mode（互いのScreening結果が見えない）になっていますが、互いの取捨選択が完了したことを確認したら、Blind modeをOffにしてどこが一致していてどこが食い違っているのか確認しましょう。
+
+食い違いの解決：
+
+ConflictでFilterして、それをExport(CSV推奨)し、Rayyan上でレビューを新設して読み込みます。そこで、取捨選択した全員で議論しながら再取捨選択するのが良いでしょう。
+
+<div style="margin-bottom:30px;">
+</div>
+
+## ４ 全文で選抜  
+
+<div style="margin-bottom:30px;">
+</div>
+
+それぞれの研究について、なぜ除外したのか理由を簡潔に書いておきましょう。これだけだとRayyanが便利ですが、ここは絶対Spreadsheetが良いです。データ量の都合から、のちに選抜基準を厳しくする、あるいは緩めることが考えられます。その際に、選抜基準を増やしながら作業することになります。Full-text screeningの際にその論文の主要な特徴をExcelに書き出しておくと、あとで選抜基準が増えた際に容易に選抜できる可能性が高いです。
+
+
+ひたすらGoogle Scholarで見ていきましょう。ここで、チェックした文献のCitationをGoogle方式で出力してExcel fileに張り付けておくと便利です。この列に、[重複発見書式](http://www.hello-pc.net/howto-excel/excel_overlap/)を仕掛けておくと，Back/forward citationから文献を集めだした時にスーパー便利です。
+
+実験条件や形質なども列を作って書き込んでおくと，のちの絞り込みがとても楽になります。
+
+
+系統情報があるのかなど、該当論文では手に入らない情報を使って選抜する必要ものちに出てくることがあります。
+
+<div style="margin-bottom:60px;">
+</div>
+
+# 役立ちリンク
+
+<div style="margin-bottom:30px;">
+</div>
+
+- Nakagawa et al 2017 Meta-evaluation of meta-analysis: ten appraisal questions for biologists [BMC Biology](https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-017-0357-7)
+
+- [Environmental computing](http://environmentalcomputing.net/meta-analysis/) at University of New South Wales
+
+- [Supplementary material](https://github.com/Kei-Atsumi/Meta_F1HybridVariation.scripts/blob/master/R/Supplementary_material_S1.html) of my paper - "Non-additive genetic effects induce novel phenotypic distributions in male mating traits of F1 hybrids" 汚いコードですが、分析の流れをつかめるかと思います。他にも中川研の論文のSupplementary materialが役に立つでしょう
+

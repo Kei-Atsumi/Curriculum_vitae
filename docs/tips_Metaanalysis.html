@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>メタ解析</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">渥美圭佑</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    CV
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="index.html">English</a>
+    </li>
+    <li>
+      <a href="CV_Japanese.html">履歴</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    役立ち?
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tips_Visa_procedure.html">海外渡航のあれこれ</a>
+    </li>
+    <li>
+      <a href="tips_Proposal.html">学振の申請書</a>
+    </li>
+    <li>
+      <a href="tips_Metaanalysis.html">メタ解析</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">メタ解析</h1>
+
+</div>
+
+
+<div style="margin-bottom:30px;">
+
+</div>
+<p>豪州New South Wales大学の中川震一さんの研究室にお邪魔したことをきっかけに、2017年ごろからメタ解析をやっています。メタ解析は日本国内ではあまり普及していないので、進める過程で得たノウハウを共有しようと思います。もとは自分用に作ったメモなので、日本語が適当です。ご容赦ください。</p>
+<p>より良い方法がある、あるいは間違いがありましたら是非教えてください。内容によって生じた損害に責任は負いません。</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<div id="あらまし" class="section level1">
+<h1>あらまし</h1>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>メタ解析は量的なレビューです。もとは医学で、「いろんな場所でいろんな人がいろんな年代に研究をしているけど、結局その療法はどれくらい効くの？」という問いに答えるべく発展した手法です。</p>
+<p>以下のような手順で進みます。</p>
+<p>１．<strong>一定の方法･基準で研究例を集める（Systematic review）</strong></p>
+<p>２．それぞれの研究から、効果量（Effect size）を算出</p>
+<p>　　― <strong>効き目の大きさをその研究の確かさ（分散）で重みづけ</strong>したもの</p>
+<p>３．効果量の全体や主要グループ毎での平均（Meta-analytic mean）や異質性（Heterogeneity）を求める</p>
+<p>４．回帰分析により効果量に影響している要因をあぶりだす（Meta-regression）</p>
+<p>この前準備として、</p>
+<p>０．メタ解析に足る研究例がありそうか（&gt;20が目安）調べておく（Pilot search）</p>
+<p>をしておくと良いです。もし研究例がなければ、質的レビューを伴った意見論文にするとよいでしょう。</p>
+<p>様々な分類群・地点の研究例を集めることができれば、研究系に縛られない一般性の高い結論を得ることができます。お家時間でも進められます。人的・資金的コストが実証研究に比べ小さいです。</p>
+<p>流行りの研究題材に沿って進めることもできますが、ローコストでできることの利点を生かすならばちょっと<strong>うがった目線の研究をやりやすい</strong>こともメタ解析の大きな特徴だと思います。ご自身の奇抜なアイデアだったり、顧みられていない古いけど面白いアイデアだったり。</p>
+<p>このように多くの利点があるので、実証・数理予測に加えた3本目の柱としてメタ解析が盛んになると良いと思っています。</p>
+<p>ここで最も慎重に進めるべきなのが、データ元として使う論文集め、Systematic reviewです。２以降はコードを書き直せば修正は終わりますが、Systematic reviewは作業量がとても多いのでやり直しがききません。将来的にはText miningである程度自動化できるようになるとは思いますが。</p>
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+<div id="systematic-review" class="section level1">
+<h1>Systematic review</h1>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>偏りなく、再現可能な文献の取捨選択＝Systematic reviewです。</p>
+<p>次のような手順で進みます。</p>
+<p>１．Title･Abstract･Keywordに対する検索文と取捨選択基準を前もって決める</p>
+<p>２．検索</p>
+<p>３．Title･Abstract･Keywordで選抜</p>
+<p>４．選抜した文献に対して、全文でさらに選抜</p>
+<p>PRISMAというガイドラインに基づいて進めると良いです。</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<div id="検索文と取捨選択基準" class="section level2">
+<h2>１ 検索文と取捨選択基準</h2>
+<div style="margin-bottom:30px;">
+
+</div>
+<ol style="list-style-type: decimal">
+<li><p>データのとり方等に基づいた、含めるか否かの基準</p></li>
+<li><p>探すデータベース範囲（検索エンジン、年代、雑誌群など）</p></li>
+<li><p>Title･Abstract･Keywordに対する検索文（XXX AND YYYなど）</p></li>
+</ol>
+<p>を決めます。</p>
+<p>1はご自身の研究の目的に沿って自ずと決まるでしょう。</p>
+<p>2は複数の検索エンジン（Scopus・Google scholar・Web of Science 等）を使うことが推奨。検索エンジンによって、同じ検索フレーズを使っても出てくる論文群がかなり異なることがあるようです。年代や雑誌を絞るのは文献数が十分多い時や証拠としての質がそれらに応じて大きく違いそうなときに限られるでしょう。</p>
+<p>すると難しいのは3検索文の設定です。</p>
+<p>かなり決め打ちした検索文を使うと取捨選択する一次研究（メタ解析のデータとなる研究、Primary studies）が減ってreviewが楽になりますが、解析に含められるデータが減って結果の一般性が落ちてしまいます。中川震一さん曰く、最低でも20一次研究（50くらいあれば結果は安定してくるらしい）がメタ解析には必要で、ScopusでのTitle･Abstract･Keywordで合計1000文献くらいひっかかる検索文が良いそうです。</p>
+<p>欲しいデータを含んだ一次研究が、複数の研究分野でなされていることはままあります。例えば私が進めている雑種表現型に焦点を当てた解析では、種分化研究から生理学、農業育種まで幅広い分野の研究が有用です。効率よい検索単語が研究分野ごとに違うこともあるでしょう。研究分野ごとに成果報告の偏りがあるかもしれませんから、データの多く偏りの少ないより良いメタ解析をするためには、様々な視点でなされた一次研究を集める必要があります。古い総説・研究の引用・被引用論文（<strong>Forward/backward citation</strong>）をつたって、<strong>関連する複数分野の研究を何個か見つけ、それらが使っているキーワードを把握</strong>しておくことが大事です。この事前の知識から、検索文に含める単語の候補が決まります。</p>
+<p>あまりに大量の無関係な論文が検索で引っかかってしまうことがあります。その際は、ScopusやWeb of Scienceが持つ、研究分野によるフィルタリングをしたり、無関係な論文が共通して持つ単語を特定してその単語を含む論文を除去すると良いです。後者そして一次研究の取捨選択を進める際に便利な無料Webサービスが<a href="https://rayyan.qcri.org/welcome">Rayyan</a>です。検索エンジンの出力結果を一旦Rayyanに読み込ませ、Rayyan上で取捨選択をすると、要不要な文献にそれぞれ共通なキーワードをあぶりだしてくれます。このようなプロセスで、1000くらいの出力結果をもたらす検索文を目指しましょう。</p>
+<div style="margin-bottom:30px;">
+
+</div>
+</div>
+<div id="検索" class="section level2">
+<h2>２ 検索</h2>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>検索文が決まったら、ScopusやWeb of Science等の複数検索エンジンで探した文献リストを、Mendereyに読み込ませて重複を削除します。各検索エンジンから何個一次研究候補を見出したか、重複削除後には何個残ったか記録しておきましょう。</p>
+<ul>
+<li><p>Scopus：RIS形式で全件出力できる。Mendeleyに直接exportは役に立たない。</p></li>
+<li><p>WoS：5K exportは他ソフトとの互換性が一切ない。Bibtexで500件ずつExportせねばならない。</p></li>
+</ul>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>手順</p>
+<ol style="list-style-type: decimal">
+<li><p>あらかじめMendeley desktop版にフォルダを作っておき，そのフォルダ上で File&gt;Import でBibtex/risファイルを選択。</p></li>
+<li><p>Ctrl+Aで全件選択し，　Tools&gt;Check for duplicates　で重複を検索。重複か怪しいものについては指示に従って判断していく。</p></li>
+<li><p>終わったら全件選択し，Ctrl+EでRISにExport（BibtexはRayyanに不評）</p></li>
+<li><p>出力したRISファイルをRayyanに読み込ませ，さらに重複チェック。重複可能性が8割以下だったらしっかり確認して判断しよう。</p></li>
+</ol>
+<div style="margin-bottom:30px;">
+
+</div>
+</div>
+<div id="titleabstractkeywordで選抜" class="section level2">
+<h2>３ Title･Abstract･Keywordで選抜</h2>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>活躍するのは、RayyanでのKeyword for include/exclude機能です。検索文設定でも活躍するが、取捨選択でもこの機能が活躍します。</p>
+<p>要る/要らない研究にありがちな単語を考え入力しておくと、候補となる研究のTitle+Abstにおいて単語が強調表示されます：includeは緑，excludeは赤（wildcard機能は無いので単数･複数それぞれ入れる、複数単語は読み取らないe.g. “between species”）。指定した単語を含む論文を一括表示でき、選抜もはかどります。</p>
+<p>Excludeの理由は自分で設定できる（但し消去できないので入力に注意）。</p>
+<p>関係ない分野の研究は雑誌から，理論研究は著者から選ぶと，効率よく消去できる。</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<div id="複数人でscreeningしたときの意見の食い違い修正" class="section level3">
+<h3>複数人でScreeningしたときの意見の食い違い修正　</h3>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>PRISMAガイドラインでは取捨選択を複数人でやることが推奨されています。Rayyanでは、取捨選択に他者を招くことができます。自動でBlind mode（互いのScreening結果が見えない）になっていますが、互いの取捨選択が完了したことを確認したら、Blind modeをOffにしてどこが一致していてどこが食い違っているのか確認しましょう。</p>
+<p>食い違いの解決：</p>
+<p>ConflictでFilterして、それをExport(CSV推奨)し、Rayyan上でレビューを新設して読み込みます。そこで、取捨選択した全員で議論しながら再取捨選択するのが良いでしょう。</p>
+<div style="margin-bottom:30px;">
+
+</div>
+</div>
+</div>
+<div id="全文で選抜" class="section level2">
+<h2>４ 全文で選抜</h2>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>それぞれの研究について、なぜ除外したのか理由を簡潔に書いておきましょう。これだけだとRayyanが便利ですが、ここは絶対Spreadsheetが良いです。データ量の都合から、のちに選抜基準を厳しくする、あるいは緩めることが考えられます。その際に、選抜基準を増やしながら作業することになります。Full-text screeningの際にその論文の主要な特徴をExcelに書き出しておくと、あとで選抜基準が増えた際に容易に選抜できる可能性が高いです。</p>
+<p>ひたすらGoogle Scholarで見ていきましょう。ここで、チェックした文献のCitationをGoogle方式で出力してExcel fileに張り付けておくと便利です。この列に、<a href="http://www.hello-pc.net/howto-excel/excel_overlap/">重複発見書式</a>を仕掛けておくと，Back/forward citationから文献を集めだした時にスーパー便利です。</p>
+<p>実験条件や形質なども列を作って書き込んでおくと，のちの絞り込みがとても楽になります。</p>
+<p>系統情報があるのかなど、該当論文では手に入らない情報を使って選抜する必要ものちに出てくることがあります。</p>
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+</div>
+<div id="役立ちリンク" class="section level1">
+<h1>役立ちリンク</h1>
+<div style="margin-bottom:30px;">
+
+</div>
+<ul>
+<li><p>Nakagawa et al 2017 Meta-evaluation of meta-analysis: ten appraisal questions for biologists <a href="https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-017-0357-7">BMC Biology</a></p></li>
+<li><p><a href="http://environmentalcomputing.net/meta-analysis/">Environmental computing</a> at University of New South Wales</p></li>
+<li><p><a href="https://github.com/Kei-Atsumi/Meta_F1HybridVariation.scripts/blob/master/R/Supplementary_material_S1.html">Supplementary material</a> of my paper - “Non-additive genetic effects induce novel phenotypic distributions in male mating traits of F1 hybrids” 汚いコードですが、分析の流れをつかめるかと思います。他にも中川研の論文のSupplementary materialが役に立つでしょう</p></li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
