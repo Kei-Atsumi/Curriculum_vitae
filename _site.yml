@@ -9,10 +9,20 @@ output:
     code_download: false
     code_folding: hide
 navbar: 
+  title: "渥美圭佑"
   left:
-    - text: "English"
-      href: index.html
+    - text: "CV"
+      menu:
+        - text: "English"
+          href: index.html
+        - text: "履歴"
+          href: CV_Japanese.html
   right:
-    - text: "日本語"
-      href: CV_Japanese.html
+    - text: "役立ち?"
+      menu:
+        - text: "海外渡航のあれこれ"
+          href: tips_Visa_procedure.html
+        - text: "学振の申請書"
+          href: tips_Proposal.html
+  
 output_dir: "docs"

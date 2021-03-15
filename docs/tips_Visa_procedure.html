@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>海外渡航のあれこれ</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">渥美圭佑</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    CV
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="index.html">English</a>
+    </li>
+    <li>
+      <a href="CV_Japanese.html">履歴</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    役立ち?
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tips_Visa_procedure.html">海外渡航のあれこれ</a>
+    </li>
+    <li>
+      <a href="tips_Proposal.html">学振の申請書</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">海外渡航のあれこれ</h1>
+
+</div>
+
+
+<p>海外渡航で、特にビザ関連でめんどくさかったことなど、シェアします。一人でも多くの人がスムーズに海外で武者修行できますように。</p>
+<div style="margin-bottom:60px;">
+
+</div>
+<div id="海外学振でアメリカj1ビザをとる2020年texas-am大学版" class="section level1">
+<h1>海外学振でアメリカJ1ビザをとる｜2020年Texas A&amp;M大学版</h1>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>海外学振合格、おめでとうございます。4月に派遣開始をご希望であれば、時間はありません。<strong>海外学振採用の証明が来たら速やかにスキャンして受け入れ先ボスに連絡</strong>しましょう。</p>
+<p>テキサスA&amp;M大学（TAMU）の場合は、5VSという書類への記入から手続きは開始。5VSがFacultyで受理されると、それが外国人受け入れをつかさどるISFSに5VSが渡ります。</p>
+<p>このISFSが大学での受け入れの可否を決め、OKであればDS2019という書類がもらえます。DS2019はビザ取得での必要書類で、国土安全保障省への情報登録であるDS160とともに大使館の面接予約に必要です。DS2019には多くの必要書類があります（後述）。</p>
+<p>DS2019が取れる見込みが立ったら、国土安全保障省への情報登録であるDS160記入を始めましょう。すごい根掘り葉掘り聞いてくるので時間がかかります。さすが世界を敵に回している国です。DS160登録完了には、SEVIS料金を払わねばなりません。このSEVIS支払いにはDS2019に記入されるSEVIS IDが必要です。さて、DS160の有効期限は約1か月です。なので、DS160の有効期限内にDS2019が届かないと、SEVISを払えないためにDS160登録が完了せず、せっかく時間をかけて書いたDS160が無駄になります。DS160登録が終わると、いよいよビザ面接です。ここでもお金がかかります（この強欲め）。</p>
+<p>ビザ面接がつつがなく終わると、1~3週間でビザが届きます。</p>
+<p>曲者なのはDS2019申請に必要な書類たち。</p>
+<ul>
+<li><p>Curriculum Vitae/Resume</p></li>
+<li><p>学位証明あるいは卒業見込証明書</p></li>
+<li><p>滞在時の研究目的（簡単で良い、5VSに書いたものを転用した）</p></li>
+<li><p>Passport</p></li>
+<li><p>Proof &amp; Certification of Insurance (translated to English)</p></li>
+<li><p>Proof of English language proficiency： ≧80のTOEFL iBT (550 paper-based) か、≧6.0のIELTS. GRE or GMAT verbal scoresあるいは、英語インタビューを受ける（$75かかった）</p></li>
+<li><p>Proof of financial support（海外学振採用証明）</p></li>
+<li><p>J2ビザで連れていく人たちのDS-2019申請ーパスポート等とともに</p></li>
+<li><p>J-1 Operational Fee - $350(nonrefundable) この強欲め。</p></li>
+</ul>
+<p>そう。保険の加入と、英語能力の証明が必要なのです。</p>
+<p>保険には大学が求める様々な条件がありそれを満たす保険に入る必要があります。いろんな方に聞くと、保険はJALやANAが提携する海外旅行保険が良いらしいです。僕は、<a href="https://www.global-protection.co.jp/support1.php">JALが提携しているAIGの海外赴任者総合保障制度</a>のオプションプランに入りました。滞在先機関と海外学振である旨を伝えればそれにあったプランを提供してくれます。保険は年額約30万円しますが日本語オペレーターに対応をお願いできるようで、その安心料です。</p>
+<p>ポスドクで行く人間がなんで英語能力証明しないかんのだ。私は時間がなかったのでいつでも受けられる英語面接にしましたが、そんなのに$75払うなら前もってTOEFLとか受けとけばよかったとすごく後悔しました。ボスに前もって聞いたときは「英語能力証明は必要ないだって君はポスドク見込みなんだから」って言ってきたのに…ボスが手続き内容を知らないと思って手続きを進めるべきでした。</p>
+<p>さて、逆算しましょう。</p>
+<ol style="list-style-type: decimal">
+<li><p>1~3週間ビザが届くまでにかかるという事は、渡航の1か月前にはビザ面接をしたいですよね。</p></li>
+<li><p>面接予約は1か月弱先まで取れないことがあります。私は2月12日にDS160を登録しましたが、予約が取れたのは3月3日でした。ということは、DS2019が渡航2か月前に欲しいですね。</p></li>
+<li><p>DS160登録にはDS2019が必要ですが、必要書類を揃えて申請してから貰えるまでにも時間がかかります。</p></li>
+</ol>
+<p>ということは<strong>保険や英語証明などの必要書類を2.5か月前には揃えておきたい</strong>。因みにAIGの海外赴任者総合保障制度はJALカードで支払わねばならないので、必要に応じてクレジットカードを作っておく必要があります。</p>
+<p>こんな感じで、ビザ取得にはすごく時間がかかります。</p>
+<p>ですので、海外学振合格通知をもらったら速やかに準備を始めましょう。</p>
+<p><strong>私の失敗は、手続きの全体を把握していなかったこと、ボスを通じて事務を急かさなかったこと</strong>でした。実は5VSがFacultyに受理されてから、DS2019の必要書類を知らされるまでに約20日間の間がありました。事務に尋ねたものの、その返答が遅かったのです。要するにTAMUの事務は大変お粗末です。</p>
+<p>それをようやく学習して、必要書類リストを送られてからは、事務を急かすメールをCCにボスを入れて数日に一回送りつけるようにしました。「いつDS2019がもらえるのか心配でならない。遅くともXX日までにDS2019が必要だ、でないと渡航が遅れ大変な損失になる。数か月前から手続きを始めているこちらに落ち度はない、なぜなら私よりも遅くに手続きを始めた同僚は既にDS2019をもらっているからだ」みたいな内容。その結果、あとの手続きは結構早く進みました。</p>
+<p>お金もかかりますね、大学やらSEVISやら面接やら…そして保険。しかも面接が遅れたせいで東京まで出向く羽目に。計40万円くらい。しかも向こうに行ったら車も買わないと…。次は海外で雇われるポスドクになりたい。大学やら保険やらは、向こうで雇われる際には免除されているはずです。というわけでポスドクでアメリカを目指す皆さん、海外学振で行く際にはとっってもお金がかかるという事にご留意ください。</p>
+<div style="margin-bottom:60px;">
+
+</div>
+<div id="コロナ禍でのアメリカ入国2021年2月版" class="section level2">
+<h2>コロナ禍でのアメリカ入国｜2021年2月版</h2>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>結論から言います。案外ザルです。<a href="https://www.ana.co.jp/ja/jp/topics/coronavirus-travel-information/pcr/">ANA提携のオンライン検査</a>で行けました。</p>
+<p>ただし、これで<strong>入国/出国に失敗しても責任はとりません</strong>。殆ど情報のない、コロナ禍でのアメリカ入国の情報を提供することが目的で、いかなるキックバックは得ていません。</p>
+<p>これは2月、東京→ヒューストン直行便でのお話です。当時のアメリカ入国には、出国72時間以内での検体を基にしたコロナ検査で陰性であることを、出国の飛行機搭乗時に確かめる必要がありました。</p>
+<p>そこで問題になるのは、どこでどんな検査を受けるか？です。</p>
+<p>「アメリカ入国　コロナ検査　陰性証明書」なんて調べると、検査に3万円、陰性証明書作成に1万円なんてゆうボッタクリクリニックだらけ。検査3万円は10000歩譲ってまあ許すとして、、、書類に1万ってあほか？いやもしかすると、bloody中国がやってるみたいに提携してる医療機関でしか陰性証明書しかアメリカは受け付けないのか？と逆に疑心暗鬼になるも、アメリカの<a href="https://www.cdc.gov/quarantine/masks/mask-travel-guidance.html">CDCサイト</a>に特にそのような記述はありません。</p>
+<p>これを信じ、安価にできる<a href="https://www.ana.co.jp/ja/jp/topics/coronavirus-travel-information/pcr/">オンラインでの検体採取＋検体郵送を組み合わせたサービス</a>を使いました。これなら陰性証明書込みで1万円強です。高いですが、4万円ぼられるよりマシ。</p>
+<p>後で気づきましたが<strong>最も頼りになるサイトは経産省の<a href="https://www.meti.go.jp/policy/investment/tecot/top.html">TeCOT</a></strong>でした。各国の基準を満たす医療機関の一覧が見れ、さらにそこから検査の予約もできます。有能。とはいえ、結局1万円台前半が最安値水準なので、オンラインにした判断は正しかったです。</p>
+<p>オンライン検体採取にせよ、TeCOT上の対面検体採取にせよ、<strong>かなり検査の予約は埋まっています</strong>。飛行機を予約したらすぐに検査も予約してしまいましょう。</p>
+<p>検体採取は詳細を省きます。安全のため私は、速達＋簡易書留で送りました。検体が朝に検査機関に着いたため、15時ごろには陰性証明書をEメールでもらえました。</p>
+<p><strong>陰性証明書はオフラインでも見れるよう必ずDLしましょう</strong>。到着先の空港では、入国審査までの間はWiFiは飛んでいないからです。印刷の必要はありませんでした。</p>
+<p>陰性証明書は飛行機の搭乗チェックイン時に見せましたが、入国審査の時に見せたかは覚えていません。あっけなく入国出来て、嬉しびっくりでした。</p>
+<p>以上。お役に立てれば幸いです。</p>
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+</div>
+<div id="アメリカからメキシコに陸路で行ってそのまま帰る-出国証明トラブル" class="section level1">
+<h1>アメリカからメキシコに陸路で行ってそのまま帰る | 出国証明トラブル</h1>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>これは私の失敗談です。考えりゃわかんだろって同僚にめっちゃ笑われました。</p>
+<p>アメリカ観光ESTAを使い、テキサスA&amp;M大学に下見に来た時。彼らの調査に同行してメキシコの調査地に陸路で向かい、そのままメキシコシティから日本に帰ってきたときの話です。</p>
+<p>Laredoでメキシコに陸路入国するとき、私の頭の中は入国でいっぱいで、アメリカを出国している、ということを忘れていました。もちろん、出国には手続きが必要です…。</p>
+<p>日本は治安も良いアメリカの最重要同盟国。というわけで、いろんなアメリカ入国関係の手続きが自動化されています。入国証明書I94がその一つ。I94は、日本人短期滞在者で、空路で入国・帰国する場合には、完全に自動化されているので存在に気付かないでしょう。</p>
+<p>これが陸路だと問題になります。メキシコ入国手続きだけ済ませても、アメリカ出国手続き（I94を印刷して、返却）しないと、アメリカを出国したことにならないのです。 詳細はこちら：<a href="https://japan2.usembassy.gov/pdfs/wwwf-cbp-i94autoj-faq.pdf" class="uri">https://japan2.usembassy.gov/pdfs/wwwf-cbp-i94autoj-faq.pdf</a></p>
+<p>これを忘れると、アメリカから帰ってしばらくしたころに、「君のアメリカ滞在許可期間そろそろ終わるよ」ってゆう恐ろしいメールがやってきます。ここでやらなければならないことは、アメリカのColeman Data Solutionsという期間に、I94を紙で郵送することです（理由書も添えました）。もちろん、国際郵便なので結構お金かかります。</p>
+<p>賢明なみなさまがこのようなやらかしをしませんように。</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
