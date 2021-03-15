@@ -5,10 +5,7 @@ output: html_document
 
 かつて通った学振の申請書を公開します。
 
-・[学振DC2](files/DC2.pdf)
-
-・海外学振（PDF・Docx）
-
+学振DC2 (PDF), 海外学振（PDF, Docx） [here](https://github.com/Kei-Atsumi/Curriculum_vitae/tree/master/files) on Github
 
 研究内容はともかく、書き方・見せ方で少しでも参考になればと思います。
 
