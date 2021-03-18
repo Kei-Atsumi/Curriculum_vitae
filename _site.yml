@@ -26,5 +26,7 @@ navbar:
           href: tips_Proposal.html
         - text: "メタ解析"
           href: tips_Metaanalysis.html
+        - text: "無料で文献管理"
+          href: tips_Citationformat.html
           
 output_dir: "docs"
