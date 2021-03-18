@@ -8,6 +8,8 @@ output: html_document
 
 豪州New South Wales大学の中川震一さんの研究室にお邪魔したことをきっかけに、2017年ごろからメタ解析をやっています。メタ解析は日本国内ではあまり普及していないので、進める過程で得たノウハウを共有しようと思います。もとは自分用に作ったメモなので、日本語が適当です。ご容赦ください。
 
+また、メモはデータ集めの部分であるSystematic reviewが中心です。メタ解析の統計解析については[役立ちリンク](#役立ちリンク)をご覧ください。統計解析はR packageの`metafor`や`MCMCglmm`でかなり柔軟に、皆さんの創意工夫で好きにできます。一方でSystematic reviewには[PRISMA](https://doi.org/10.1136/bmj.g7647)という推奨プロトコルがあり、実装部分でも多くのコツがあります。それらのコツはあまりWeb上で見つからないように思います。
+
 より良い方法がある、あるいは間違いがありましたら是非教えてください。内容によって生じた損害に責任は負いません。
 
 <div style="margin-bottom:30px;">
@@ -22,22 +24,20 @@ output: html_document
 
 以下のような手順で進みます。
 
-１．**一定の方法･基準で研究例を集める（Systematic review）**
+1. メタ解析に足る研究例がありそうか（>20が目安）調べておく（Pilot search）
 
-２．それぞれの研究から、効果量（Effect size）を算出  
+1. 文献調査の方法や目的を前もって宣言 [Pre-registration](https://www.frontiersin.org/articles/10.3389/fpsyg.2015.01549/full). 必須ではないですが、不要なConflictを避けるため
 
-　　― **効き目の大きさをその研究の確かさ（分散）で重みづけ**したもの
+1. **一定の方法･基準で研究例を集める（Systematic review）**
 
-３．効果量の全体や主要グループ毎での平均（Meta-analytic mean）や異質性（Heterogeneity）を求める
+1. それぞれの研究から、効果量（Effect size、**効き目の大きさを確かさで重みづけ**したもの）を算出
 
-４．回帰分析により効果量に影響している要因をあぶりだす（Meta-regression）
+1. 効果量の全体や主要グループ毎での平均（Meta-analytic mean）や異質性（Heterogeneity）を求める
+
+1. 回帰分析により効果量に影響している要因をあぶりだす（Meta-regression）
 
 
-この前準備として、
-
-０．メタ解析に足る研究例がありそうか（>20が目安）調べておく（Pilot search）
-
-をしておくと良いです。もし研究例がなければ、質的レビューを伴った意見論文にするとよいでしょう。
+Pilot searchでもし研究例がなければ、質的レビューを伴った意見論文にしてもよいでしょう。
 
 
 様々な分類群・地点の研究例を集めることができれば、研究系に縛られない一般性の高い結論を得ることができます。お家時間でも進められます。人的・資金的コストが実証研究に比べ小さいです。
@@ -167,15 +167,34 @@ ConflictでFilterして、それをExport(CSV推奨)し、Rayyan上でレビュ�
 <div style="margin-bottom:30px;">
 </div>
 
-それぞれの研究について、なぜ除外したのか理由を簡潔に書いておきましょう。これだけだとRayyanが便利ですが、ここは絶対Spreadsheetが良いです。データ量の都合から、のちに選抜基準を厳しくする、あるいは緩めることが考えられます。その際に、選抜基準を増やしながら作業することになります。Full-text screeningの際にその論文の主要な特徴をExcelに書き出しておくと、あとで選抜基準が増えた際に容易に選抜できる可能性が高いです。
+それぞれの研究について、なぜ除外したのか理由を簡潔に書いておきましょう。これだけだとRayyanが便利ですが、ここは絶対Spreadsheetが良いです。データ量の都合から、のちに選抜基準を厳しくする、あるいは緩めることが考えられます。その際に、選抜基準を増やしながら作業することになります。Full-text screeningの際にその論文の主要な特徴をExcelに書き出しておくと、あとで選抜基準が増えた際により簡単に選抜しなおせるはずです。
+
+私の場合は、実験条件や形質なども列を作って書き込んでおくと、のちの絞り込みがとても楽になりました。系統情報があるのかなど、該当論文では手に入らない情報を使って選抜する必要ものちに出てくることがあります。
+
+チェックした文献のCitationをGoogle scholar方式で出力してExcelファイルに張り付けておくと便利です。この列に、[重複発見書式](http://www.hello-pc.net/howto-excel/excel_overlap/)を仕掛けておくと、Back/forward citationから文献を集めだした時にスーパー便利です。引用をつたった論文検索はどうしても手動になってしまいます。そうすると、Mendeleyなどで候補となる文献を知りするのが困難です。なのでここはSpreadsheetに頼らざるを得ません。
+
+<div style="margin-bottom:60px;">
+</div>
+
+# メタ解析
+
+とっても大まかな流れの紹介にとどめます。詳しくは[役立ちリンク](#役立ちリンク)をご覧ください。
+
+1. **それぞれの一次研究で効果量を算出**。2021年3月現在、主な効果量(effect size)は以下。`metafor`でOK。
+  1. ２群間の平均値の差なら、対数変換したLog Response Ratio - **lnRR**か、対数変換しないStandardized Mean Difference - **SMD** (a.k.a Hedge's D)
+  1. ２群間の相関なら、**Zr**
+  1. 割合なら **Odds ratio**
+  1. 2群間の分散（Variance）の差なら、**lnVR**
+  1. 2群間の変動係数（coefficient of variation）の差なら、**lnCVR**。ちなみにlnCVR = lnVR - lnRRでは、lnRRとlnCVR双方の誤差を含むので検出力が下がります。
+
+1. **効果量の偏りをFunnel plotでチェック**。Funnel plotが非対称だと論文出版の偏り（Publication bias）が示唆されます。極端にerrorが大きい･小さい効果量があった場合は、元データが正しいか確認しましょう  
+
+1. Let's **メタ解析**！効果量は期待される不確実性（sampling error）によって重みづけしたうえで、研究・対象生物種・系統などによって生じる個別結果の不均質性をランダム効果で補正した、切片項だけのGLMMによって、平均的な効果量サイズを算出します。
+
+1. 個別研究の結果を左右しそうな変数が思い当たるなら、**メタ回帰**。先ほどのメタ解析に、思い当たる変数を固定効果として加えます。
 
 
-ひたすらGoogle Scholarで見ていきましょう。ここで、チェックした文献のCitationをGoogle方式で出力してExcel fileに張り付けておくと便利です。この列に、[重複発見書式](http://www.hello-pc.net/howto-excel/excel_overlap/)を仕掛けておくと，Back/forward citationから文献を集めだした時にスーパー便利です。
-
-実験条件や形質なども列を作って書き込んでおくと，のちの絞り込みがとても楽になります。
-
-
-系統情報があるのかなど、該当論文では手に入らない情報を使って選抜する必要ものちに出てくることがあります。
+一般的な効果量でメタ解析・回帰をするだけなら全て`metafor`でOK。トリッキーな分析は`MCMCglmm`で。ただしその場合は効果量のSampling errorを導出したり、分析にあった適切な事前分布を設定するなど難しくなります。なお、事前分布を間違えるととんでもない推定値が出ます。
 
 <div style="margin-bottom:60px;">
 </div>
@@ -189,5 +208,10 @@ ConflictでFilterして、それをExport(CSV推奨)し、Rayyan上でレビュ�
 
 - [Environmental computing](http://environmentalcomputing.net/meta-analysis/) at University of New South Wales
 
-- [Supplementary material](https://github.com/Kei-Atsumi/Meta_F1HybridVariation.scripts/blob/master/R/Supplementary_material_S1.html) of my paper - "Non-additive genetic effects induce novel phenotypic distributions in male mating traits of F1 hybrids" 汚いコードですが、分析の流れをつかめるかと思います。他にも中川研の論文のSupplementary materialが役に立つでしょう
+- [Coding hub](https://ourcodingclub.github.io/tutorials/mcmcglmm/)によるRパッケージ`MCMCglmm`の解説
 
+- メタ解析を網羅した便利Rパッケージ`metafor`の、[作者Viechtbauer博士による解説](https://www.metafor-project.org/doku.php)
+
+- [Supplementary material](https://github.com/Kei-Atsumi/Meta_F1HybridVariation.scripts/blob/master/R/Supplementary_material_S1.html) of my paper - "Non-additive genetic effects induce novel phenotypic distributions in male mating traits of F1 hybrids" 汚いコードですが、効果量計算、Funnel plotを使ったデータチェックからメタ解析・回帰に至る分析の流れをつかめるかと思います。他にも中川研の論文のSupplementary materialはとても役に立つでしょう
+
+- BMJ 2015 Preferred reporting items for systematic review and meta-analysis protocols (PRISMA-P) 2015: elaboration and explanation [BMJ](https://doi.org/10.1136/bmj.g7647). チェックリストには目を通しておくと良いでしょう

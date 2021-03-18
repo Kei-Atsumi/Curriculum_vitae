@@ -41,7 +41,7 @@ output: html_document
 
 Email: k.atsumi115_at_gmail.com
 
-[Website](https://ugui-guigui.wixsite.com/ugui-guigui)
+
 
 <div style="margin-bottom:60px;">
 </div>
@@ -60,7 +60,7 @@ Email: k.atsumi115_at_gmail.com
 | 2010.4 - 2014.3 | 学士 | 北海道大学 水産学部 海洋生物科学科 |
 | 2007.4 - 2010.3 | | 名古屋市立 菊里高等学校 普通科 |
 
-1992年生まれ。
+1992年、名古屋市生まれ。
 
 <div style="margin-bottom:30px;">
 </div>

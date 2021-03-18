@@ -8,7 +8,9 @@ output: html_document
 
 かつて通った学振の申請書を公開します。
 
-- 学振DC2 (PDF), 海外学振（PDF, Docx） [here](https://github.com/Kei-Atsumi/Curriculum_vitae/tree/master/files) on Github
+- 学振DC2 ([PDF](https://github.com/Kei-Atsumi/Curriculum_vitae/blob/master/files/JSPS_DC2.pdf))
+
+- 海外学振（[PDF](https://github.com/Kei-Atsumi/Curriculum_vitae/blob/master/files/JSPS_Overseas.pdf), [Docx](https://github.com/Kei-Atsumi/Curriculum_vitae/raw/master/files/JSPS_Overseas.docx）)
 
 <div style="margin-bottom:30px;">
 </div>

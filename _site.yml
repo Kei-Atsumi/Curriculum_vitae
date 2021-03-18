@@ -11,14 +11,14 @@ output:
 navbar: 
   title: "渥美圭佑"
   left:
-    - text: "CV"
+    - text: "CV/履歴"
       menu:
         - text: "English"
           href: index.html
         - text: "履歴"
           href: CV_Japanese.html
   right:
-    - text: "役立ち?"
+    - text: "役立つかも？"
       menu:
         - text: "海外渡航のあれこれ"
           href: tips_Visa_procedure.html
