@@ -10,7 +10,7 @@ output: html_document
 
 - 学振DC2 ([PDF](https://github.com/Kei-Atsumi/Curriculum_vitae/blob/master/files/JSPS_DC2.pdf))
 
-- 海外学振（[PDF](https://github.com/Kei-Atsumi/Curriculum_vitae/blob/master/files/JSPS_Overseas.pdf), [Docx](https://github.com/Kei-Atsumi/Curriculum_vitae/raw/master/files/JSPS_Overseas.docx）)
+- 海外学振（[PDF](https://github.com/Kei-Atsumi/Curriculum_vitae/blob/master/files/JSPS_Overseas.pdf), [Docx](https://github.com/Kei-Atsumi/Curriculum_vitae/raw/master/files/JSPS_Overseas.docx)）
 
 <div style="margin-bottom:30px;">
 </div>
