@@ -9,11 +9,16 @@ output: html_document
 <div style="margin-bottom:30px;">
 </div>
 
-Postdoctoral fellow at Prof. Gil G. Rosenthal laboratory, Texas A&M University, USA
+Postdoctoral fellow at [Prof. Gil G. Rosenthal laboratory](https://swordtail.tamu.edu/), Texas A&M University, USA
 
 Email: k.atsumi115_at_gmail.com
 
 Born in 1992 in Nagoya, Japan
+
+<div style="margin-bottom:30px;">
+</div>
+
+<img src="./files/mypic_uryunuma.jpg" alt="" width="300">
 
 <div style="margin-bottom:60px;">
 </div>
@@ -35,7 +40,7 @@ Born in 1992 in Nagoya, Japan
 
 | | |
 | ---- | ---- |
-| 2021.3 - | Postdoctoral fellow at Texas A&M University - Gil Rosenthal lab, supported by JSPS |
+| 2021.3 - | Postdoctoral fellow at Texas A&M University - [Gil Rosenthal lab](https://swordtail.tamu.edu/), supported by JSPS |
 | 2017.10-12、2019.10-12 | Visiting scholar at University of New South Wales - [Shinichi Nakagawa lab](http://www.i-deel.org/), Sydney, to conduct meta-analysis of phenotypic distribution of F1 hybrids |
 | 2018.4 - 2020.3 | JSPS research fellow at Hokkaido University (DC2, doctoral students) |
 | 2016.5 - 2017.2 | Research assistant for the experiment investigating trigger of ocean-migration of masu trout, Hokkaido University |

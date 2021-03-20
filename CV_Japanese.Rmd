@@ -37,11 +37,14 @@ output: html_document
 <div style="margin-bottom:30px;">
 </div>
 
-米国テキサスA&M大学、Gil G. Rosenthal研究室の博士研究員です。
+米国テキサスA&M大学、[Gil G. Rosenthal研究室](https://swordtail.tamu.edu/)の博士研究員です。
 
 Email: k.atsumi115_at_gmail.com
 
+<div style="margin-bottom:30px;">
+</div>
 
+<img src="./files/mypic_uryunuma.jpg" alt="" width="300">
 
 <div style="margin-bottom:60px;">
 </div>
@@ -69,7 +72,7 @@ Email: k.atsumi115_at_gmail.com
 
 | | |
 | ---- | ---- |
-| 2021.3 - | 米国・テキサスA&M大学（Gil Rosenthal研究室）に<br>日本学術振興会 海外特別研究員として滞在 |
+| 2021.3 - | 米国・テキサスA&M大学（[Gil Rosenthal研究室](https://swordtail.tamu.edu/)）に<br>日本学術振興会 海外特別研究員として滞在 |
 | 2017.10-12、2019.10-12 | 豪州・ニューサウスウェールズ大学<br>（[Shinichi Nakagawa研究室](http://www.i-deel.org/)）に留学 |
 | 2018.4 - 2020.3 | 日本学術振興会 博士課程特別研究員DC2 |
 | 2016.5 - 2017.2 | 北海道大学 リサーチアシスタント |
@@ -142,8 +145,7 @@ Email: k.atsumi115_at_gmail.com
 | | | |
 | ---- | ---- | ---- |
 | 題目 | 掲載元 | 発行・実施年 |
-| 釣り人の写真は貴重な資料！Web上の写真をもとに川魚ウグイの繁殖生態を明らかにす
-る | [academist journal](https://academist-cf.com/journal/?p=4492)<br>(academist) | 2017 |
+| 釣り人の写真は貴重な資料！Web上の写真をもとに川魚ウグイの繁殖生態を明らかにする | [academist journal](https://academist-cf.com/journal/?p=4492)<br>(academist) | 2017 |
 | ウグイ類のメスが派手な理由とは：魚たちのお見合い実験奮闘記 | [BuNa](https://buna.info/article/2242/)<br>Bun-ichi Nature Web Magazine<br>（文一総合出版) | 2019 |
 | 寄生虫を使ってウグイの育ちを調べる | 西岡公園<br>札幌市カルチャーナイト | 2018 |
 
@@ -167,11 +169,11 @@ Email: k.atsumi115_at_gmail.com
 | | |
 | ---- | ---- |
 | 2019.3 | 日本生態学会 最優秀ポスター賞（共著） |
+| 2018.3 | 北海道大学環境科学院 ポスター発表セッション 優秀研究賞（主著） |
 | 2018.3 | 生態学国際誌*Ecological research*の[論文賞](https://link.springer.com/article/10.1007/s11284-017-1466-z)（主著） |
 | 2017.12 | 日本生態学会北海道地区会　優秀研究賞（共著） |
-| 2017.3 | 北海道大学環境科学院 ポスター発表セッション 優秀研究賞（主著） |
 | 2016.6 | JASSO 奨学金返済半額免除（修士課程） |
-| 2021.6 | 北海道大学 新渡戸賞 受賞（学部１年次の成績上位５%に授与） |
+| 2015.6 | 北海道大学 新渡戸賞 受賞（学部１年次の成績上位５%に授与） |
 
 <div style="margin-bottom:60px;">
 </div>
