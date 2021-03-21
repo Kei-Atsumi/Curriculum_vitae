@@ -27,9 +27,9 @@ Born in 1992 in Nagoya, Japan
 
 ### Education
 
-| | | |
-| ---- | ---- | ---- |
-| 2016 - 2020 | Ph.D. | Grad. Environmental Earth Science, <b>Hokkaido Univ.</b> Supervisor, [Dr. Itsuro Koizumi](https://noah.ees.hokudai.ac.jp/envmi/koizumilab/en/) |
+| | |  |
+| -- | -- | -------- |
+| 2016 - 2020 | Ph.D. | Grad. Environmental Earth Science, <b>Hokkaido Univ.</b></br> Supervisor, [Dr. Itsuro Koizumi](https://noah.ees.hokudai.ac.jp/envmi/koizumilab/en/) |
 | 2014 - 2016 | M.Sc. | Grad. Agricultural and Life Sciences, <b>Univ. Tokyo</b> |
 | 2010 - 2014 | B.Sc. | Fac. Fisheries Science, <b>Hokkaido Univ.</b> |
 
@@ -39,7 +39,7 @@ Born in 1992 in Nagoya, Japan
 ### Work experience
 
 | | |
-| ---- | ---- |
+| -- | ------- |
 | 2021.3 - | Postdoctoral fellow at Texas A&M University - [Gil Rosenthal lab](https://swordtail.tamu.edu/), supported by JSPS |
 | 2017.10-12、2019.10-12 | Visiting scholar at University of New South Wales - [Shinichi Nakagawa lab](http://www.i-deel.org/), Sydney, to conduct meta-analysis of phenotypic distribution of F1 hybrids |
 | 2018.4 - 2020.3 | JSPS research fellow at Hokkaido University (DC2, doctoral students) |
@@ -70,7 +70,7 @@ Please see [Google scholar](https://scholar.google.com/citations?user=PMk-FAx8vz
 # Research funding
 
 | | |
-| ---- | ---- |
+| -- | ------ |
 | 2020.4 - 2022.3 | JSPS Overseas Research Fellow (JSPS) |
 | 2018.4 - 2020.3 | Grant in Aid for JSPS Research Fellow (JSPS) |
 | 2017.4 - 2018.3 | Grant for Zoological Research (Fujiwara Natural History Foundation) |
@@ -82,7 +82,7 @@ Please see [Google scholar](https://scholar.google.com/citations?user=PMk-FAx8vz
 # Awards
 
 | | |
-| ---- | ---- |
+| -- | -------- |
 | 2018.3 | [Best paper award](https://link.springer.com/article/10.1007/s11284-017-1466-z) of *Ecological research* |
 | 2017.3 | Best Research Award, Poster Presentation Session, Grad. Environmental Science, Hokkaido Univ. |
 | 2016 | JASSO Repayment Exemption for Students with Particularly Outstanding Results (half exemption) |
@@ -135,6 +135,6 @@ Please see [Google scholar](https://scholar.google.com/citations?user=PMk-FAx8vz
 ### Organize meetings
 
 | | |
-| ---- | ---- |
+| -- | --------- |
 | 2016-2020 | *EZO zemi* - Cross-disciplinary seminar series for ecologists/evolutionary biologists at Hokkaido Univ |
 | 2018.3 | Organized symposium *For interpretation of animal personality and its implications for ecology* at Annual Meetings of the *Ecological Society of Japan*. This symposium was compiled as the special feature of *Japanese journal of ecology* |
