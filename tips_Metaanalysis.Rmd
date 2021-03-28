@@ -180,16 +180,24 @@ ConflictでFilterして、それをExport(CSV推奨)し、Rayyan上でレビュ�
 
 とっても大まかな流れの紹介にとどめます。詳しくは[役立ちリンク](#役立ちリンク)をご覧ください。
 
-1. **それぞれの一次研究で効果量を算出**。2021年3月現在、主な効果量(effect size)は以下。`metafor`でOK。
-  1. ２群間の平均値の差なら、対数変換したLog Response Ratio - **lnRR**か、対数変換しないStandardized Mean Difference - **SMD** (a.k.a Hedge's D)
-  1. ２群間の相関なら、**Zr**
-  1. 割合なら **Odds ratio**
-  1. 2群間の分散（Variance）の差なら、**lnVR**
-  1. 2群間の変動係数（coefficient of variation）の差なら、**lnCVR**。ちなみにlnCVR = lnVR - lnRRでは、lnRRとlnCVR双方の誤差を含むので検出力が下がります。
+1. **それぞれの一次研究で効果量を算出**。2021年3月現在、主な効果量(effect size)は以下
 
-1. **効果量の偏りをFunnel plotでチェック**。Funnel plotが非対称だと論文出版の偏り（Publication bias）が示唆されます。極端にerrorが大きい･小さい効果量があった場合は、元データが正しいか確認しましょう  
+    - ２群間の平均値の差なら、対数変換したLog Response Ratio - **lnRR**か、対数変換しないStandardized Mean Difference - **SMD** (a.k.a Hedge's D)
+    
+    - ２群間の相関なら、**Zr**
+    
+    - 割合なら **Odds ratio**
+    
+    - 2群間の分散（Variance）の差なら、**lnVR**
+    
+    - 2群間の変動係数（coefficient of variation）の差なら、**lnCVR**。ちなみにlnCVR = lnVR - lnRRでは、lnRRとlnCVR双方の誤差を含むので検出力が下がります。
 
-1. Let's **メタ解析**！効果量は期待される不確実性（sampling error）によって重みづけしたうえで、研究・対象生物種・系統などによって生じる個別結果の不均質性をランダム効果で補正した、切片項だけのGLMMによって、平均的な効果量サイズを算出します。
+1. **効果量の偏りをFunnel plotでチェック**。Funnel 
+    - plotが非対称だと論文出版の偏り（Publication bias）が示唆
+    - 極端にerrorが大きい･小さい効果量があった場合は、元データが正しいか確認しましょう  
+
+
+1. Let's **メタ解析**！<br>効果量は期待される不確実性（sampling error）によって重みづけしたうえで、研究・対象生物種・系統などによって生じる個別結果の不均質性をランダム効果で補正した、切片項だけのGLMMによって、平均的な効果量サイズを算出します。
 
 1. 個別研究の結果を左右しそうな変数が思い当たるなら、**メタ回帰**。先ほどのメタ解析に、思い当たる変数を固定効果として加えます。
 

@@ -516,14 +516,20 @@ div.tocify {
 <h1>メタ解析</h1>
 <p>とっても大まかな流れの紹介にとどめます。詳しくは<a href="#役立ちリンク">役立ちリンク</a>をご覧ください。</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>それぞれの一次研究で効果量を算出</strong>。2021年3月現在、主な効果量(effect size)は以下。<code>metafor</code>でOK。</p></li>
+<li><p><strong>それぞれの一次研究で効果量を算出</strong>。2021年3月現在、主な効果量(effect size)は以下</p>
+<ul>
 <li><p>２群間の平均値の差なら、対数変換したLog Response Ratio - <strong>lnRR</strong>か、対数変換しないStandardized Mean Difference - <strong>SMD</strong> (a.k.a Hedge’s D)</p></li>
 <li><p>２群間の相関なら、<strong>Zr</strong></p></li>
 <li><p>割合なら <strong>Odds ratio</strong></p></li>
 <li><p>2群間の分散（Variance）の差なら、<strong>lnVR</strong></p></li>
 <li><p>2群間の変動係数（coefficient of variation）の差なら、<strong>lnCVR</strong>。ちなみにlnCVR = lnVR - lnRRでは、lnRRとlnCVR双方の誤差を含むので検出力が下がります。</p></li>
-<li><p><strong>効果量の偏りをFunnel plotでチェック</strong>。Funnel plotが非対称だと論文出版の偏り（Publication bias）が示唆されます。極端にerrorが大きい･小さい効果量があった場合は、元データが正しいか確認しましょう</p></li>
-<li><p>Let’s <strong>メタ解析</strong>！効果量は期待される不確実性（sampling error）によって重みづけしたうえで、研究・対象生物種・系統などによって生じる個別結果の不均質性をランダム効果で補正した、切片項だけのGLMMによって、平均的な効果量サイズを算出します。</p></li>
+</ul></li>
+<li><p><strong>効果量の偏りをFunnel plotでチェック</strong>。Funnel</p>
+<ul>
+<li>plotが非対称だと論文出版の偏り（Publication bias）が示唆</li>
+<li>極端にerrorが大きい･小さい効果量があった場合は、元データが正しいか確認しましょう</li>
+</ul></li>
+<li><p>Let’s <strong>メタ解析</strong>！<br>効果量は期待される不確実性（sampling error）によって重みづけしたうえで、研究・対象生物種・系統などによって生じる個別結果の不均質性をランダム効果で補正した、切片項だけのGLMMによって、平均的な効果量サイズを算出します。</p></li>
 <li><p>個別研究の結果を左右しそうな変数が思い当たるなら、<strong>メタ回帰</strong>。先ほどのメタ解析に、思い当たる変数を固定効果として加えます。</p></li>
 </ol>
 <p>一般的な効果量でメタ解析・回帰をするだけなら全て<code>metafor</code>でOK。トリッキーな分析は<code>MCMCglmm</code>で。ただしその場合は効果量のSampling errorを導出したり、分析にあった適切な事前分布を設定するなど難しくなります。なお、事前分布を間違えるととんでもない推定値が出ます。</p>

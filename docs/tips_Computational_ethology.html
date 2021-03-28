@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Computational ethology</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">渥美圭佑</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    CV/履歴
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="index.html">English</a>
+    </li>
+    <li>
+      <a href="CV_Japanese.html">履歴</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    役立つかも？
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tips_Visa_procedure.html">海外渡航のあれこれ</a>
+    </li>
+    <li>
+      <a href="tips_Proposal.html">学振の申請書</a>
+    </li>
+    <li>
+      <a href="tips_Metaanalysis.html">メタ解析</a>
+    </li>
+    <li>
+      <a href="tips_Citationformat.html">無料で文献管理</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Computational ethology</h1>
+
+</div>
+
+
+<div style="margin-bottom:60px;">
+
+</div>
+<hr />
+<div id="computational-ethologyバイオインフォマティクスと動物行動学の融合" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Computational Ethology：バイオインフォマティクスと動物行動学の融合</h1>
+<p><a href="https://leading.lifesciencedb.jp/4-e003">福永津嵩・岩崎 渉 2015</a></p>
+<hr />
+<div id="行動の軌跡のトラッキング" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> 行動の軌跡のトラッキング</h2>
+<p>動画データを構成する多数の静止画像に含まれる個体を認識し，おのおのの個体の位置や向きを時系列にそって定量化し行動の軌跡を得る</p>
+<ol style="list-style-type: decimal">
+<li><strong>動画におけるおのおのの画像から動物の部分のみを抜き出す</strong>：“背景”となる不要な部分を取り除く</li>
+</ol>
+<ul>
+<li><p>しきい値による2値化処理や背景差分法がよく使われる</p></li>
+<li><p>動物の部分と背景の色や明るさに差のあることを利用</p>
+<ul>
+<li><p>しきい値による2値化処理：背景の色や明るさが比較的均一であり動物の部分と大きな差があれば，色や明るさに一定のしきい値を設けて動物の部分を抜き出す</p></li>
+<li><p>背景差分法：あらかじめ背景のみの画像を撮影しておき，動画におけるおのおのの画像と背景の画像との差分をとることにより動物の部分を抜き出す</p></li>
+</ul></li>
+<li><p>実際には，これら単純な手法により動物の部分を抜き出すことができることは少なく，空間フィルタリングによるノイズの除去をはじめとする，さまざまな画像処理における工夫が必要</p></li>
+<li><p>実験の工夫</p>
+<ul>
+<li><p>飼育容器をピクセルレベルで動かないようきちんと固定する</p></li>
+<li><p>飼育容器の影や光の反射などに動物が重なって見えなくなることがないようにする</p></li>
+</ul></li>
+<li><p>動画を撮影する研究者と動画を解析する研究者が異なる場合には，動画の撮影のまえに撮影の環境についてよく相談しておく</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>時系列にそってつなぎあわせて行動の軌跡を得る</strong></li>
+</ol>
+<ul>
+<li><p>撮影対象が1個体のみの場合は，抜き出された動物の部分をほぼそのままつなぎあわせることにより行動の軌跡を得られる</p></li>
+<li><p>複数をトラッキングする場合には，ある時刻における複数の個体の位置とつぎの時刻における複数の個体の位置をどのように対応づけるかという問題が発生：“occlusion問題”</p>
+<ul>
+<li><p>2つの個体の行動の軌跡が入れ替わってしまう“swapping of identity”</p></li>
+<li><p>1つの個体の行動の軌跡が別の個体の行動の軌跡に合流してしまう（とともに，1つの個体の行動の軌跡が失われる）“loss of identity”</p></li>
+</ul></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>おのおのの個体の形状に関する時系列的な情報を動画データから取得</strong></li>
+</ol>
+<ul>
+<li><p>解析に行動の軌跡のみが必要ならば，このステップは省略</p></li>
+<li><p>動物により形状は大きく異なることから動物ごとに個別のトラッキングソフトウェアを開発する必要</p></li>
+<li><p>高解像度の動画解析を行ったり複雑なアルゴリズムを用いるソフトウェアを使ったりする場合には，トラッキングに撮影時間より長い計算時間がかかる</p></li>
+</ul>
+<hr />
+</div>
+<div id="行動アノテーション解析行動モチーフ抽出ソーシャルネットワーク解析" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> 行動アノテーション解析，行動モチーフ抽出，ソーシャルネットワーク解析</h2>
+<p>高次の解析の例</p>
+<p><strong>行動アノテーション解析</strong></p>
+<ul>
+<li><p>動物が時系列にそってどのような種類の行動をとったかを明らかにするため，行動を“歩く”“走る”“回る”などいくつかのカテゴリーに分類し，おのおのの時点での行動がどのカテゴリーに該当するかをアノテーションする（注釈づける）</p></li>
+<li><p>行動カテゴリーの遷移図が，エソグラム</p></li>
+</ul>
+<p>― 教師あり学習</p>
+<ul>
+<li><p>入力値と目標値の多数の組からなる教師データ（トレーニングデータ）があたえられ，その教師データをもとに，入力値があたえられたときに目標値を予測する式を導く（学習する）</br>→入力値のみがあたえられ目標値が未知であるデータについても目標値を予測することが可能</p></li>
+<li><p>個体の位置，速さ，向き，形状などのトラッキングデータが入力値</br>行動のカテゴリーが目標値</p></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p>小規模な動画データに対し専門家が人手でアノテーションを行い教師データを作成</p></li>
+<li><p>教師データに対し，サポートベクターマシンやランダムフォレストといった教師あり学習の手法を用いて，トラッキングデータからおのおのの時点で動物がとっている行動カテゴリーを予測する式を導く</p></li>
+</ol>
+<ul>
+<li><p>→ 行動のカテゴリーがアノテーションされていない大規模な動画データに対してもコンピューターを用いて自動的にアノテーションを行い，エソグラムを作れる</p></li>
+<li><p>◎ 行動のカテゴリーそれ自体は専門家が知識や経験にもとづいてあたえたものであるから，解析結果の解釈が比較的容易</p></li>
+<li><p>× 未知の行動を行動アノテーション解析により発見することは，原理的にむずかしい</p></li>
+<li><p>× 人手による行動のアノテーションには主観が入る</p></li>
+</ul>
+<p><strong>行動モチーフ抽出</strong></p>
+<ul>
+<li><p>トラッキングデータにおいて特徴的な一連のパターン（行動モチーフ）を発見</p></li>
+<li><p>教師なし学習</p>
+<ul>
+<li><p>目標値がアノテーションされた教師データを用いない機械学習．</p></li>
+<li><p>あたえられた入力値を分類したり，入力値のなかに特徴的なパターンを見い出したりできる</p></li>
+</ul></li>
+<li><p>◎ トラッキングデータのなかに頻出する特徴的な動きのパターンなどを得られる</p></li>
+<li><p>× 行動モチーフのもつ動物行動学的な意味はただちには不明かも</p></li>
+<li><p>◎ 人間の主観の影響をうけにくく，未知の行動を検出することに長ける</p></li>
+</ul>
+<p><strong>ソーシャルネットワーク解析</strong></p>
+<ul>
+<li><p>個体を頂点，その関係性を辺とするネットワークとして動物の集団を表現し，集団におけるおのおのの個体の位置や社会構造の特徴などを複雑ネットワークで解析</p></li>
+<li><p>複数の物や人のあいだの関係性をネットワーク（数学的には，グラフとよぶ）により表現し，それらのネットワークの性質を数理的に解析することにより物や人のあいだの関係性がつくりだす複雑な構造のもつ性質をひもとく</p>
+<ul>
+<li><p>物や人のあいだの関係性に向きを定義する場合には辺に向きを定義した“有向グラフ”を用い（辺は矢印により表現される）</p></li>
+<li><p>そうでない場合には辺に向きを定義しない“無向グラフ”（辺は線分により表現される）</p></li>
+</ul></li>
+</ul>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+</div>
+<div id="computational-neuroethology-a-call-to-action" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Computational Neuroethology: A Call to Action</h1>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0896627319308414">Datta <em>et al.</em> 2019 <em>Neuron</em></a></p>
+<hr />
+<div id="challenges-in-computational-neuroethology" class="section level2" number="2.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> Challenges in Computational Neuroethology</h2>
+<p>連続した行動をどう切り分けるか？</p>
+<p>Lumping</p>
+<ul>
+<li>複数の行動を同時に行っている</li>
+</ul>
+<p>Labeling</p>
+<ul>
+<li><p>連続した行動を複数のMotifに分割</p></li>
+<li><p>Motifがいつ開始および停止したかを定義</p>
+<ul>
+<li>実験中に実行された一連のアクションを明らかにする</li>
+</ul></li>
+</ul>
+</div>
+<div id="technology-for-quantifying-behavior" class="section level2" number="2.2">
+<h2 number="2.2"><span class="header-section-number">2.2</span> Technology for Quantifying Behavior</h2>
+<ul>
+<li><p>Time domain解析</p>
+<ul>
+<li>beating wingは時間的な羽の位置の移動として捉える</li>
+</ul></li>
+<li><p>Frequency domain解析</p>
+<ul>
+<li><p>beating wingは、characteristic wing beat frequencyとして捉える</p></li>
+<li><p><strong>MotionMapper</strong></p></li>
+</ul></li>
+</ul>
+<p>いずれも、時間スケールを指定する必要</p>
+<hr />
+</div>
+<div id="organizing-data-and-assigning-labels機械学習" class="section level2" number="2.3">
+<h2 number="2.3"><span class="header-section-number">2.3</span> Organizing Data and Assigning Labels：機械学習</h2>
+<p><strong>教師あり学習</strong></p>
+<p>JAABA</p>
+<ul>
+<li><p>特定の動作に対応するビデオスニペットを示す</p></li>
+<li><p>動作がいつ発生したかを識別するためのClassifierをトレーニング</p></li>
+</ul>
+<hr />
+<p><strong>教師なし学習</strong>は、行動特徴データの統計的規則性を利用して、繰り返し使用される行動のモチーフを識別。</p>
+<p>行動データ固有の構造を使って、行動の説明を定義する際の主な2方法：</p>
+<p>MotionMapper</p>
+<ul>
+<li><p>入力ビデオデータを受け取り、前処理（PCAベースの次元削減ステップとこれらの次元削減データの周波数ドメイン表現への再フォーマットを含む）の後、これらのデータを投影することでさらに次元削減</p></li>
+<li><p>t-確率的最近傍（tSNE）埋め込みと呼ばれる非線形手法を介して2次元空間に変換</p></li>
+<li><p>動作のtSNE埋め込みをwatershed-based clusteringにかける</p>
+<ul>
+<li><p>教師なし手法が突き当たる、「Lumping」と「Splitting」の問題に対処</p></li>
+<li><p>→ 再利用されたアクションのモチーフ（tSNE埋め込みのピークとして表示）と、ステレオタイプ化されていない動作（谷として表示）が識別</p></li>
+<li><p>クラスタリングベースの教師なし行動分類方法の比較は、Systematic exploration of unsupervised methods for mapping behavior <a href="https://iopscience.iop.org/article/10.1088/1478-3975/14/1/015002/meta">Todd <em>et al.</em> 2017 Physical Biology</a></p></li>
+</ul></li>
+</ul>
+<p>Motion sequencing (MoSeq)</p>
+<ul>
+<li><p>時系列分析の古典的な方法である隠れマルコフモデル（HMM）を利用</p></li>
+<li><p>深度カメラから取得した3Dデータをを基に、HMMの階層バリアントを適合</p>
+<ul>
+<li>各行動コンポーネントは、ポーズ空間での連続的な自己回帰プロセスとしてモデル化</li>
+<li>コンポーネント自体（期間分布はデータに基づいてモデル化）はHMMを使用してモデル化</li>
+</ul></li>
+<li><p>動作コンポーネント（“syllables”）のID、数、および順序は柔軟に学習できる</p></li>
+<li><p>すべてのHMMと同様に、トレーニング後に合成3Dマウスを生成できる（そのリアリズムは、保持されたデータとの統計的比較によって測定できます）</p></li>
+<li><p>基本的なフィッティング手順では、様々なLumping・Splittingパターンを試す</p></li>
+</ul>
+<hr />
+<p>教師の有無にかかわらず、実験者が色々選ばなくちゃいけない：</p>
+<ul>
+<li><p>時間領域または周波数領域で動作を分析するかどうか</p></li>
+<li><p>考慮すべきタイムスケール</p></li>
+<li><p>行動を連続的、離散的、またはその両方として表すかどうか</p>
+<ul>
+<li>離散的な場合は、動作を要素に細分化する問題に対処する方法</li>
+</ul></li>
+</ul>
+<p>選ぶときは、動物が解決している課題の性質とデータの固有の構造を反映する必要。</p>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+</div>
+<div id="主要ツール" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> 主要ツール</h1>
+<p><a href="https://researchmap.jp/heathrossie/%E7%A0%94%E7%A9%B6%E3%83%96%E3%83%AD%E3%82%B0">松井さんSite</a></p>
+<p><a href="https://www.nature.com/articles/s41593-018-0209-y">DeepLabCut: markerless pose estimation of user-defined body parts with deep learning</a></p>
+<ul>
+<li><p>Deep Learningベースの複数部位を同時に追跡可能なトラッキングソフト</p></li>
+<li><p>Pythonから使用可能</p></li>
+</ul>
+<p><a href="http://jeb.biologists.org/content/221/16/jeb182469.abstract">UMATracker: an intuitive image-based tracking platform</a></p>
+<ul>
+<li><p>GUIで使用可能なトラッキングソフト</p></li>
+<li><p>無料の中では一番使いやすいと思う</p></li>
+</ul>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S1476927115000237">GroupTracker: Video tracking system for multiple animals under severe occlusion</a></p>
+<ul>
+<li>複数個体を同時追跡するためのトラッカーらしい (UMATrackerにも入っている)</li>
+</ul>
+<p>[DeepPoseKit: pose estimation using deep learning]</p>
+<ul>
+<li><p>Konstanz謹製のトラッキングソフト</p></li>
+<li><p>deeplabcutと同じくらいの精度で速度が2倍</p></li>
+<li><p>ただし、GUIがやや使いにくい</p></li>
+</ul>
+<hr />
+</div>
+<div id="deep-learning-tools-for-the-measurement-of-animal-behavior-in-neuroscience" class="section level1" number="4">
+<h1 number="4"><span class="header-section-number">4</span> Deep learning tools for the measurement of animal behavior in neuroscience</h1>
+<p><a href="https://www.sciencedirect.com/science/article/abs/pii/S0959438819301151">Mathis &amp; Mathis 2020 <em>Current Opinion in Neurobiology</em></a></p>
+<hr />
+</div>
+<div id="a-primer-on-motion-capture-with-deep-learning-principles-pitfalls-and-perspectives" class="section level1" number="5">
+<h1 number="5"><span class="header-section-number">5</span> A Primer on Motion Capture with Deep Learning: Principles, Pitfalls, and Perspectives</h1>
+<p><a href="https://www.cell.com/neuron/fulltext/S0896-6273(20)30717-0">Mathis &amp; Mathis 2020 <em>Neuron</em></a></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
