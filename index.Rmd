@@ -53,6 +53,9 @@ Born in 1992 in Nagoya, Japan
 
 # Research output
 
+<a href="https://scholar.google.com/citations?user=PMk-FAx8vzAC&hl=ja"> <img src="./files/googlescholar.png" width="40" height="40"></a>
+<a href="https://www.researchgate.net/profile/Keisuke-Atsumi"> <img src="./files/researchgate.png" width="40" height="40"></a>
+
 Please see [Google scholar](https://scholar.google.com/citations?user=PMk-FAx8vzAC&hl=ja) for details. You can find PDFs on [Researchgate](https://www.researchgate.net/profile/Keisuke-Atsumi).
 
 <div style="margin-bottom:30px;">
