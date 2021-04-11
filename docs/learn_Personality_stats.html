@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Personality stats</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">渥美圭佑</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    CV/履歴
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="index.html">English</a>
+    </li>
+    <li>
+      <a href="CV_Japanese.html">履歴</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    役立つかも？
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tips_Visa_procedure.html">海外渡航のあれこれ</a>
+    </li>
+    <li>
+      <a href="tips_Proposal.html">学振の申請書</a>
+    </li>
+    <li>
+      <a href="tips_Metaanalysis.html">メタ解析</a>
+    </li>
+    <li>
+      <a href="tips_Citationformat.html">無料で文献管理</a>
+    </li>
+    <li>
+      <a href="learn_Personality_stats.html">動物の個性を統計処理する</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Personality stats</h1>
+
+</div>
+
+
+<div style="margin-bottom:60px;">
+
+</div>
+<div id="趣旨" class="section level1">
+<h1>趣旨</h1>
+<p>個性や行動シンドローム、個性と適応度の関連を調べるうえで、統計の部分で勉強したことをまとめていきます。個性や行動シンドロームの概念的な部分は日本生態学会誌に<a href="https://www.researchgate.net/publication/350485050_dongwunogexingyanjiuwofukansuru">総説</a> を書いていますのでそちらを参照ください。</p>
+<p>自分で分析を始めたら、その時に詰まったところなどまとめていきます。</p>
+<p>個体内で反復測定をしたデータ分析に共通の手法ですので、個性だけでなく、成長過程での形質相関の変化など色々応用できると思います。</p>
+<hr />
+<div style="margin-bottom:90px;">
+
+</div>
+</div>
+<div id="general-settings" class="section level1">
+<h1>General settings</h1>
+<pre class="r"><code>rm(list=ls())  # reset workspace
+options(scipen=100)  # do not show numbers using exponential
+
+# install &amp; load packages
+pacman::p_load(
+  tidyverse
+  # , openxlsx # open excel
+  , magrittr   # extended pipe
+  # , foreach    # Parallel processing
+  , knitr  
+  , kableExtra # nice tables
+  , pander     # nice tables
+  # , svglite    # Export SVG plots
+  # , patchwork   # combine multiple plots
+)
+
+# Rmarkdown settings
+knitr::opts_chunk$set(
+  prompt  = FALSE,  # Do not add &gt; or + in inline-code
+  message = FALSE, 
+  comment = &quot;&quot;, 
+  warning = FALSE,  # Mute warnings
+  tidy    = TRUE
+  ) 
+options(knitr.kable.NA = &#39;&#39;) # Hide NAs in kable table</code></pre>
+<div style="margin-bottom:90px;">
+
+</div>
+<hr />
+</div>
+<div id="mcmcglmm-houslay-wilson-2017-behav-ecol" class="section level1">
+<h1><code>MCMCglmm</code> : Houslay &amp; Wilson 2017 <em>Behav Ecol</em></h1>
+<p><a href="https://tomhouslay.files.wordpress.com/2017/02/indivvar_mv_tutorial_mcmcglmm.pdf">T.M. Houslay &amp; A.J. Wilson, Behavioral Ecology 2017: Supplement</a> のまとめ。</p>
+<div id="問題点であるblupとは" class="section level2">
+<h2>問題点であるBLUPとは</h2>
+<p>Best Linear Unbiased Predictors - 混合モデルで推定された、ランダム効果の各個体での推定値 - 当然大きな誤差が伴う</p>
+<p>【問題となっている手法】<br> 個体IDにランダム効果を当てた混合モデルにおいて、各個体のランダム効果値（BLUP, 各個体の行動性向を示す）を抽出し、それを用いてさらに分析を進める（行動シンドロームなど）</p>
+<p>【問題点】<br> 点推定であるBLUPには誤差が反映されないので、BLUPを使った分析では慌て者の過誤が起こりやすくなる（編集元のSupplementではBLUPによる分析もしているがここでは省略）</p>
+<p>【解決策】<br> 個性分析（行動Repeatability）と追加分析（行動シンドロームや個性ー適応度の関連）を一つの混合モデルで片付けてしまう</p>
+<hr />
+<div style="margin-bottom:90px;">
+
+</div>
+</div>
+<div id="install-load-packages" class="section level2">
+<h2>Install &amp; load packages</h2>
+<pre class="r"><code>pacman::p_load(
+  MCMCglmm
+  , lme4
+  , broom.mixed # create tidy output of glmm result
+  , nadiv
+  , coda # Judge MCMC convergence
+  )
+
+# Supplementで用意されている仮想データ
+df_syndrome &lt;- read_csv(&quot;learn_Personality_stats_dat_syndrome.csv&quot;)</code></pre>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+<div id="data-assumption" class="section level2">
+<h2>Data assumption</h2>
+<p>ここでは、複数の繰り返し計測した行動指標と、一回計測の適応度形質（mating success）データを想定。</p>
+<p>今回の仮想データは全てオスのもので、以下の列を持つ</p>
+<ul>
+<li>Individual <strong>ID</strong></li>
+<li>The repeat number for each behavioural test, <strong>assay_rep</strong></li>
+<li><strong>boldness</strong>, measured 4 times per individual</li>
+<li><strong>exploration</strong>, measured 4 times per individual</li>
+<li><strong>fitness</strong>, a single value for each individual</li>
+<li>Individual <strong>body_size</strong>, as measured on the day of testing.</li>
+</ul>
+<hr />
+<div style="margin-bottom:90px;">
+
+</div>
+</div>
+<div id="単回帰モデル" class="section level2">
+<h2>単回帰モデル</h2>
+<ul>
+<li><p>各行動形質での、個体差による表現型分散の割合を計算</p></li>
+<li><p><code>lme4</code>にて</p></li>
+<li><p>計測の反復IDは固定効果に</p></li>
+<li><p>個体IDがrandom effects</p></li>
+<li><p>計測可能な個体の状態（ここでは体サイズ）はScaling or Centringして固定効果に</p></li>
+<li><p>行動シンドロームを調べる全形質でこれを行う</p></li>
+</ul>
+<pre class="r"><code>lmer_b &lt;- lmer(
+  boldness ~ scale(assay_rep, scale=FALSE) + scale(body_size) + 
+    # Don&#39;t forget scaling variables!
+    (1|ID),
+  data = df_syndrome
+  )
+
+plot(lmer_b)</code></pre>
+<p><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-3-1.png" width="480" /></p>
+<pre class="r"><code>qqnorm(residuals(lmer_b))</code></pre>
+<p><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-3-2.png" width="480" /></p>
+<pre class="r"><code>hist(residuals(lmer_b))</code></pre>
+<p><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-3-3.png" width="480" /></p>
+<pre class="r"><code>summary(lmer_b)</code></pre>
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: boldness ~ scale(assay_rep, scale = FALSE) + scale(body_size) +  
+    (1 | ID)
+   Data: df_syndrome
+
+REML criterion at convergence: 1061.4
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.3666 -0.6478 -0.1155  0.6445  2.6892 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ ID       (Intercept) 0.6951   0.8337  
+ Residual             1.1681   1.0808  
+Number of obs: 320, groups:  ID, 80
+
+Fixed effects:
+                                Estimate Std. Error t value
+(Intercept)                     20.09134    0.11108 180.871
+scale(assay_rep, scale = FALSE) -0.04813    0.05404  -0.891
+scale(body_size)                 0.14113    0.10893   1.296
+
+Correlation of Fixed Effects:
+            (Intr) s(_s=F
+s(_,s=FALSE  0.000       
+scl(bdy_sz)  0.000 -0.002</code></pre>
+<ul>
+<li><p>ここではrandom effectsのvariance componentに興味がある。</p>
+<ul>
+<li>SDは分散の平方根</li>
+</ul></li>
+<li><p>動物の個性の証拠となるのは、repeatability (= intraclass correlation coefficient)</p></li>
+<li><p>Repeatability:</p>
+<ul>
+<li><span class="math inline">\(\frac{個体差による分散}{固定効果を考慮したうえでの全分散} = \frac{V_{ID}}{V_{ID} + V_{residual}}\)</span></li>
+</ul></li>
+</ul>
+<pre class="r"><code>broom.mixed::tidy(lmer_b, effects = &quot;ran_pars&quot;, scales = &quot;vcov&quot;) %&gt;%
+  select(group, estimate) %&gt;%
+  spread(group, estimate) %&gt;%
+  mutate(Repeatability = ID/(ID + Residual)) %&gt;% 
+  kable(&quot;html&quot;, digits = 3) %&gt;% 
+  kable_styling(&quot;striped&quot;, position = &quot;left&quot;)  </code></pre>
+<table class="table table-striped" style>
+<thead>
+<tr>
+<th style="text-align:right;">
+ID
+</th>
+<th style="text-align:right;">
+Residual
+</th>
+<th style="text-align:right;">
+Repeatability
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0.695
+</td>
+<td style="text-align:right;">
+1.168
+</td>
+<td style="text-align:right;">
+0.373
+</td>
+</tr>
+</tbody>
+</table>
+<p>この仮想データでは、ばらつきの37%が固定効果ではなく個体差によるもの。</p>
+<hr />
+<div style="margin-bottom:90px;">
+
+</div>
+</div>
+<div id="行動シンドロームbivariate-models" class="section level2">
+<h2>行動シンドローム：Bivariate models</h2>
+<ul>
+<li><p><code>MCMCglmm</code>での、行動2形質を応答変数に置いたモデルを組む。</p></li>
+<li><p>各行動形質とそれらの共分散に対する、個体間分散を推定</p></li>
+</ul>
+<div id="事前分布の設定" class="section level3">
+<h3>事前分布の設定</h3>
+<p>解説は以下参照</p>
+<ul>
+<li><p><a href="https://ourcodingclub.github.io/tutorials/mcmcglmm/">Coding hub</a></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/MCMCglmm/vignettes/CourseNotes.pdf">Course notes</a></p></li>
+<li><p>カテゴリカル変数には<a href="https://rdrr.io/cran/MCMCglmm/man/gelman.prior.html">Gelman prior</a>を当てはめる</p></li>
+<li><p>複数の事前分布に対し結果が頑健か見ておくと良い</p></li>
+</ul>
+<p>固定効果にはNormal distribution、(co)variancesにはinverse Wishartを事前分布として使っている。</p>
+<hr />
+<p>指定するもの</p>
+<ul>
+<li><p><strong>B</strong>: 固定効果の事前分布。Defaultは信仰の弱い正規分布</p></li>
+<li><p><strong>R</strong>: 残差</p></li>
+<li><p><strong>G</strong>: ランダム効果</p></li>
+<li><p>ランダム効果の数だけ指定。例：</p></li>
+</ul>
+<pre class="r"><code>    G = list(
+      G1 = list(V = 1, nu = 1, alpha.mu = 0, alpha.V = 1000),
+      G2 = list(V = 1, nu = 1, alpha.mu = 0, alpha.V = 1000),
+      )
+    )</code></pre>
+<ul>
+<li><p><strong>alpha.mu</strong>: Prior mean</p></li>
+<li><p><strong>alpha.V</strong>: 分散行列</p></li>
+</ul>
+<hr />
+<p>inverse Wishart事前分布の変数</p>
+<ul>
+<li><p><strong>V</strong>: 事前分布のピークを決める。よく使われるのは1</p></li>
+<li><p><strong>nu</strong>: 信仰の強さ＝分布の偏り を決める。よく使われるのは0.002</p></li>
+</ul>
+<pre class="r"><code>prior_E_B_1px = list(
+  R = list(V = diag(2), nu = 0.002),
+  G = list(
+    G1 = list(
+      V = diag(2), 
+      nu = 2, 
+      alpha.mu = rep(0,2), 
+      alpha.V = diag(25^2,2,2))
+    )
+  )</code></pre>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+<div id="mcmcglmmモデル" class="section level3">
+<h3>MCMCglmmモデル</h3>
+<p>全体のコード</p>
+<pre class="r"><code>MCMCglmm(
+  # Response variables. Combine after scaling
+  cbind(scale(exploration), scale(boldness)) ~ 
+    trait-1 +
+    trait:scale(assay_rep, scale = FALSE) +
+    trait:scale(body_size),
+  random =~ us(trait):ID,
+  rcov =~ us(trait):units,
+  family = c(&quot;gaussian&quot;,&quot;gaussian&quot;),
+  prior = prior_E_B_1px,
+  nitt = 150000,
+  burnin = 10000,
+  thin = 30,
+  verbose = TRUE,
+  data = as.data.frame(df_syndrome)
+  )</code></pre>
+<p>項目ごとの解説</p>
+<ul>
+<li>Response variable: <code>cbind</code> after scaling</li>
+</ul>
+<pre class="r"><code>  cbind(scale(exploration), scale(boldness)) ~ </code></pre>
+<ul>
+<li><p>Predictor variable:</p>
+<ul>
+<li>各形質に対し切片を用意</li>
+</ul></li>
+</ul>
+<pre class="r"><code>    trait-1 +</code></pre>
+<ul>
+<li><strong>trait</strong> keywordにより多変量モデルであることを明記</li>
+<li>固定効果による形質への影響を、それぞれの形質で推定</li>
+</ul>
+<pre class="r"><code>    trait:scale(assay_rep, scale = FALSE) +
+    trait:scale(body_size),</code></pre>
+<ul>
+<li><p>Random effects structureを設定<br></p>
+<ul>
+<li><p>‘unstructured’ (us) 共分散行列を個体IDに適用<br> 以下を計算するため</p>
+<ul>
+<li>個体差による、それぞれの行動形質の分散</li>
+<li>これらの分散の共分散</li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="r"><code>  random =~ us(trait):ID,</code></pre>
+<ul>
+<li><p>残差分散の構造を設定</p>
+<ul>
+<li>‘within-individual variation’</li>
+<li>各個体で反復計測しているので、ここでもunstructured covariance matrixを設定
+<ul>
+<li>各形質での残差分散と共分散を計算</li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="r"><code>    rcov =~ us(trait):units,</code></pre>
+<ul>
+<li>MCMCプロセスの設定<br> 収束が悪い時はこれらの値を大きく上げる
+<ul>
+<li>反復試行数 (Iterations) <strong>nitt</strong><br> 収束が悪ければ青天井</li>
+<li>不安定な初期のIterationを切り捨てる数<strong>burnin</strong><br> 収束が悪ければ50000など</li>
+<li>使うIteration間隔 <strong>thin</strong>: Samplingでの自己相関を減らす<br> 収束が悪ければ200など</li>
+</ul></li>
+</ul>
+<pre class="r"><code>    nitt=420000,
+    burnin=20000,
+    thin=100,</code></pre>
+<ul>
+<li>データセット
+<ul>
+<li><code>MCMCglmm</code>ではtbl_dfを受け入れないので<code>as.data.frame</code></li>
+</ul></li>
+</ul>
+<pre class="r"><code>    data = as.data.frame(df_syndrome)</code></pre>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+<div id="mcmcの収束" class="section level3">
+<h3>MCMCの収束</h3>
+<p>Traceは一定の傾向を持っていてはいけないー未収束を示す。ある値の上下で終始ギザギザしていると収束が示唆。</p>
+<p>ランダム効果のMCMC連鎖</p>
+<pre class="r"><code>mcmc_E_B_us &lt;- readRDS(&quot;learn_Personality_stats_mcmc_syndrome.obj&quot;)
+plot(mcmc_E_B_us$VCV)</code></pre>
+<p><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p>固定効果の収束過程</p>
+<pre class="r"><code>plot(mcmc_E_B_us$Sol)</code></pre>
+<p><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-7-1.png" width="672" /><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<hr />
+<p><a href="https://www.rdocumentation.org/packages/coda/versions/0.19-4/topics/geweke.diag"><code>geweke.diag</code></a></p>
+<ul>
+<li>Markov連鎖の初期と後期での平均値が同じか調べる
+<ul>
+<li>初期設定では、初期10%と後期50%</li>
+</ul></li>
+<li>もし連鎖がstationary distributionに達していれば、
+<ul>
+<li>二つの平均は同じ</li>
+<li>Geweke統計量はasymptotically standard normal distribution</li>
+</ul></li>
+<li>test statistic: Z-score
+<ul>
+<li><span class="math inline">\(\frac{Sample\ meansの差}{推定standard\ error}\)</span></li>
+<li>SEは、spectral density at zeroから推定
+<ul>
+<li>自己相関が考慮に入っている</li>
+</ul></li>
+<li>calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1</li>
+</ul></li>
+</ul>
+<pre class="r"><code>geweke.diag(mcmc_E_B_us$Sol, frac1=0.1, frac2=0.5)</code></pre>
+<pre><code>
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+                                traitexploration 
+                                         1.60470 
+                                   traitboldness 
+                                         1.68896 
+traitexploration:scale(assay_rep, scale = FALSE) 
+                                        -0.95071 
+   traitboldness:scale(assay_rep, scale = FALSE) 
+                                        -0.83522 
+               traitexploration:scale(body_size) 
+                                         0.00896 
+                  traitboldness:scale(body_size) 
+                                        -0.26172 </code></pre>
+<p>Z値が０からほど遠いので、このMarchov連鎖は収束していないとみるべき</p>
+<hr />
+<p>モデルが2つ以上あるときには<a href="https://www.rdocumentation.org/packages/coda/versions/0.19-4/topics/gelman.diag"><code>gelman.diag</code></a>による判定もできる</p>
+<pre class="r"><code>gelman.diag(mcmc.list(m1$Sol, m2$Sol))</code></pre>
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+<div id="repeatability" class="section level3">
+<h3>Repeatability</h3>
+<p>反復性を計算するために、新たに ‘個体差で説明された行動形質ばらつきの割合’ の事後分布を作る</p>
+<ul>
+<li>SummaryにあるVariance componentsの名前に基づいて計算
+<ul>
+<li>このコードを丸々コピーはできない！</li>
+</ul></li>
+<li>ここではExplorationが対象</li>
+</ul>
+<pre class="r"><code>mcmc_prop_E &lt;- mcmc_E_B_us$VCV[,&quot;traitexploration:traitexploration.ID&quot;]/
+  (mcmc_E_B_us$VCV[,&quot;traitexploration:traitexploration.ID&quot;] +
+     mcmc_E_B_us$VCV[,&quot;traitexploration:traitexploration.units&quot;])
+
+plot(mcmc_prop_E)</code></pre>
+<p><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>mean(mcmc_prop_E)</code></pre>
+<pre><code>[1] 0.2887684</code></pre>
+<pre class="r"><code># 95% CIs
+HPDinterval(mcmc_prop_E)</code></pre>
+<pre><code>         lower     upper
+var1 0.1691948 0.4039535
+attr(,&quot;Probability&quot;)
+[1] 0.95</code></pre>
+<p>Bayesian 95%信頼区間が０を跨がないことが古典的（頻度主義的）な統計的有意を示すだと言われるが、ここで扱っている<strong>variance componentsは、MCMCglmmでは必ず正の値をとる</strong></p>
+<ul>
+<li><strong>信頼区間が０を跨がない≠有意</strong></li>
+<li>下限が０に近ければ、Repeatabilityが弱いと考えるべき</li>
+<li>なので<code>lme4</code>で単回帰を前もって行っている</li>
+</ul>
+<p>なお、Variance componentsの名前は以下で調べられる</p>
+<pre class="r"><code>mcmc_E_B_us$VCV %&gt;% 
+  as.tibble() %&gt;% 
+  colnames()</code></pre>
+<pre><code>[1] &quot;traitexploration:traitexploration.ID&quot;   
+[2] &quot;traitboldness:traitexploration.ID&quot;      
+[3] &quot;traitexploration:traitboldness.ID&quot;      
+[4] &quot;traitboldness:traitboldness.ID&quot;         
+[5] &quot;traitexploration:traitexploration.units&quot;
+[6] &quot;traitboldness:traitexploration.units&quot;   
+[7] &quot;traitexploration:traitboldness.units&quot;   
+[8] &quot;traitboldness:traitboldness.units&quot;      </code></pre>
+<ul>
+<li>個体差による分散は<br>trait{*trait name*}:trait{<em>trait name</em>}.<strong>ID</strong></li>
+<li>残差分散は<br>trait{<em>trait name</em>}:trait{<em>trait name</em>}.<strong>units</strong></li>
+</ul>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+<div id="covariance" class="section level3">
+<h3>Covariance</h3>
+<p>Repeatabilityの計算プロセスを共分散に応用できる。</p>
+<p>個体間での形質間相関の事後分布：</p>
+<ul>
+<li><p><span class="math inline">\(\frac{形質間の共分散}{各形質の分散の平方根を掛け合わせたもの}\)</span></p>
+<ul>
+<li>共分散を-1~1にスケーリング</li>
+</ul></li>
+</ul>
+<pre class="r"><code>mcmc_cor_EB &lt;- mcmc_E_B_us$VCV[,&quot;traitboldness:traitexploration.ID&quot;]/
+  (sqrt(mcmc_E_B_us$VCV[,&quot;traitboldness:traitboldness.ID&quot;])*
+     sqrt(mcmc_E_B_us$VCV[,&quot;traitexploration:traitexploration.ID&quot;]))
+
+plot(mcmc_cor_EB)</code></pre>
+<p><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>mean(mcmc_cor_EB)</code></pre>
+<pre><code>[1] 0.238657</code></pre>
+<pre class="r"><code>HPDinterval(mcmc_cor_EB)</code></pre>
+<pre><code>           lower     upper
+var1 -0.06996265 0.5195749
+attr(,&quot;Probability&quot;)
+[1] 0.95</code></pre>
+<p>相関は正負どちらもとりうるので、95%信頼区間が０を跨ぐかは頻度主義的な統計的有意を示す。ここでは信頼区間が０を跨いでいるので、有意な行動シンドロームはないと結論付ける。</p>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+</div>
+<div id="さらに形質を加える" class="section level2">
+<h2>さらに形質を加える</h2>
+<p>仮想データセットでの、行動２形質（反復測定）と適応度（1回計測）の関係を調べる。</p>
+<pre class="r"><code># 相対適応度を算出し、rel_fitnessに格納
+df_syndrome %&lt;&gt;%
+  mutate(rel_fitness = fitness/mean(fitness, na.rm=TRUE))</code></pre>
+<hr />
+<div id="事前分布を設定" class="section level3">
+<h3>事前分布を設定</h3>
+<p>注意</p>
+<ul>
+<li><strong>1回計測の形質（ここでは適応度）では、残差分散（個体内分散）は０</strong></li>
+<li><strong>1回計測の計測との間のすべての個体内形質相関も０</strong>
+<ul>
+<li><code>fix</code>でVariance componentを特定の値に固定
+<ul>
+<li>分散は正の値でないといけないので、個体内分散を小さな正の値で代入（ここでは0.0001）</li>
+<li>個体内分散＝残差分散<strong>R</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="r"><code>prior_E_B_fit_1px = list(
+  R = list(
+    # 反復測定形質が2つの後に1回計測形質の分散を指定するので、3つ目の要素に0.0001を代入
+    V = diag(c(1,1,0.0001),3,3), 
+    nu = 1.002, 
+    # 3つ目のVariance component = 1回計測形質を固定
+    fix = 3
+    ),
+  G = list(
+    G1 = list(
+      V = diag(3), nu = 3, alpha.mu = rep(0,3), alpha.V = diag(25^2,3,3)
+      )
+    )
+  )</code></pre>
+<hr />
+</div>
+<div id="mcmcglmmモデル-1" class="section level3">
+<h3>MCMCglmmモデル</h3>
+<p>全体のコード</p>
+<pre class="r"><code>mcmc_E_B_fit &lt;- MCMCglmm(
+  cbind(scale(exploration), scale(boldness), rel_fitness) ~ 
+    trait-1 + 
+    at.level(trait,1):scale(assay_rep, scale = FALSE) +
+    at.level(trait,2):scale(assay_rep, scale = FALSE) +
+    trait:scale(body_size),
+  random =~ us(trait):ID,
+  rcov =~ us(trait):units,
+  family = c(&quot;gaussian&quot;,&quot;gaussian&quot;,&quot;gaussian&quot;),
+  prior = prior_E_B_fit_1px,
+  nitt = 100000,
+  burnin = 10000,
+  thin = 100,
+  verbose = TRUE,
+  pr = TRUE,
+  data = as.data.frame(df_syndrome)
+  )
+# saveRDS(mcmc_E_B_fit, &quot;learn_Personality_stats_mcmc_fit.obj&quot;)</code></pre>
+<p>個別解説</p>
+<pre><code>    at.level(trait,1):scale(assay_rep, scale = FALSE) +
+    at.level(trait,2):scale(assay_rep, scale = FALSE) +</code></pre>
+<ul>
+<li><code>at.level</code>
+<ul>
+<li>specify that fixed effects are estimated only for certain traits
+<ul>
+<li>ここでは、反復計測<code>assay_rep</code>の影響を反復計測された形質に対してだけ調べている</li>
+<li>一方、繰り返し測った体サイズの影響は全ての形質に対して調べている</li>
+</ul></li>
+</ul></li>
+</ul>
+<pre><code>  pr = TRUE,</code></pre>
+<ul>
+<li>各個体でのランダム効果（ID）の事後分布を保存
+<ul>
+<li>REMLでのBLUPに相当</li>
+<li><a href="###%20BLUPで散布図">後で可視化</a></li>
+<li>めっちゃファイルサイズデカくなる (もともと&lt;1Mbのモデルでも、&gt;8Mbになる)</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="結果" class="section level3">
+<h3>結果</h3>
+<pre class="r"><code>mcmc_E_B_fit &lt;- readRDS(&quot;learn_Personality_stats_mcmc_fit.obj&quot;)
+
+summary(mcmc_E_B_fit)</code></pre>
+<pre><code>
+ Iterations = 10001:99901
+ Thinning interval  = 100
+ Sample size  = 900 
+
+ DIC: 795.0887 
+
+ G-structure:  ~us(trait):ID
+
+                                     post.mean  l-95% CI u-95% CI eff.samp
+traitexploration:traitexploration.ID   0.29540  0.148747  0.45910    900.0
+traitboldness:traitexploration.ID      0.08595 -0.027963  0.20552    900.0
+traitrel_fitness:traitexploration.ID   0.02778 -0.008056  0.06991    900.0
+traitexploration:traitboldness.ID      0.08595 -0.027963  0.20552    900.0
+traitboldness:traitboldness.ID         0.38911  0.231034  0.56482    900.0
+traitrel_fitness:traitboldness.ID      0.09359  0.051660  0.13954   1009.0
+traitexploration:traitrel_fitness.ID   0.02778 -0.008056  0.06991    900.0
+traitboldness:traitrel_fitness.ID      0.09359  0.051660  0.13954   1009.0
+traitrel_fitness:traitrel_fitness.ID   0.06048  0.042892  0.08079    289.6
+
+ R-structure:  ~us(trait):units
+
+                                        post.mean  l-95% CI u-95% CI eff.samp
+traitexploration:traitexploration.units 0.7323518  0.604013 0.869493   900.00
+traitboldness:traitexploration.units    0.3298602  0.226774 0.423178   900.00
+traitrel_fitness:traitexploration.units 0.0005896 -0.006883 0.007051    81.69
+traitexploration:traitboldness.units    0.3298602  0.226774 0.423178   900.00
+traitboldness:traitboldness.units       0.6397129  0.529047 0.757717   900.00
+traitrel_fitness:traitboldness.units    0.0014744 -0.005383 0.006489    66.25
+traitexploration:traitrel_fitness.units 0.0005896 -0.006883 0.007051    81.69
+traitboldness:traitrel_fitness.units    0.0014744 -0.005383 0.006489    66.25
+traitrel_fitness:traitrel_fitness.units 0.0001000  0.000100 0.000100     0.00
+
+ Location effects: cbind(scale(exploration), scale(boldness), rel_fitness) ~ trait - 1 + at.level(trait, 1):scale(assay_rep, scale = FALSE) + at.level(trait, 2):scale(assay_rep, scale = FALSE) + trait:scale(body_size) 
+
+                                                    post.mean   l-95% CI
+traitexploration                                    0.0001755 -0.1626782
+traitboldness                                      -0.0051980 -0.1871777
+traitrel_fitness                                    0.9976330  0.9396981
+at.level(trait, 1):scale(assay_rep, scale = FALSE) -0.0203557 -0.0949575
+scale(assay_rep, scale = FALSE):at.level(trait, 2) -0.0326581 -0.1050051
+traitexploration:scale(body_size)                   0.0686491 -0.0822292
+traitboldness:scale(body_size)                      0.0959950 -0.0546117
+traitrel_fitness:scale(body_size)                   0.0092247 -0.0497545
+                                                     u-95% CI eff.samp  pMCMC
+traitexploration                                    0.1602554   900.00  0.973
+traitboldness                                       0.1421898   900.00  0.936
+traitrel_fitness                                    1.0548906   900.00 &lt;0.001
+at.level(trait, 1):scale(assay_rep, scale = FALSE)  0.0651687   767.60  0.642
+scale(assay_rep, scale = FALSE):at.level(trait, 2)  0.0493624   900.00  0.451
+traitexploration:scale(body_size)                   0.2049156   900.00  0.356
+traitboldness:scale(body_size)                      0.2448215   414.66  0.236
+traitrel_fitness:scale(body_size)                   0.0579210    98.24  0.760
+                                                     
+traitexploration                                     
+traitboldness                                        
+traitrel_fitness                                   **
+at.level(trait, 1):scale(assay_rep, scale = FALSE)   
+scale(assay_rep, scale = FALSE):at.level(trait, 2)   
+traitexploration:scale(body_size)                    
+traitboldness:scale(body_size)                       
+traitrel_fitness:scale(body_size)                    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ul>
+<li><p>個体内分散（<code>~~.units</code>）において、適応度（1回計測）が関わっているもの（<code>rel_fitness:rel_fitness.units</code>）は指定通り0.0001に固定され、effective sample sizeは0。</p></li>
+<li><p>適応度（1回計測）が関わっている個体内の共分散はとても小さく、effective sample sizeも小さくなっているはず</p></li>
+</ul>
+<p>行動シンドロームが以前のモデルと近い値になっているか確認</p>
+<pre class="r"><code>mcmc_E_B_fit_cor_EB &lt;- mcmc_E_B_fit$VCV[,&quot;traitboldness:traitexploration.ID&quot;]/
+  (sqrt(mcmc_E_B_fit$VCV[,&quot;traitboldness:traitboldness.ID&quot;])*
+     sqrt(mcmc_E_B_fit$VCV[,&quot;traitexploration:traitexploration.ID&quot;]))
+
+mean(mcmc_E_B_fit_cor_EB)</code></pre>
+<pre><code>[1] 0.2455875</code></pre>
+<pre class="r"><code>HPDinterval(mcmc_E_B_fit_cor_EB)</code></pre>
+<pre><code>           lower     upper
+var1 -0.06393585 0.5372623
+attr(,&quot;Probability&quot;)
+[1] 0.95</code></pre>
+<p>適応度と行動形質の相関を抽出</p>
+<pre class="r"><code>mcmc_E_B_fit_cor_Efit &lt;- mcmc_E_B_fit$VCV[,&quot;traitrel_fitness:traitexploration.ID&quot;]/
+  (sqrt(mcmc_E_B_fit$VCV[,&quot;traitrel_fitness:traitrel_fitness.ID&quot;])*
+     sqrt(mcmc_E_B_fit$VCV[,&quot;traitexploration:traitexploration.ID&quot;]))
+
+mcmc_E_B_fit_cor_Bfit &lt;- mcmc_E_B_fit$VCV[,&quot;traitrel_fitness:traitboldness.ID&quot;]/
+  (sqrt(mcmc_E_B_fit$VCV[,&quot;traitrel_fitness:traitrel_fitness.ID&quot;])*
+     sqrt(mcmc_E_B_fit$VCV[,&quot;traitboldness:traitboldness.ID&quot;]))</code></pre>
+<p>形質相関を図示</p>
+<pre class="r"><code>df_mcmc_cors &lt;- data_frame(
+  Traits = c(
+    &quot;Exploration, Boldness&quot;, &quot;Exploration, Fitness&quot;, &quot;Boldness, Fitness&quot;
+    ),
+  Estimate = c(
+    mean(mcmc_E_B_fit_cor_EB),
+    mean(mcmc_E_B_fit_cor_Efit),
+    mean(mcmc_E_B_fit_cor_Bfit)
+    ),
+  Lower = c(
+    HPDinterval(mcmc_E_B_fit_cor_EB)[,&quot;lower&quot;],
+    HPDinterval(mcmc_E_B_fit_cor_Efit)[,&quot;lower&quot;],
+    HPDinterval(mcmc_E_B_fit_cor_Bfit)[,&quot;lower&quot;]
+    ),
+  Upper = c(
+    HPDinterval(mcmc_E_B_fit_cor_EB)[,&quot;upper&quot;],
+    HPDinterval(mcmc_E_B_fit_cor_Efit)[,&quot;upper&quot;],
+    HPDinterval(mcmc_E_B_fit_cor_Bfit)[,&quot;upper&quot;]
+    )
+  )
+
+ggplot(df_mcmc_cors, aes(x = Traits, y = Estimate)) +
+  geom_pointrange(aes(ymin = Lower, ymax = Upper)) +
+  geom_hline(yintercept = 0, linetype = &quot;dotted&quot;) +
+  scale_x_discrete(
+    limits = c(&quot;Boldness, Fitness&quot;, &quot;Exploration, Fitness&quot;, 
+               &quot;Exploration, Boldness&quot;)
+    ) +
+  labs(x = &quot;Trait combinations&quot;,
+       y = &quot;Correlation (Estimate ±95% CIs)&quot;) +
+  ylim(-1,1) +
+  coord_flip()</code></pre>
+<p><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+<div id="blupで散布図" class="section level3">
+<h3>BLUPで散布図</h3>
+<p>ランダム効果のposterior modes (BLUPs from the MCMCglmm model) をFull-modelから抽出し、個性形質と適応度の関係を図示。図示のためにBLUPを使うのはOK</p>
+<div id="個性と適応度の個体毎の点推定を取り出す" class="section level4">
+<h4>個性と適応度の個体毎の点推定を取り出す</h4>
+<p>ここではBoldnessー適応度の関連を調べる</p>
+<pre class="r"><code>df_bf_coefs &lt;- data_frame(
+  # Same as writing as: names(colMeans(mcmc_E_B_fit$Sol))
+  Trait = attr(colMeans(mcmc_E_B_fit$Sol), &quot;names&quot;),
+  # $Solには１属性当たり４つの値が格納されている。なんだこれは？
+  # ここではcoMeansで4つの値の平均を取って今後の分析に使う
+  Value = colMeans(mcmc_E_B_fit$Sol)
+  ) %&gt;%
+  # この時点では全ての項目の推定値がまぜこぜに1列に並んでいる
+  # BLUPは例えば以下のように格納されている：　traitexploration.ID.S_1
+  # これを&quot;.&quot;で分割
+  separate(Trait, c(&quot;Trait&quot;,&quot;Type&quot;,&quot;ID&quot;), sep = &quot;\\.&quot;, fill = &quot;right&quot;) %&gt;%
+  filter(
+    # ID列に値があるのは個体毎の推定値だけ。これを取り出す
+    Type == &quot;ID&quot;,
+    # ここではboldnessと、相対適応度を取り出す
+    Trait %in% c(&quot;traitboldness&quot;, &quot;traitrel_fitness&quot;)
+    ) %&gt;%
+  select(-Type) %&gt;%
+  pivot_wider(names_from = Trait, values_from = Value)</code></pre>
+</div>
+<div id="回帰直線を得る" class="section level4">
+<h4>回帰直線を得る</h4>
+<ul>
+<li>Boldnessに対する相対適応度を傾き
+<ul>
+<li><span class="math inline">\(\frac{boldnessと相対適応度の共分散}{boldnessの分散}\)</span></li>
+</ul></li>
+</ul>
+<pre class="r"><code>B_fit_slope &lt;- mcmc_E_B_fit$VCV[,&quot;traitrel_fitness:traitboldness.ID&quot;]/
+  mcmc_E_B_fit$VCV[,&quot;traitboldness:traitboldness.ID&quot;]</code></pre>
+<p>図示</p>
+<pre class="r"><code>ggplot(df_bf_coefs, aes(x = traitboldness, y = traitrel_fitness, group = ID)) +
+  geom_point(alpha = 0.7) +
+  geom_abline(intercept = 0, slope = mean(B_fit_slope)) +
+  labs(
+    x = &quot;Boldness (BLUP)&quot;,
+    y = &quot;Relative fitness (BLUP)&quot;
+    )</code></pre>
+<p><img src="learn_Personality_stats_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<hr />
+<div style="margin-bottom:90px;">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="brms-mitchell-et-al" class="section level1">
+<h1><code>brms</code> : Mitchell et al</h1>
+<p><a href="https://osf.io/j7vbr/">David Mitchell, Christa Beckmann, Peter A Biro: Supplement</a></p>
+<div id="brmsとは" class="section level2">
+<h2><code>brms</code>とは</h2>
+<p><a href="https://www.researchgate.net/publication/319337223_brms_An_R_Package_for_Bayesian_Multilevel_Models_Using_Stan">概要: Bürkner 2017</a></p>
+<ul>
+<li>Bayesian multilevel modelを扱う</li>
+<li>Stan, C++を経由</li>
+</ul>
+<p><code>MCMCglmm</code>との比較</p>
+<ol style="list-style-type: decimal">
+<li>〇複数のマルコフ連鎖を走らせれる</li>
+<li>〇共分散の事前分布が柔軟に指定できる</li>
+<li>〇Link関数が柔軟</li>
+<li>〇Robust linear modelsができる</li>
+</ol>
+<p>など。利点はそれなりに多いが（特に①）、問題はそれを扱えるか…。</p>
+<p>まあ<code>MCMCglmm</code>でいいか。</p>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+</div>
+<div id="asreml-r" class="section level1">
+<h1><del>ASReml-R</del></h1>
+<p>Avoid this because it’s <a href="https://www.ieu.uzh.ch/en/staff/member/niklaus_pascal/ASReml.html">not free</a></p>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlBlcnNvbmFsaXR5IHN0YXRzIg0Kb3V0cHV0Og0KICBodG1sX2RvY3VtZW50Og0KICAgIHRoZW1lOiBkYXJrbHkgIyBmbGF0bHkgDQogICAgaGlnaGxpZ2h0OiB0ZXh0bWF0ZQ0KICAgIHRvYzogeWVzDQogICAgdG9jX2Zsb2F0OiB5ZXMNCiAgICBkZl9wcmludDogImthYmxlIg0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCiAgICAjIGNvZGVfZm9sZGluZzogaGlkZQ0KICAgIG51bWJlcl9zZWN0aW9uOiBmYWxzZQ0KLS0tDQoNCjxkaXYgc3R5bGU9Im1hcmdpbi1ib3R0b206NjBweDsiPg0KPC9kaXY+DQoNCiMg6Laj5peoDQoNCuWAi+aAp+OChOihjOWLleOCt+ODs+ODieODreODvOODoOOAgeWAi+aAp+OBqOmBqeW/nOW6puOBrumWoumAo+OCkuiqv+OBueOCi+OBhuOBiOOBp+OAgee1seioiOOBrumDqOWIhuOBp+WLieW8t+OBl+OBn+OBk+OBqOOCkuOBvuOBqOOCgeOBpuOBhOOBjeOBvuOBmeOAguWAi+aAp+OChOihjOWLleOCt+ODs+ODieODreODvOODoOOBruamguW/teeahOOBqumDqOWIhuOBr+aXpeacrOeUn+aFi+WtpuS8muiqjOOBq1vnt4/oqqxdKGh0dHBzOi8vd3d3LnJlc2VhcmNoZ2F0ZS5uZXQvcHVibGljYXRpb24vMzUwNDg1MDUwX2Rvbmd3dW5vZ2V4aW5neWFuaml1d29mdWthbnN1cnUpDQrjgpLmm7jjgYTjgabjgYTjgb7jgZnjga7jgafjgZ3jgaHjgonjgpLlj4LnhafjgY/jgaDjgZXjgYTjgIINCg0K6Ieq5YiG44Gn5YiG5p6Q44KS5aeL44KB44Gf44KJ44CB44Gd44Gu5pmC44Gr6Kmw44G+44Gj44Gf44Go44GT44KN44Gq44Gp44G+44Go44KB44Gm44GE44GN44G+44GZ44CCDQoNCuWAi+S9k+WGheOBp+WPjeW+qea4rOWumuOCkuOBl+OBn+ODh+ODvOOCv+WIhuaekOOBq+WFsemAmuOBruaJi+azleOBp+OBmeOBruOBp+OAgeWAi+aAp+OBoOOBkeOBp+OBquOBj+OAgeaIkOmVt+mBjueoi+OBp+OBruW9ouizquebuOmWouOBruWkieWMluOBquOBqeiJsuOAheW/nOeUqOOBp+OBjeOCi+OBqOaAneOBhOOBvuOBmeOAgg0KDQotLS0NCjxkaXYgc3R5bGU9Im1hcmdpbi1ib3R0b206OTBweDsiPg0KPC9kaXY+DQoNCiMgR2VuZXJhbCBzZXR0aW5ncw0KDQpgYGB7cn0NCg0Kcm0obGlzdD1scygpKSAgIyByZXNldCB3b3Jrc3BhY2UNCm9wdGlvbnMoc2NpcGVuPTEwMCkgICMgZG8gbm90IHNob3cgbnVtYmVycyB1c2luZyBleHBvbmVudGlhbA0KDQojIGluc3RhbGwgJiBsb2FkIHBhY2thZ2VzDQpwYWNtYW46OnBfbG9hZCgNCiAgdGlkeXZlcnNlDQogICMgLCBvcGVueGxzeCAjIG9wZW4gZXhjZWwNCiAgLCBtYWdyaXR0ciAgICMgZXh0ZW5kZWQgcGlwZQ0KICAjICwgZm9yZWFjaCAgICAjIFBhcmFsbGVsIHByb2Nlc3NpbmcNCiAgLCBrbml0ciAgDQogICwga2FibGVFeHRyYSAjIG5pY2UgdGFibGVzDQogICwgcGFuZGVyICAgICAjIG5pY2UgdGFibGVzDQogICMgLCBzdmdsaXRlICAgICMgRXhwb3J0IFNWRyBwbG90cw0KICAjICwgcGF0Y2h3b3JrICAgIyBjb21iaW5lIG11bHRpcGxlIHBsb3RzDQopDQoNCiMgUm1hcmtkb3duIHNldHRpbmdzDQprbml0cjo6b3B0c19jaHVuayRzZXQoDQogIHByb21wdCAgPSBGQUxTRSwgICMgRG8gbm90IGFkZCA+IG9yICsgaW4gaW5saW5lLWNvZGUNCiAgbWVzc2FnZSA9IEZBTFNFLCANCiAgY29tbWVudCA9ICIiLCANCiAgd2FybmluZyA9IEZBTFNFLCAgIyBNdXRlIHdhcm5pbmdzDQogIHRpZHkgICAgPSBUUlVFDQogICkgDQpvcHRpb25zKGtuaXRyLmthYmxlLk5BID0gJycpICMgSGlkZSBOQXMgaW4ga2FibGUgdGFibGUNCg0KYGBgDQoNCjxkaXYgc3R5bGU9Im1hcmdpbi1ib3R0b206OTBweDsiPg0KPC9kaXY+DQoNCi0tLQ0KDQojIGBNQ01DZ2xtbWAgOiBIb3VzbGF5ICYgV2lsc29uIDIwMTcgKkJlaGF2IEVjb2wqDQoNCltULk0uIEhvdXNsYXkgJiBBLkouIFdpbHNvbiwgQmVoYXZpb3JhbCBFY29sb2d5IDIwMTc6IFN1cHBsZW1lbnRdKGh0dHBzOi8vdG9taG91c2xheS5maWxlcy53b3JkcHJlc3MuY29tLzIwMTcvMDIvaW5kaXZ2YXJfbXZfdHV0b3JpYWxfbWNtY2dsbW0ucGRmKSDjga7jgb7jgajjgoHjgIINCg0KIyMg5ZWP6aGM54K544Gn44GC44KLQkxVUOOBqOOBrw0KDQpCZXN0IExpbmVhciBVbmJpYXNlZCBQcmVkaWN0b3JzDQotIOa3t+WQiOODouODh+ODq+OBp+aOqOWumuOBleOCjOOBn+OAgeODqeODs+ODgOODoOWKueaenOOBruWQhOWAi+S9k+OBp+OBruaOqOWumuWApA0KLSDlvZPnhLblpKfjgY3jgaroqqTlt67jgYzkvLTjgYYNCg0K44CQ5ZWP6aGM44Go44Gq44Gj44Gm44GE44KL5omL5rOV44CRPGJyPg0K5YCL5L2TSUTjgavjg6njg7Pjg4Djg6DlirnmnpzjgpLlvZPjgabjgZ/mt7flkIjjg6Ljg4fjg6vjgavjgYrjgYTjgabjgIHlkITlgIvkvZPjga7jg6njg7Pjg4Djg6DlirnmnpzlgKTvvIhCTFVQLCDlkITlgIvkvZPjga7ooYzli5XmgKflkJHjgpLnpLrjgZnvvInjgpLmir3lh7rjgZfjgIHjgZ3jgozjgpLnlKjjgYTjgabjgZXjgonjgavliIbmnpDjgpLpgLLjgoHjgovvvIjooYzli5Xjgrfjg7Pjg4njg63jg7zjg6DjgarjganvvIkNCg0K44CQ5ZWP6aGM54K544CRPGJyPg0K54K55o6o5a6a44Gn44GC44KLQkxVUOOBq+OBr+iqpOW3ruOBjOWPjeaYoOOBleOCjOOBquOBhOOBruOBp+OAgUJMVVDjgpLkvb/jgaPjgZ/liIbmnpDjgafjga/mhYzjgabogIXjga7pgY7oqqTjgYzotbfjgZPjgorjgoTjgZnjgY/jgarjgovvvIjnt6jpm4blhYPjga5TdXBwbGVtZW5044Gn44GvQkxVUOOBq+OCiOOCi+WIhuaekOOCguOBl+OBpuOBhOOCi+OBjOOBk+OBk+OBp+OBr+ecgeeVpe+8iQ0KDQrjgJDop6PmsbrnrZbjgJE8YnI+DQrlgIvmgKfliIbmnpDvvIjooYzli5VSZXBlYXRhYmlsaXR577yJ44Go6L+95Yqg5YiG5p6Q77yI6KGM5YuV44K344Oz44OJ44Ot44O844Og44KE5YCL5oCn44O86YGp5b+c5bqm44Gu6Zai6YCj77yJ44KS5LiA44Gk44Gu5re35ZCI44Oi44OH44Or44Gn54mH5LuY44GR44Gm44GX44G+44GGDQoNCi0tLQ0KPGRpdiBzdHlsZT0ibWFyZ2luLWJvdHRvbTo5MHB4OyI+DQo8L2Rpdj4NCg0KIyMgSW5zdGFsbCAmIGxvYWQgcGFja2FnZXMNCg0KYGBge3J9DQoNCnBhY21hbjo6cF9sb2FkKA0KICBNQ01DZ2xtbQ0KICAsIGxtZTQNCiAgLCBicm9vbS5taXhlZCAjIGNyZWF0ZSB0aWR5IG91dHB1dCBvZiBnbG1tIHJlc3VsdA0KICAsIG5hZGl2DQogICwgY29kYSAjIEp1ZGdlIE1DTUMgY29udmVyZ2VuY2UNCiAgKQ0KDQojIFN1cHBsZW1lbnTjgafnlKjmhI/jgZXjgozjgabjgYTjgovku67mg7Pjg4fjg7zjgr8NCmRmX3N5bmRyb21lIDwtIHJlYWRfY3N2KCJsZWFybl9QZXJzb25hbGl0eV9zdGF0c19kYXRfc3luZHJvbWUuY3N2IikNCg0KYGBgDQoNCi0tLQ0KDQo8ZGl2IHN0eWxlPSJtYXJnaW4tYm90dG9tOjYwcHg7Ij4NCjwvZGl2Pg0KDQojIyBEYXRhIGFzc3VtcHRpb24NCg0K44GT44GT44Gn44Gv44CB6KSH5pWw44Gu57mw44KK6L+U44GX6KiI5ris44GX44Gf6KGM5YuV5oyH5qiZ44Go44CB5LiA5Zue6KiI5ris44Gu6YGp5b+c5bqm5b2i6LOq77yIbWF0aW5nIHN1Y2Nlc3PvvInjg4fjg7zjgr/jgpLmg7PlrprjgIINCg0K5LuK5Zue44Gu5Luu5oOz44OH44O844K/44Gv5YWo44Gm44Kq44K544Gu44KC44Gu44Gn44CB5Lul5LiL44Gu5YiX44KS5oyB44GkDQoNCi0gSW5kaXZpZHVhbCAqKklEKioNCi0gVGhlIHJlcGVhdCBudW1iZXIgZm9yIGVhY2ggYmVoYXZpb3VyYWwgdGVzdCwgKiphc3NheV9yZXAqKg0KLSAqKmJvbGRuZXNzKiosIG1lYXN1cmVkIDQgdGltZXMgcGVyIGluZGl2aWR1YWwNCi0gKipleHBsb3JhdGlvbioqLCBtZWFzdXJlZCA0IHRpbWVzIHBlciBpbmRpdmlkdWFsDQotICoqZml0bmVzcyoqLCBhIHNpbmdsZSB2YWx1ZSBmb3IgZWFjaCBpbmRpdmlkdWFsDQotIEluZGl2aWR1YWwgKipib2R5X3NpemUqKiwgYXMgbWVhc3VyZWQgb24gdGhlIGRheSBvZiB0ZXN0aW5nLg0KDQotLS0NCg0KPGRpdiBzdHlsZT0ibWFyZ2luLWJvdHRvbTo5MHB4OyI+DQo8L2Rpdj4NCg0KIyMg5Y2Y5Zue5biw44Oi44OH44OrDQoNCi0g5ZCE6KGM5YuV5b2i6LOq44Gn44Gu44CB5YCL5L2T5beu44Gr44KI44KL6KGo54++5Z6L5YiG5pWj44Gu5Ymy5ZCI44KS6KiI566XDQoNCi0gYGxtZTRg44Gr44GmDQoNCi0g6KiI5ris44Gu5Y+N5b6pSUTjga/lm7rlrprlirnmnpzjgasNCg0KLSDlgIvkvZNJROOBjHJhbmRvbSBlZmZlY3RzDQoNCi0g6KiI5ris5Y+v6IO944Gq5YCL5L2T44Gu54q25oWL77yI44GT44GT44Gn44Gv5L2T44K144Kk44K677yJ44GvU2NhbGluZyBvciBDZW50cmluZ+OBl+OBpuWbuuWumuWKueaenOOBqw0KDQotIOihjOWLleOCt+ODs+ODieODreODvOODoOOCkuiqv+OBueOCi+WFqOW9ouizquOBp+OBk+OCjOOCkuihjOOBhg0KDQpgYGB7ciwgZmlnLndpZHRoID0gNSwgZmlnLmhlaWdodCA9IDN9DQoNCmxtZXJfYiA8LSBsbWVyKA0KICBib2xkbmVzcyB+IHNjYWxlKGFzc2F5X3JlcCwgc2NhbGU9RkFMU0UpICsgc2NhbGUoYm9keV9zaXplKSArIA0KICAgICMgRG9uJ3QgZm9yZ2V0IHNjYWxpbmcgdmFyaWFibGVzIQ0KICAgICgxfElEKSwNCiAgZGF0YSA9IGRmX3N5bmRyb21lDQogICkNCg0KcGxvdChsbWVyX2IpDQpxcW5vcm0ocmVzaWR1YWxzKGxtZXJfYikpDQpoaXN0KHJlc2lkdWFscyhsbWVyX2IpKQ0Kc3VtbWFyeShsbWVyX2IpDQoNCmBgYA0KDQotIOOBk+OBk+OBp+OBr3JhbmRvbSBlZmZlY3Rz44GudmFyaWFuY2UgY29tcG9uZW5044Gr6IiI5ZGz44GM44GC44KL44CCDQoNCiAgLSBTROOBr+WIhuaVo+OBruW5s+aWueaguQ0KDQotIOWLleeJqeOBruWAi+aAp+OBruiovOaLoOOBqOOBquOCi+OBruOBr+OAgXJlcGVhdGFiaWxpdHkgKD0gaW50cmFjbGFzcyBjb3JyZWxhdGlvbiBjb2VmZmljaWVudCkNCg0KLSBSZXBlYXRhYmlsaXR5Og0KDQogIC0gJFxmcmFje+WAi+S9k+W3ruOBq+OCiOOCi+WIhuaVo3175Zu65a6a5Yq55p6c44KS6ICD5oWu44GX44Gf44GG44GI44Gn44Gu5YWo5YiG5pWjfSA9IFxmcmFje1Zfe0lEfX17Vl97SUR9ICsgVl97cmVzaWR1YWx9fSQNCg0KYGBge3J9DQoNCmJyb29tLm1peGVkOjp0aWR5KGxtZXJfYiwgZWZmZWN0cyA9ICJyYW5fcGFycyIsIHNjYWxlcyA9ICJ2Y292IikgJT4lDQogIHNlbGVjdChncm91cCwgZXN0aW1hdGUpICU+JQ0KICBzcHJlYWQoZ3JvdXAsIGVzdGltYXRlKSAlPiUNCiAgbXV0YXRlKFJlcGVhdGFiaWxpdHkgPSBJRC8oSUQgKyBSZXNpZHVhbCkpICU+JSANCiAga2FibGUoImh0bWwiLCBkaWdpdHMgPSAzKSAlPiUgDQogIGthYmxlX3N0eWxpbmcoInN0cmlwZWQiLCBwb3NpdGlvbiA9ICJsZWZ0IikgIA0KDQpgYGANCg0K44GT44Gu5Luu5oOz44OH44O844K/44Gn44Gv44CB44Gw44KJ44Gk44GN44GuMzcl44GM5Zu65a6a5Yq55p6c44Gn44Gv44Gq44GP5YCL5L2T5beu44Gr44KI44KL44KC44Gu44CCDQoNCi0tLQ0KDQo8ZGl2IHN0eWxlPSJtYXJnaW4tYm90dG9tOjkwcHg7Ij4NCjwvZGl2Pg0KDQojIyDooYzli5Xjgrfjg7Pjg4njg63jg7zjg6DvvJpCaXZhcmlhdGUgbW9kZWxzDQoNCi0gYE1DTUNnbG1tYOOBp+OBruOAgeihjOWLlTLlvaLos6rjgpLlv5znrZTlpInmlbDjgavnva7jgYTjgZ/jg6Ljg4fjg6vjgpLntYTjgoDjgIINCg0KLSDlkITooYzli5XlvaLos6rjgajjgZ3jgozjgonjga7lhbHliIbmlaPjgavlr77jgZnjgovjgIHlgIvkvZPplpPliIbmlaPjgpLmjqjlrpoNCg0KDQojIyMg5LqL5YmN5YiG5biD44Gu6Kit5a6aDQoNCuino+iqrOOBr+S7peS4i+WPgueFpw0KDQotIFtDb2RpbmcgaHViXShodHRwczovL291cmNvZGluZ2NsdWIuZ2l0aHViLmlvL3R1dG9yaWFscy9tY21jZ2xtbS8pDQoNCi0gW0NvdXJzZSBub3Rlc10oaHR0cHM6Ly9jcmFuLnItcHJvamVjdC5vcmcvd2ViL3BhY2thZ2VzL01DTUNnbG1tL3ZpZ25ldHRlcy9Db3Vyc2VOb3Rlcy5wZGYpDQoNCi0g44Kr44OG44K044Oq44Kr44Or5aSJ5pWw44Gr44GvW0dlbG1hbiBwcmlvcl0oaHR0cHM6Ly9yZHJyLmlvL2NyYW4vTUNNQ2dsbW0vbWFuL2dlbG1hbi5wcmlvci5odG1sKeOCkuW9k+OBpuOBr+OCgeOCiw0KDQotIOikh+aVsOOBruS6i+WJjeWIhuW4g+OBq+WvvuOBl+e1kOaenOOBjOmgkeWBpeOBi+imi+OBpuOBiuOBj+OBqOiJr+OBhA0KDQoNCuWbuuWumuWKueaenOOBq+OBr05vcm1hbCBkaXN0cmlidXRpb27jgIEoY28pdmFyaWFuY2Vz44Gr44GvaW52ZXJzZSBXaXNoYXJ044KS5LqL5YmN5YiG5biD44Go44GX44Gm5L2/44Gj44Gm44GE44KL44CCDQoNCi0tLQ0KDQrmjIflrprjgZnjgovjgoLjga4NCg0KLSAqKkIqKjog5Zu65a6a5Yq55p6c44Gu5LqL5YmN5YiG5biD44CCRGVmYXVsdOOBr+S/oeS7sOOBruW8seOBhOato+imj+WIhuW4gw0KDQotICoqUioqOiDmrovlt64NCg0KLSAqKkcqKjog44Op44Oz44OA44Og5Yq55p6cIA0KDQotIOODqeODs+ODgOODoOWKueaenOOBruaVsOOBoOOBkeaMh+WumuOAguS+i++8mg0KDQpgYGBSDQogICAgRyA9IGxpc3QoDQogICAgICBHMSA9IGxpc3QoViA9IDEsIG51ID0gMSwgYWxwaGEubXUgPSAwLCBhbHBoYS5WID0gMTAwMCksDQogICAgICBHMiA9IGxpc3QoViA9IDEsIG51ID0gMSwgYWxwaGEubXUgPSAwLCBhbHBoYS5WID0gMTAwMCksDQogICAgICApDQogICAgKQ0KYGBgDQoNCi0gKiphbHBoYS5tdSoqOiBQcmlvciBtZWFuDQoNCi0gKiphbHBoYS5WKio6IOWIhuaVo+ihjOWIlw0KDQoNCi0tLQ0KDQppbnZlcnNlIFdpc2hhcnTkuovliY3liIbluIPjga7lpInmlbANCg0KLSAqKlYqKjog5LqL5YmN5YiG5biD44Gu44OU44O844Kv44KS5rG644KB44KL44CC44KI44GP5L2/44KP44KM44KL44Gu44GvMQ0KDQotICoqbnUqKjog5L+h5Luw44Gu5by344GV77yd5YiG5biD44Gu5YGP44KKIOOCkuaxuuOCgeOCi+OAguOCiOOBj+S9v+OCj+OCjOOCi+OBruOBrzAuMDAyDQoNCmBgYHtyfQ0KDQpwcmlvcl9FX0JfMXB4ID0gbGlzdCgNCiAgUiA9IGxpc3QoViA9IGRpYWcoMiksIG51ID0gMC4wMDIpLA0KICBHID0gbGlzdCgNCiAgICBHMSA9IGxpc3QoDQogICAgICBWID0gZGlhZygyKSwgDQogICAgICBudSA9IDIsIA0KICAgICAgYWxwaGEubXUgPSByZXAoMCwyKSwgDQogICAgICBhbHBoYS5WID0gZGlhZygyNV4yLDIsMikpDQogICAgKQ0KICApDQoNCmBgYA0KDQotLS0NCg0KPGRpdiBzdHlsZT0ibWFyZ2luLWJvdHRvbTo2MHB4OyI+DQo8L2Rpdj4NCg0KIyMjIE1DTUNnbG1t44Oi44OH44OrDQoNCuWFqOS9k+OBruOCs+ODvOODiQ0KDQpgYGBSDQpNQ01DZ2xtbSgNCiAgIyBSZXNwb25zZSB2YXJpYWJsZXMuIENvbWJpbmUgYWZ0ZXIgc2NhbGluZw0KICBjYmluZChzY2FsZShleHBsb3JhdGlvbiksIHNjYWxlKGJvbGRuZXNzKSkgfiANCiAgICB0cmFpdC0xICsNCiAgICB0cmFpdDpzY2FsZShhc3NheV9yZXAsIHNjYWxlID0gRkFMU0UpICsNCiAgICB0cmFpdDpzY2FsZShib2R5X3NpemUpLA0KICByYW5kb20gPX4gdXModHJhaXQpOklELA0KICByY292ID1+IHVzKHRyYWl0KTp1bml0cywNCiAgZmFtaWx5ID0gYygiZ2F1c3NpYW4iLCJnYXVzc2lhbiIpLA0KICBwcmlvciA9IHByaW9yX0VfQl8xcHgsDQogIG5pdHQgPSAxNTAwMDAsDQogIGJ1cm5pbiA9IDEwMDAwLA0KICB0aGluID0gMzAsDQogIHZlcmJvc2UgPSBUUlVFLA0KICBkYXRhID0gYXMuZGF0YS5mcmFtZShkZl9zeW5kcm9tZSkNCiAgKQ0KYGBgDQoNCumgheebruOBlOOBqOOBruino+iqrA0KDQotIFJlc3BvbnNlIHZhcmlhYmxlOiBgY2JpbmRgIGFmdGVyIHNjYWxpbmcNCg0KYGBgUg0KICBjYmluZChzY2FsZShleHBsb3JhdGlvbiksIHNjYWxlKGJvbGRuZXNzKSkgfiANCmBgYA0KDQotIFByZWRpY3RvciB2YXJpYWJsZToNCg0KICAtIOWQhOW9ouizquOBq+WvvuOBl+WIh+eJh+OCkueUqOaEjw0KDQpgYGBSDQogICAgdHJhaXQtMSArDQpgYGANCiAgLSAqKnRyYWl0Kioga2V5d29yZOOBq+OCiOOCiuWkmuWkiemHj+ODouODh+ODq+OBp+OBguOCi+OBk+OBqOOCkuaYjuiomA0KICAtICDlm7rlrprlirnmnpzjgavjgojjgovlvaLos6rjgbjjga7lvbHpn7/jgpLjgIHjgZ3jgozjgZ7jgozjga7lvaLos6rjgafmjqjlrpoNCg0KYGBgUg0KICAgIHRyYWl0OnNjYWxlKGFzc2F5X3JlcCwgc2NhbGUgPSBGQUxTRSkgKw0KICAgIHRyYWl0OnNjYWxlKGJvZHlfc2l6ZSksDQpgYGANCg0KLSBSYW5kb20gZWZmZWN0cyBzdHJ1Y3R1cmXjgpLoqK3lrpo8YnI+DQoNCiAgLSDigJh1bnN0cnVjdHVyZWTigJkgKHVzKSDlhbHliIbmlaPooYzliJfjgpLlgIvkvZNJROOBq+mBqeeUqDxicj4NCiAg5Lul5LiL44KS6KiI566X44GZ44KL44Gf44KBDQoNCiAgICAgIC0g5YCL5L2T5beu44Gr44KI44KL44CB44Gd44KM44Ge44KM44Gu6KGM5YuV5b2i6LOq44Gu5YiG5pWjDQogICAgICAtIOOBk+OCjOOCieOBruWIhuaVo+OBruWFseWIhuaVow0KDQpgYGBSDQogIHJhbmRvbSA9fiB1cyh0cmFpdCk6SUQsDQpgYGANCg0KLSDmrovlt67liIbmlaPjga7mp4vpgKDjgpLoqK3lrpoNCg0KICAtIOKAmHdpdGhpbi1pbmRpdmlkdWFsIHZhcmlhdGlvbuKAmQ0KICAtIOWQhOWAi+S9k+OBp+WPjeW+qeioiOa4rOOBl+OBpuOBhOOCi+OBruOBp+OAgeOBk+OBk+OBp+OCgnVuc3RydWN0dXJlZCBjb3ZhcmlhbmNlIG1hdHJpeOOCkuioreWumg0KICAgIC0g5ZCE5b2i6LOq44Gn44Gu5q6L5beu5YiG5pWj44Go5YWx5YiG5pWj44KS6KiI566XDQoNCmBgYFINCiAgICByY292ID1+IHVzKHRyYWl0KTp1bml0cywNCmBgYA0KDQotIE1DTUPjg5fjg63jgrvjgrnjga7oqK3lrpo8YnI+DQrlj47mnZ/jgYzmgqrjgYTmmYLjga/jgZPjgozjgonjga7lgKTjgpLlpKfjgY3jgY/kuIrjgZLjgosNCiAgLSDlj43lvqnoqabooYzmlbAgKEl0ZXJhdGlvbnMpICoqbml0dCoqPGJyPg0KICAgIOWPjuadn+OBjOaCquOBkeOCjOOBsOmdkuWkqeS6lQ0KICAtIOS4jeWuieWumuOBquWIneacn+OBrkl0ZXJhdGlvbuOCkuWIh+OCiuaNqOOBpuOCi+aVsCoqYnVybmluKio8YnI+DQogICAg5Y+O5p2f44GM5oKq44GR44KM44GwNTAwMDDjgarjgakNCiAgLSDkvb/jgYZJdGVyYXRpb27plpPpmpQgKip0aGluKio6IFNhbXBsaW5n44Gn44Gu6Ieq5bex55u46Zai44KS5rib44KJ44GZPGJyPg0KICAgIOWPjuadn+OBjOaCquOBkeOCjOOBsDIwMOOBquOBqQ0KICANCmBgYFINCiAgICBuaXR0PTQyMDAwMCwNCiAgICBidXJuaW49MjAwMDAsDQogICAgdGhpbj0xMDAsDQpgYGANCg0KLSDjg4fjg7zjgr/jgrvjg4Pjg4gNCiAgLSBgTUNNQ2dsbW1g44Gn44GvdGJsX2Rm44KS5Y+X44GR5YWl44KM44Gq44GE44Gu44GnYGFzLmRhdGEuZnJhbWVgDQoNCmBgYFINCiAgICBkYXRhID0gYXMuZGF0YS5mcmFtZShkZl9zeW5kcm9tZSkNCmBgYA0KDQotLS0NCg0KPGRpdiBzdHlsZT0ibWFyZ2luLWJvdHRvbTo2MHB4OyI+DQo8L2Rpdj4NCg0KIyMjIE1DTUPjga7lj47mnZ8NCg0KVHJhY2Xjga/kuIDlrprjga7lgr7lkJHjgpLmjIHjgaPjgabjgYTjgabjga/jgYTjgZHjgarjgYTjg7zmnKrlj47mnZ/jgpLnpLrjgZnjgILjgYLjgovlgKTjga7kuIrkuIvjgafntYLlp4vjgq7jgrbjgq7jgrbjgZfjgabjgYTjgovjgajlj47mnZ/jgYznpLrllIbjgIIgICAgDQoNCuODqeODs+ODgOODoOWKueaenOOBrk1DTUPpgKPpjpYNCg0KYGBge3IsIGZpZy5oZWlnaHQ9MTB9DQptY21jX0VfQl91cyA8LSByZWFkUkRTKCJsZWFybl9QZXJzb25hbGl0eV9zdGF0c19tY21jX3N5bmRyb21lLm9iaiIpDQpwbG90KG1jbWNfRV9CX3VzJFZDVikNCmBgYA0KDQrlm7rlrprlirnmnpzjga7lj47mnZ/pgY7nqIsNCg0KYGBge3J9DQoNCnBsb3QobWNtY19FX0JfdXMkU29sKQ0KDQpgYGANCg0KLS0tDQoNCltgZ2V3ZWtlLmRpYWdgXShodHRwczovL3d3dy5yZG9jdW1lbnRhdGlvbi5vcmcvcGFja2FnZXMvY29kYS92ZXJzaW9ucy8wLjE5LTQvdG9waWNzL2dld2VrZS5kaWFnKQ0KDQotIE1hcmtvdumAo+mOluOBruWIneacn+OBqOW+jOacn+OBp+OBruW5s+Wdh+WApOOBjOWQjOOBmOOBi+iqv+OBueOCiw0KICAtIOWIneacn+ioreWumuOBp+OBr+OAgeWIneacnzEwJeOBqOW+jOacnzUwJQ0KLSDjgoLjgZfpgKPpjpbjgYxzdGF0aW9uYXJ5IGRpc3RyaWJ1dGlvbuOBq+mBlOOBl+OBpuOBhOOCjOOBsOOAgQ0KICAtIOS6jOOBpOOBruW5s+Wdh+OBr+WQjOOBmA0KICAtIEdld2VrZee1seioiOmHj+OBr2FzeW1wdG90aWNhbGx5IHN0YW5kYXJkIG5vcm1hbCBkaXN0cmlidXRpb24NCg0KLSB0ZXN0IHN0YXRpc3RpYzogWi1zY29yZQ0KICAtICRcZnJhY3tTYW1wbGVcIG1lYW5z44Gu5beufXvmjqjlrppzdGFuZGFyZFwgZXJyb3J9JA0KICAtIFNF44Gv44CBc3BlY3RyYWwgZGVuc2l0eSBhdCB6ZXJv44GL44KJ5o6o5a6aDQogICAgLSDoh6rlt7Hnm7jplqLjgYzogIPmha7jgavlhaXjgaPjgabjgYTjgosNCiAgLSBjYWxjdWxhdGVkIHVuZGVyIHRoZSBhc3N1bXB0aW9uIHRoYXQgdGhlIHR3byBwYXJ0cyBvZiB0aGUgY2hhaW4gYXJlIGFzeW1wdG90aWNhbGx5IGluZGVwZW5kZW50LCB3aGljaCByZXF1aXJlcyB0aGF0IHRoZSBzdW0gb2YgZnJhYzEgYW5kIGZyYWMyIGJlIHN0cmljdGx5IGxlc3MgdGhhbiAxDQoNCmBgYHtyfQ0KZ2V3ZWtlLmRpYWcobWNtY19FX0JfdXMkU29sLCBmcmFjMT0wLjEsIGZyYWMyPTAuNSkNCmBgYA0KWuWApOOBjO+8kOOBi+OCieOBu+OBqemBoOOBhOOBruOBp+OAgeOBk+OBrk1hcmNob3bpgKPpjpbjga/lj47mnZ/jgZfjgabjgYTjgarjgYTjgajjgb/jgovjgbnjgY0NCg0KLS0tDQoNCuODouODh+ODq+OBjDLjgaTku6XkuIrjgYLjgovjgajjgY3jgavjga9bYGdlbG1hbi5kaWFnYF0oaHR0cHM6Ly93d3cucmRvY3VtZW50YXRpb24ub3JnL3BhY2thZ2VzL2NvZGEvdmVyc2lvbnMvMC4xOS00L3RvcGljcy9nZWxtYW4uZGlhZynjgavjgojjgovliKTlrprjgoLjgafjgY3jgosNCg0KYGBgUg0KZ2VsbWFuLmRpYWcobWNtYy5saXN0KG0xJFNvbCwgbTIkU29sKSkNCmBgYA0KDQoNCjxkaXYgc3R5bGU9Im1hcmdpbi1ib3R0b206NjBweDsiPg0KPC9kaXY+DQoNCiMjIyBSZXBlYXRhYmlsaXR5DQoNCuWPjeW+qeaAp+OCkuioiOeul+OBmeOCi+OBn+OCgeOBq+OAgeaWsOOBn+OBqyDigJjlgIvkvZPlt67jgafoqqzmmI7jgZXjgozjgZ/ooYzli5XlvaLos6rjgbDjgonjgaTjgY3jga7libLlkIjigJkg44Gu5LqL5b6M5YiG5biD44KS5L2c44KLDQoNCi0gU3VtbWFyeeOBq+OBguOCi1ZhcmlhbmNlIGNvbXBvbmVudHPjga7lkI3liY3jgavln7rjgaXjgYTjgaboqIjnrpcNCiAgLSDjgZPjga7jgrPjg7zjg4njgpLkuLjjgIXjgrPjg5Tjg7zjga/jgafjgY3jgarjgYTvvIENCg0KLSDjgZPjgZPjgafjga9FeHBsb3JhdGlvbuOBjOWvvuixoQ0KDQpgYGB7ciwgZmlnLmhlaWdodCA9IDN9DQoNCm1jbWNfcHJvcF9FIDwtIG1jbWNfRV9CX3VzJFZDVlssInRyYWl0ZXhwbG9yYXRpb246dHJhaXRleHBsb3JhdGlvbi5JRCJdLw0KICAobWNtY19FX0JfdXMkVkNWWywidHJhaXRleHBsb3JhdGlvbjp0cmFpdGV4cGxvcmF0aW9uLklEIl0gKw0KICAgICBtY21jX0VfQl91cyRWQ1ZbLCJ0cmFpdGV4cGxvcmF0aW9uOnRyYWl0ZXhwbG9yYXRpb24udW5pdHMiXSkNCg0KcGxvdChtY21jX3Byb3BfRSkNCg0KbWVhbihtY21jX3Byb3BfRSkNCg0KIyA5NSUgQ0lzDQpIUERpbnRlcnZhbChtY21jX3Byb3BfRSkNCg0KYGBgDQoNCkJheWVzaWFuIDk1JeS/oemgvOWMuumWk+OBjO+8kOOCkui3qOOBjOOBquOBhOOBk+OBqOOBjOWPpOWFuOeahO+8iOmgu+W6puS4u+e+qeeahO+8ieOBque1seioiOeahOacieaEj+OCkuekuuOBmeOBoOOBqOiogOOCj+OCjOOCi+OBjOOAgeOBk+OBk+OBp+aJseOBo+OBpuOBhOOCiyoqdmFyaWFuY2UgY29tcG9uZW50c+OBr+OAgU1DTUNnbG1t44Gn44Gv5b+F44Ga5q2j44Gu5YCk44KS44Go44KLKioNCg0KLSAqKuS/oemgvOWMuumWk+OBjO+8kOOCkui3qOOBjOOBquOBhOKJoOacieaEjyoqDQotIOS4i+mZkOOBjO+8kOOBq+i/keOBkeOCjOOBsOOAgVJlcGVhdGFiaWxpdHnjgYzlvLHjgYTjgajogIPjgYjjgovjgbnjgY0NCi0g44Gq44Gu44GnYGxtZTRg44Gn5Y2Y5Zue5biw44KS5YmN44KC44Gj44Gm6KGM44Gj44Gm44GE44KLDQoNCg0K44Gq44GK44CBVmFyaWFuY2UgY29tcG9uZW50c+OBruWQjeWJjeOBr+S7peS4i+OBp+iqv+OBueOCieOCjOOCiw0KDQpgYGB7cn0NCm1jbWNfRV9CX3VzJFZDViAlPiUgDQogIGFzLnRpYmJsZSgpICU+JSANCiAgY29sbmFtZXMoKQ0KYGBgDQotIOWAi+S9k+W3ruOBq+OCiOOCi+WIhuaVo+OBrzxicj50cmFpdHtcKnRyYWl0IG5hbWVcKn06dHJhaXR7KnRyYWl0IG5hbWUqfS4qKklEKioNCi0g5q6L5beu5YiG5pWj44GvPGJyPnRyYWl0eyp0cmFpdCBuYW1lKn06dHJhaXR7KnRyYWl0IG5hbWUqfS4qKnVuaXRzKioNCg0KDQotLS0NCjxkaXYgc3R5bGU9Im1hcmdpbi1ib3R0b206NjBweDsiPg0KPC9kaXY+DQoNCiMjIyBDb3ZhcmlhbmNlDQoNClJlcGVhdGFiaWxpdHnjga7oqIjnrpfjg5fjg63jgrvjgrnjgpLlhbHliIbmlaPjgavlv5znlKjjgafjgY3jgovjgIINCg0K5YCL5L2T6ZaT44Gn44Gu5b2i6LOq6ZaT55u46Zai44Gu5LqL5b6M5YiG5biD77yaDQoNCi0gJFxmcmFje+W9ouizqumWk+OBruWFseWIhuaVo3175ZCE5b2i6LOq44Gu5YiG5pWj44Gu5bmz5pa55qC544KS5o6b44GR5ZCI44KP44Gb44Gf44KC44GufSQNCg0KICAtIOWFseWIhuaVo+OCki0xfjHjgavjgrnjgrHjg7zjg6rjg7PjgrANCg0KDQpgYGB7ciwgZmlnLmhlaWdodCA9IDN9DQoNCm1jbWNfY29yX0VCIDwtIG1jbWNfRV9CX3VzJFZDVlssInRyYWl0Ym9sZG5lc3M6dHJhaXRleHBsb3JhdGlvbi5JRCJdLw0KICAoc3FydChtY21jX0VfQl91cyRWQ1ZbLCJ0cmFpdGJvbGRuZXNzOnRyYWl0Ym9sZG5lc3MuSUQiXSkqDQogICAgIHNxcnQobWNtY19FX0JfdXMkVkNWWywidHJhaXRleHBsb3JhdGlvbjp0cmFpdGV4cGxvcmF0aW9uLklEIl0pKQ0KDQpwbG90KG1jbWNfY29yX0VCKQ0KDQptZWFuKG1jbWNfY29yX0VCKQ0KDQpIUERpbnRlcnZhbChtY21jX2Nvcl9FQikNCg0KYGBgDQoNCuebuOmWouOBr+ato+iyoOOBqeOBoeOCieOCguOBqOOCiuOBhuOCi+OBruOBp+OAgTk1JeS/oemgvOWMuumWk+OBjO+8kOOCkui3qOOBkOOBi+OBr+mgu+W6puS4u+e+qeeahOOBque1seioiOeahOacieaEj+OCkuekuuOBmeOAguOBk+OBk+OBp+OBr+S/oemgvOWMuumWk+OBjO+8kOOCkui3qOOBhOOBp+OBhOOCi+OBruOBp+OAgeacieaEj+OBquihjOWLleOCt+ODs+ODieODreODvOODoOOBr+OBquOBhOOBqOe1kOirluS7mOOBkeOCi+OAgg0KDQotLS0NCjxkaXYgc3R5bGU9Im1hcmdpbi1ib3R0b206NjBweDsiPg0KPC9kaXY+DQoNCiMjIOOBleOCieOBq+W9ouizquOCkuWKoOOBiOOCiw0KDQrku67mg7Pjg4fjg7zjgr/jgrvjg4Pjg4jjgafjga7jgIHooYzli5XvvJLlvaLos6rvvIjlj43lvqnmuKzlrprvvInjgajpganlv5zluqbvvIgx5Zue6KiI5ris77yJ44Gu6Zai5L+C44KS6Kq/44G544KL44CCDQoNCmBgYHtyfQ0KIyDnm7jlr77pganlv5zluqbjgpLnrpflh7rjgZfjgIFyZWxfZml0bmVzc+OBq+agvOe0jQ0KZGZfc3luZHJvbWUgJTw+JQ0KICBtdXRhdGUocmVsX2ZpdG5lc3MgPSBmaXRuZXNzL21lYW4oZml0bmVzcywgbmEucm09VFJVRSkpDQpgYGANCg0KLS0tDQoNCiMjIyDkuovliY3liIbluIPjgpLoqK3lrpoNCg0K5rOo5oSPDQoNCi0gKiox5Zue6KiI5ris44Gu5b2i6LOq77yI44GT44GT44Gn44Gv6YGp5b+c5bqm77yJ44Gn44Gv44CB5q6L5beu5YiG5pWj77yI5YCL5L2T5YaF5YiG5pWj77yJ44Gv77yQKioNCi0gKiox5Zue6KiI5ris44Gu6KiI5ris44Go44Gu6ZaT44Gu44GZ44G544Gm44Gu5YCL5L2T5YaF5b2i6LOq55u46Zai44KC77yQKioNCiAgLSBgZml4YOOBp1ZhcmlhbmNlIGNvbXBvbmVudOOCkueJueWumuOBruWApOOBq+WbuuWumg0KICAgIC0g5YiG5pWj44Gv5q2j44Gu5YCk44Gn44Gq44GE44Go44GE44GR44Gq44GE44Gu44Gn44CB5YCL5L2T5YaF5YiG5pWj44KS5bCP44GV44Gq5q2j44Gu5YCk44Gn5Luj5YWl77yI44GT44GT44Gn44GvMC4wMDAx77yJDQogICAgLSDlgIvkvZPlhoXliIbmlaPvvJ3mrovlt67liIbmlaMqKlIqKg0KDQpgYGB7cn0NCnByaW9yX0VfQl9maXRfMXB4ID0gbGlzdCgNCiAgUiA9IGxpc3QoDQogICAgIyDlj43lvqnmuKzlrprlvaLos6rjgYwy44Gk44Gu5b6M44GrMeWbnuioiOa4rOW9ouizquOBruWIhuaVo+OCkuaMh+WumuOBmeOCi+OBruOBp+OAgTPjgaTnm67jga7opoHntKDjgaswLjAwMDHjgpLku6PlhaUNCiAgICBWID0gZGlhZyhjKDEsMSwwLjAwMDEpLDMsMyksIA0KICAgIG51ID0gMS4wMDIsIA0KICAgICMgM+OBpOebruOBrlZhcmlhbmNlIGNvbXBvbmVudCA9IDHlm57oqIjmuKzlvaLos6rjgpLlm7rlrpoNCiAgICBmaXggPSAzDQogICAgKSwNCiAgRyA9IGxpc3QoDQogICAgRzEgPSBsaXN0KA0KICAgICAgViA9IGRpYWcoMyksIG51ID0gMywgYWxwaGEubXUgPSByZXAoMCwzKSwgYWxwaGEuViA9IGRpYWcoMjVeMiwzLDMpDQogICAgICApDQogICAgKQ0KICApDQpgYGANCg0KLS0tDQoNCiMjIyBNQ01DZ2xtbeODouODh+ODqw0KDQrlhajkvZPjga7jgrPjg7zjg4kNCg0KYGBgUg0KbWNtY19FX0JfZml0IDwtIE1DTUNnbG1tKA0KICBjYmluZChzY2FsZShleHBsb3JhdGlvbiksIHNjYWxlKGJvbGRuZXNzKSwgcmVsX2ZpdG5lc3MpIH4gDQogICAgdHJhaXQtMSArIA0KICAgIGF0LmxldmVsKHRyYWl0LDEpOnNjYWxlKGFzc2F5X3JlcCwgc2NhbGUgPSBGQUxTRSkgKw0KICAgIGF0LmxldmVsKHRyYWl0LDIpOnNjYWxlKGFzc2F5X3JlcCwgc2NhbGUgPSBGQUxTRSkgKw0KICAgIHRyYWl0OnNjYWxlKGJvZHlfc2l6ZSksDQogIHJhbmRvbSA9fiB1cyh0cmFpdCk6SUQsDQogIHJjb3YgPX4gdXModHJhaXQpOnVuaXRzLA0KICBmYW1pbHkgPSBjKCJnYXVzc2lhbiIsImdhdXNzaWFuIiwiZ2F1c3NpYW4iKSwNCiAgcHJpb3IgPSBwcmlvcl9FX0JfZml0XzFweCwNCiAgbml0dCA9IDEwMDAwMCwNCiAgYnVybmluID0gMTAwMDAsDQogIHRoaW4gPSAxMDAsDQogIHZlcmJvc2UgPSBUUlVFLA0KICBwciA9IFRSVUUsDQogIGRhdGEgPSBhcy5kYXRhLmZyYW1lKGRmX3N5bmRyb21lKQ0KICApDQojIHNhdmVSRFMobWNtY19FX0JfZml0LCAibGVhcm5fUGVyc29uYWxpdHlfc3RhdHNfbWNtY19maXQub2JqIikNCmBgYA0KDQrlgIvliKXop6PoqqwNCg0KYGBgDQogICAgYXQubGV2ZWwodHJhaXQsMSk6c2NhbGUoYXNzYXlfcmVwLCBzY2FsZSA9IEZBTFNFKSArDQogICAgYXQubGV2ZWwodHJhaXQsMik6c2NhbGUoYXNzYXlfcmVwLCBzY2FsZSA9IEZBTFNFKSArDQpgYGANCi0gYGF0LmxldmVsYA0KICAtIHNwZWNpZnkgdGhhdCBmaXhlZCBlZmZlY3RzIGFyZSBlc3RpbWF0ZWQgb25seSBmb3IgY2VydGFpbiB0cmFpdHMNCiAgICAtIOOBk+OBk+OBp+OBr+OAgeWPjeW+qeioiOa4rGBhc3NheV9yZXBg44Gu5b2x6Z+/44KS5Y+N5b6p6KiI5ris44GV44KM44Gf5b2i6LOq44Gr5a++44GX44Gm44Gg44GR6Kq/44G544Gm44GE44KLDQogICAgLSDkuIDmlrnjgIHnubDjgorov5TjgZfmuKzjgaPjgZ/kvZPjgrXjgqTjgrrjga7lvbHpn7/jga/lhajjgabjga7lvaLos6rjgavlr77jgZfjgaboqr/jgbnjgabjgYTjgosNCg0KYGBgDQogIHByID0gVFJVRSwNCmBgYA0KLSDlkITlgIvkvZPjgafjga7jg6njg7Pjg4Djg6DlirnmnpzvvIhJRO+8ieOBruS6i+W+jOWIhuW4g+OCkuS/neWtmA0KICAtIFJFTUzjgafjga5CTFVQ44Gr55u45b2TDQogIC0gW+W+jOOBp+WPr+imluWMll0oIyMjIEJMVVDjgafmlaPluIPlm7MpDQogIC0g44KB44Gj44Gh44KD44OV44Kh44Kk44Or44K144Kk44K644OH44Kr44GP44Gq44KLICjjgoLjgajjgoLjgag8MU1i44Gu44Oi44OH44Or44Gn44KC44CBPjhNYuOBq+OBquOCiykNCg0KLS0tDQoNCiMjIyDntZDmnpwNCg0KYGBge3J9DQptY21jX0VfQl9maXQgPC0gcmVhZFJEUygibGVhcm5fUGVyc29uYWxpdHlfc3RhdHNfbWNtY19maXQub2JqIikNCg0Kc3VtbWFyeShtY21jX0VfQl9maXQpDQpgYGANCg0KLSDlgIvkvZPlhoXliIbmlaPvvIhgfn4udW5pdHNg77yJ44Gr44GK44GE44Gm44CB6YGp5b+c5bqm77yIMeWbnuioiOa4rO+8ieOBjOmWouOCj+OBo+OBpuOBhOOCi+OCguOBru+8iGByZWxfZml0bmVzczpyZWxfZml0bmVzcy51bml0c2DvvInjga/mjIflrprpgJrjgoowLjAwMDHjgavlm7rlrprjgZXjgozjgIFlZmZlY3RpdmUgc2FtcGxlIHNpemXjga8w44CCDQoNCi0g6YGp5b+c5bqm77yIMeWbnuioiOa4rO+8ieOBjOmWouOCj+OBo+OBpuOBhOOCi+WAi+S9k+WGheOBruWFseWIhuaVo+OBr+OBqOOBpuOCguWwj+OBleOBj+OAgWVmZmVjdGl2ZSBzYW1wbGUgc2l6ZeOCguWwj+OBleOBj+OBquOBo+OBpuOBhOOCi+OBr+OBmg0KDQoNCuihjOWLleOCt+ODs+ODieODreODvOODoOOBjOS7peWJjeOBruODouODh+ODq+OBqOi/keOBhOWApOOBq+OBquOBo+OBpuOBhOOCi+OBi+eiuuiqjQ0KDQpgYGB7cn0NCm1jbWNfRV9CX2ZpdF9jb3JfRUIgPC0gbWNtY19FX0JfZml0JFZDVlssInRyYWl0Ym9sZG5lc3M6dHJhaXRleHBsb3JhdGlvbi5JRCJdLw0KICAoc3FydChtY21jX0VfQl9maXQkVkNWWywidHJhaXRib2xkbmVzczp0cmFpdGJvbGRuZXNzLklEIl0pKg0KICAgICBzcXJ0KG1jbWNfRV9CX2ZpdCRWQ1ZbLCJ0cmFpdGV4cGxvcmF0aW9uOnRyYWl0ZXhwbG9yYXRpb24uSUQiXSkpDQoNCm1lYW4obWNtY19FX0JfZml0X2Nvcl9FQikNCkhQRGludGVydmFsKG1jbWNfRV9CX2ZpdF9jb3JfRUIpDQpgYGANCg0K6YGp5b+c5bqm44Go6KGM5YuV5b2i6LOq44Gu55u46Zai44KS5oq95Ye6DQoNCmBgYHtyfQ0KbWNtY19FX0JfZml0X2Nvcl9FZml0IDwtIG1jbWNfRV9CX2ZpdCRWQ1ZbLCJ0cmFpdHJlbF9maXRuZXNzOnRyYWl0ZXhwbG9yYXRpb24uSUQiXS8NCiAgKHNxcnQobWNtY19FX0JfZml0JFZDVlssInRyYWl0cmVsX2ZpdG5lc3M6dHJhaXRyZWxfZml0bmVzcy5JRCJdKSoNCiAgICAgc3FydChtY21jX0VfQl9maXQkVkNWWywidHJhaXRleHBsb3JhdGlvbjp0cmFpdGV4cGxvcmF0aW9uLklEIl0pKQ0KDQptY21jX0VfQl9maXRfY29yX0JmaXQgPC0gbWNtY19FX0JfZml0JFZDVlssInRyYWl0cmVsX2ZpdG5lc3M6dHJhaXRib2xkbmVzcy5JRCJdLw0KICAoc3FydChtY21jX0VfQl9maXQkVkNWWywidHJhaXRyZWxfZml0bmVzczp0cmFpdHJlbF9maXRuZXNzLklEIl0pKg0KICAgICBzcXJ0KG1jbWNfRV9CX2ZpdCRWQ1ZbLCJ0cmFpdGJvbGRuZXNzOnRyYWl0Ym9sZG5lc3MuSUQiXSkpDQpgYGANCg0K5b2i6LOq55u46Zai44KS5Zuz56S6DQoNCmBgYHtyLCBmaWcuaGVpZ2h0ID0gM30NCg0KZGZfbWNtY19jb3JzIDwtIGRhdGFfZnJhbWUoDQogIFRyYWl0cyA9IGMoDQogICAgIkV4cGxvcmF0aW9uLCBCb2xkbmVzcyIsICJFeHBsb3JhdGlvbiwgRml0bmVzcyIsICJCb2xkbmVzcywgRml0bmVzcyINCiAgICApLA0KICBFc3RpbWF0ZSA9IGMoDQogICAgbWVhbihtY21jX0VfQl9maXRfY29yX0VCKSwNCiAgICBtZWFuKG1jbWNfRV9CX2ZpdF9jb3JfRWZpdCksDQogICAgbWVhbihtY21jX0VfQl9maXRfY29yX0JmaXQpDQogICAgKSwNCiAgTG93ZXIgPSBjKA0KICAgIEhQRGludGVydmFsKG1jbWNfRV9CX2ZpdF9jb3JfRUIpWywibG93ZXIiXSwNCiAgICBIUERpbnRlcnZhbChtY21jX0VfQl9maXRfY29yX0VmaXQpWywibG93ZXIiXSwNCiAgICBIUERpbnRlcnZhbChtY21jX0VfQl9maXRfY29yX0JmaXQpWywibG93ZXIiXQ0KICAgICksDQogIFVwcGVyID0gYygNCiAgICBIUERpbnRlcnZhbChtY21jX0VfQl9maXRfY29yX0VCKVssInVwcGVyIl0sDQogICAgSFBEaW50ZXJ2YWwobWNtY19FX0JfZml0X2Nvcl9FZml0KVssInVwcGVyIl0sDQogICAgSFBEaW50ZXJ2YWwobWNtY19FX0JfZml0X2Nvcl9CZml0KVssInVwcGVyIl0NCiAgICApDQogICkNCg0KZ2dwbG90KGRmX21jbWNfY29ycywgYWVzKHggPSBUcmFpdHMsIHkgPSBFc3RpbWF0ZSkpICsNCiAgZ2VvbV9wb2ludHJhbmdlKGFlcyh5bWluID0gTG93ZXIsIHltYXggPSBVcHBlcikpICsNCiAgZ2VvbV9obGluZSh5aW50ZXJjZXB0ID0gMCwgbGluZXR5cGUgPSAiZG90dGVkIikgKw0KICBzY2FsZV94X2Rpc2NyZXRlKA0KICAgIGxpbWl0cyA9IGMoIkJvbGRuZXNzLCBGaXRuZXNzIiwgIkV4cGxvcmF0aW9uLCBGaXRuZXNzIiwgDQogICAgICAgICAgICAgICAiRXhwbG9yYXRpb24sIEJvbGRuZXNzIikNCiAgICApICsNCiAgbGFicyh4ID0gIlRyYWl0IGNvbWJpbmF0aW9ucyIsDQogICAgICAgeSA9ICJDb3JyZWxhdGlvbiAoRXN0aW1hdGUgwrE5NSUgQ0lzKSIpICsNCiAgeWxpbSgtMSwxKSArDQogIGNvb3JkX2ZsaXAoKQ0KDQpgYGANCg0KLS0tDQo8ZGl2IHN0eWxlPSJtYXJnaW4tYm90dG9tOjYwcHg7Ij4NCjwvZGl2Pg0KDQojIyMgQkxVUOOBp+aVo+W4g+Wbsw0KDQrjg6njg7Pjg4Djg6Dlirnmnpzjga5wb3N0ZXJpb3IgbW9kZXMgKEJMVVBzIGZyb20gdGhlIE1DTUNnbG1tIG1vZGVsKSDjgpJGdWxsLW1vZGVs44GL44KJ5oq95Ye644GX44CB5YCL5oCn5b2i6LOq44Go6YGp5b+c5bqm44Gu6Zai5L+C44KS5Zuz56S644CC5Zuz56S644Gu44Gf44KB44GrQkxVUOOCkuS9v+OBhuOBruOBr09LDQoNCg0KIyMjIyDlgIvmgKfjgajpganlv5zluqbjga7lgIvkvZPmr47jga7ngrnmjqjlrprjgpLlj5bjgorlh7rjgZkNCg0K44GT44GT44Gn44GvQm9sZG5lc3Pjg7zpganlv5zluqbjga7plqLpgKPjgpLoqr/jgbnjgosNCg0KYGBge3J9DQpkZl9iZl9jb2VmcyA8LSBkYXRhX2ZyYW1lKA0KICAjIFNhbWUgYXMgd3JpdGluZyBhczogbmFtZXMoY29sTWVhbnMobWNtY19FX0JfZml0JFNvbCkpDQogIFRyYWl0ID0gYXR0cihjb2xNZWFucyhtY21jX0VfQl9maXQkU29sKSwgIm5hbWVzIiksDQogICMgJFNvbOOBq+OBr++8keWxnuaAp+W9k+OBn+OCiu+8lOOBpOOBruWApOOBjOagvOe0jeOBleOCjOOBpuOBhOOCi+OAguOBquOCk+OBoOOBk+OCjOOBr++8nw0KICAjIOOBk+OBk+OBp+OBr2NvTWVhbnPjgac044Gk44Gu5YCk44Gu5bmz5Z2H44KS5Y+W44Gj44Gm5LuK5b6M44Gu5YiG5p6Q44Gr5L2/44GGDQogIFZhbHVlID0gY29sTWVhbnMobWNtY19FX0JfZml0JFNvbCkNCiAgKSAlPiUNCiAgIyDjgZPjga7mmYLngrnjgafjga/lhajjgabjga7poIXnm67jga7mjqjlrprlgKTjgYzjgb7jgZzjgZPjgZzjgasx5YiX44Gr5Lim44KT44Gn44GE44KLDQogICMgQkxVUOOBr+S+i+OBiOOBsOS7peS4i+OBruOCiOOBhuOBq+agvOe0jeOBleOCjOOBpuOBhOOCi++8muOAgHRyYWl0ZXhwbG9yYXRpb24uSUQuU18xDQogICMg44GT44KM44KSIi4i44Gn5YiG5YmyDQogIHNlcGFyYXRlKFRyYWl0LCBjKCJUcmFpdCIsIlR5cGUiLCJJRCIpLCBzZXAgPSAiXFwuIiwgZmlsbCA9ICJyaWdodCIpICU+JQ0KICBmaWx0ZXIoDQogICAgIyBJROWIl+OBq+WApOOBjOOBguOCi+OBruOBr+WAi+S9k+avjuOBruaOqOWumuWApOOBoOOBkeOAguOBk+OCjOOCkuWPluOCiuWHuuOBmQ0KICAgIFR5cGUgPT0gIklEIiwNCiAgICAjIOOBk+OBk+OBp+OBr2JvbGRuZXNz44Go44CB55u45a++6YGp5b+c5bqm44KS5Y+W44KK5Ye644GZDQogICAgVHJhaXQgJWluJSBjKCJ0cmFpdGJvbGRuZXNzIiwgInRyYWl0cmVsX2ZpdG5lc3MiKQ0KICAgICkgJT4lDQogIHNlbGVjdCgtVHlwZSkgJT4lDQogIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBUcmFpdCwgdmFsdWVzX2Zyb20gPSBWYWx1ZSkNCmBgYA0KDQojIyMjIOWbnuW4sOebtOe3muOCkuW+l+OCiw0KDQotIEJvbGRuZXNz44Gr5a++44GZ44KL55u45a++6YGp5b+c5bqm44KS5YK+44GNDQogIC0gJFxmcmFje2JvbGRuZXNz44Go55u45a++6YGp5b+c5bqm44Gu5YWx5YiG5pWjfXtib2xkbmVzc+OBruWIhuaVo30kDQoNCmBgYHtyfQ0KQl9maXRfc2xvcGUgPC0gbWNtY19FX0JfZml0JFZDVlssInRyYWl0cmVsX2ZpdG5lc3M6dHJhaXRib2xkbmVzcy5JRCJdLw0KICBtY21jX0VfQl9maXQkVkNWWywidHJhaXRib2xkbmVzczp0cmFpdGJvbGRuZXNzLklEIl0NCmBgYA0KDQrlm7PnpLoNCg0KYGBge3J9DQoNCmdncGxvdChkZl9iZl9jb2VmcywgYWVzKHggPSB0cmFpdGJvbGRuZXNzLCB5ID0gdHJhaXRyZWxfZml0bmVzcywgZ3JvdXAgPSBJRCkpICsNCiAgZ2VvbV9wb2ludChhbHBoYSA9IDAuNykgKw0KICBnZW9tX2FibGluZShpbnRlcmNlcHQgPSAwLCBzbG9wZSA9IG1lYW4oQl9maXRfc2xvcGUpKSArDQogIGxhYnMoDQogICAgeCA9ICJCb2xkbmVzcyAoQkxVUCkiLA0KICAgIHkgPSAiUmVsYXRpdmUgZml0bmVzcyAoQkxVUCkiDQogICAgKQ0KDQpgYGANCg0KLS0tDQoNCjxkaXYgc3R5bGU9Im1hcmdpbi1ib3R0b206OTBweDsiPg0KPC9kaXY+DQoNCiMgYGJybXNgIDogTWl0Y2hlbGwgZXQgYWwgDQoNCltEYXZpZCBNaXRjaGVsbCwgQ2hyaXN0YSBCZWNrbWFubiwgUGV0ZXIgQSBCaXJvOiBTdXBwbGVtZW50XShodHRwczovL29zZi5pby9qN3Zici8pDQoNCiMjIGBicm1zYOOBqOOBrw0KDQpb5qaC6KaBOiBCw7xya25lciAyMDE3XShodHRwczovL3d3dy5yZXNlYXJjaGdhdGUubmV0L3B1YmxpY2F0aW9uLzMxOTMzNzIyM19icm1zX0FuX1JfUGFja2FnZV9mb3JfQmF5ZXNpYW5fTXVsdGlsZXZlbF9Nb2RlbHNfVXNpbmdfU3RhbikNCg0KLSBCYXllc2lhbiBtdWx0aWxldmVsIG1vZGVs44KS5omx44GGDQotIFN0YW4sIEMrK+OCkue1jOeUsQ0KDQpgTUNNQ2dsbW1g44Go44Gu5q+U6LyDDQoNCjEuIOOAh+ikh+aVsOOBruODnuODq+OCs+ODlemAo+mOluOCkui1sOOCieOBm+OCjOOCiw0KMS4g44CH5YWx5YiG5pWj44Gu5LqL5YmN5YiG5biD44GM5p+U6Luf44Gr5oyH5a6a44Gn44GN44KLDQoxLiDjgIdMaW5r6Zai5pWw44GM5p+U6LufDQoxLiDjgIdSb2J1c3QgbGluZWFyIG1vZGVsc+OBjOOBp+OBjeOCiw0KDQrjgarjganjgILliKnngrnjga/jgZ3jgozjgarjgorjgavlpJrjgYTjgYzvvIjnibnjgavikaDvvInjgIHllY/poYzjga/jgZ3jgozjgpLmibHjgYjjgovjgYsuLi7jgIINCg0K44G+44GCYE1DTUNnbG1tYOOBp+OBhOOBhOOBi+OAgg0KDQotLS0NCg0KPGRpdiBzdHlsZT0ibWFyZ2luLWJvdHRvbTo2MHB4OyI+DQo8L2Rpdj4NCg0KIyB+fkFTUmVtbC1Sfn4NCg0KQXZvaWQgdGhpcyBiZWNhdXNlIGl0J3MgW25vdCBmcmVlXShodHRwczovL3d3dy5pZXUudXpoLmNoL2VuL3N0YWZmL21lbWJlci9uaWtsYXVzX3Bhc2NhbC9BU1JlbWwuaHRtbCk=</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("learn_Personality_stats.rmd");
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

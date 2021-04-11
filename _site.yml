@@ -1,7 +1,7 @@
 name: "Keisuke Atsumi"
 output:
   html_document:
-    theme: flatly
+    theme: darkly
     highlight: textmate
     toc: yes
     toc_float: yes
@@ -28,5 +28,9 @@ navbar:
           href: tips_Metaanalysis.html
         - text: "無料で文献管理"
           href: tips_Citationformat.html
+        - text: "動物の個性を統計処理する"
+          href: learn_Personality_stats.html        
+        # - text: "ShinyでRFLPの溶液計算"
+        #   href: tips_RFLP.html
           
 output_dir: "docs"

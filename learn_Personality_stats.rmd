@@ -1,0 +1,743 @@
+---
+title: "Personality stats"
+output:
+  html_document:
+    theme: darkly # flatly 
+    highlight: textmate
+    toc: yes
+    toc_float: yes
+    df_print: "kable"
+    code_download: true
+    # code_folding: hide
+    number_section: false
+---
+
+<div style="margin-bottom:60px;">
+</div>
+
+# 趣旨
+
+個性や行動シンドローム、個性と適応度の関連を調べるうえで、統計の部分で勉強したことをまとめていきます。個性や行動シンドロームの概念的な部分は日本生態学会誌に[総説](https://www.researchgate.net/publication/350485050_dongwunogexingyanjiuwofukansuru)
+を書いていますのでそちらを参照ください。
+
+自分で分析を始めたら、その時に詰まったところなどまとめていきます。
+
+個体内で反復測定をしたデータ分析に共通の手法ですので、個性だけでなく、成長過程での形質相関の変化など色々応用できると思います。
+
+---
+<div style="margin-bottom:90px;">
+</div>
+
+# General settings
+
+```{r}
+
+rm(list=ls())  # reset workspace
+options(scipen=100)  # do not show numbers using exponential
+
+# install & load packages
+pacman::p_load(
+  tidyverse
+  # , openxlsx # open excel
+  , magrittr   # extended pipe
+  # , foreach    # Parallel processing
+  , knitr  
+  , kableExtra # nice tables
+  , pander     # nice tables
+  # , svglite    # Export SVG plots
+  # , patchwork   # combine multiple plots
+)
+
+# Rmarkdown settings
+knitr::opts_chunk$set(
+  prompt  = FALSE,  # Do not add > or + in inline-code
+  message = FALSE, 
+  comment = "", 
+  warning = FALSE,  # Mute warnings
+  tidy    = TRUE
+  ) 
+options(knitr.kable.NA = '') # Hide NAs in kable table
+
+```
+
+<div style="margin-bottom:90px;">
+</div>
+
+---
+
+# `MCMCglmm` : Houslay & Wilson 2017 *Behav Ecol*
+
+[T.M. Houslay & A.J. Wilson, Behavioral Ecology 2017: Supplement](https://tomhouslay.files.wordpress.com/2017/02/indivvar_mv_tutorial_mcmcglmm.pdf) のまとめ。
+
+## 問題点であるBLUPとは
+
+Best Linear Unbiased Predictors
+- 混合モデルで推定された、ランダム効果の各個体での推定値
+- 当然大きな誤差が伴う
+
+【問題となっている手法】<br>
+個体IDにランダム効果を当てた混合モデルにおいて、各個体のランダム効果値（BLUP, 各個体の行動性向を示す）を抽出し、それを用いてさらに分析を進める（行動シンドロームなど）
+
+【問題点】<br>
+点推定であるBLUPには誤差が反映されないので、BLUPを使った分析では慌て者の過誤が起こりやすくなる（編集元のSupplementではBLUPによる分析もしているがここでは省略）
+
+【解決策】<br>
+個性分析（行動Repeatability）と追加分析（行動シンドロームや個性ー適応度の関連）を一つの混合モデルで片付けてしまう
+
+---
+<div style="margin-bottom:90px;">
+</div>
+
+## Install & load packages
+
+```{r}
+
+pacman::p_load(
+  MCMCglmm
+  , lme4
+  , broom.mixed # create tidy output of glmm result
+  , nadiv
+  , coda # Judge MCMC convergence
+  )
+
+# Supplementで用意されている仮想データ
+df_syndrome <- read_csv("learn_Personality_stats_dat_syndrome.csv")
+
+```
+
+---
+
+<div style="margin-bottom:60px;">
+</div>
+
+## Data assumption
+
+ここでは、複数の繰り返し計測した行動指標と、一回計測の適応度形質（mating success）データを想定。
+
+今回の仮想データは全てオスのもので、以下の列を持つ
+
+- Individual **ID**
+- The repeat number for each behavioural test, **assay_rep**
+- **boldness**, measured 4 times per individual
+- **exploration**, measured 4 times per individual
+- **fitness**, a single value for each individual
+- Individual **body_size**, as measured on the day of testing.
+
+---
+
+<div style="margin-bottom:90px;">
+</div>
+
+## 単回帰モデル
+
+- 各行動形質での、個体差による表現型分散の割合を計算
+
+- `lme4`にて
+
+- 計測の反復IDは固定効果に
+
+- 個体IDがrandom effects
+
+- 計測可能な個体の状態（ここでは体サイズ）はScaling or Centringして固定効果に
+
+- 行動シンドロームを調べる全形質でこれを行う
+
+```{r, fig.width = 5, fig.height = 3}
+
+lmer_b <- lmer(
+  boldness ~ scale(assay_rep, scale=FALSE) + scale(body_size) + 
+    # Don't forget scaling variables!
+    (1|ID),
+  data = df_syndrome
+  )
+
+plot(lmer_b)
+qqnorm(residuals(lmer_b))
+hist(residuals(lmer_b))
+summary(lmer_b)
+
+```
+
+- ここではrandom effectsのvariance componentに興味がある。
+
+  - SDは分散の平方根
+
+- 動物の個性の証拠となるのは、repeatability (= intraclass correlation coefficient)
+
+- Repeatability:
+
+  - $\frac{個体差による分散}{固定効果を考慮したうえでの全分散} = \frac{V_{ID}}{V_{ID} + V_{residual}}$
+
+```{r}
+
+broom.mixed::tidy(lmer_b, effects = "ran_pars", scales = "vcov") %>%
+  select(group, estimate) %>%
+  spread(group, estimate) %>%
+  mutate(Repeatability = ID/(ID + Residual)) %>% 
+  kable("html", digits = 3) %>% 
+  kable_styling("striped", position = "left")  
+
+```
+
+この仮想データでは、ばらつきの37%が固定効果ではなく個体差によるもの。
+
+---
+
+<div style="margin-bottom:90px;">
+</div>
+
+## 行動シンドローム：Bivariate models
+
+- `MCMCglmm`での、行動2形質を応答変数に置いたモデルを組む。
+
+- 各行動形質とそれらの共分散に対する、個体間分散を推定
+
+
+### 事前分布の設定
+
+解説は以下参照
+
+- [Coding hub](https://ourcodingclub.github.io/tutorials/mcmcglmm/)
+
+- [Course notes](https://cran.r-project.org/web/packages/MCMCglmm/vignettes/CourseNotes.pdf)
+
+- カテゴリカル変数には[Gelman prior](https://rdrr.io/cran/MCMCglmm/man/gelman.prior.html)を当てはめる
+
+- 複数の事前分布に対し結果が頑健か見ておくと良い
+
+
+固定効果にはNormal distribution、(co)variancesにはinverse Wishartを事前分布として使っている。
+
+---
+
+指定するもの
+
+- **B**: 固定効果の事前分布。Defaultは信仰の弱い正規分布
+
+- **R**: 残差
+
+- **G**: ランダム効果 
+
+- ランダム効果の数だけ指定。例：
+
+```R
+    G = list(
+      G1 = list(V = 1, nu = 1, alpha.mu = 0, alpha.V = 1000),
+      G2 = list(V = 1, nu = 1, alpha.mu = 0, alpha.V = 1000),
+      )
+    )
+```
+
+- **alpha.mu**: Prior mean
+
+- **alpha.V**: 分散行列
+
+
+---
+
+inverse Wishart事前分布の変数
+
+- **V**: 事前分布のピークを決める。よく使われるのは1
+
+- **nu**: 信仰の強さ＝分布の偏り を決める。よく使われるのは0.002
+
+```{r}
+
+prior_E_B_1px = list(
+  R = list(V = diag(2), nu = 0.002),
+  G = list(
+    G1 = list(
+      V = diag(2), 
+      nu = 2, 
+      alpha.mu = rep(0,2), 
+      alpha.V = diag(25^2,2,2))
+    )
+  )
+
+```
+
+---
+
+<div style="margin-bottom:60px;">
+</div>
+
+### MCMCglmmモデル
+
+全体のコード
+
+```R
+MCMCglmm(
+  # Response variables. Combine after scaling
+  cbind(scale(exploration), scale(boldness)) ~ 
+    trait-1 +
+    trait:scale(assay_rep, scale = FALSE) +
+    trait:scale(body_size),
+  random =~ us(trait):ID,
+  rcov =~ us(trait):units,
+  family = c("gaussian","gaussian"),
+  prior = prior_E_B_1px,
+  nitt = 150000,
+  burnin = 10000,
+  thin = 30,
+  verbose = TRUE,
+  data = as.data.frame(df_syndrome)
+  )
+```
+
+項目ごとの解説
+
+- Response variable: `cbind` after scaling
+
+```R
+  cbind(scale(exploration), scale(boldness)) ~ 
+```
+
+- Predictor variable:
+
+  - 各形質に対し切片を用意
+
+```R
+    trait-1 +
+```
+  - **trait** keywordにより多変量モデルであることを明記
+  -  固定効果による形質への影響を、それぞれの形質で推定
+
+```R
+    trait:scale(assay_rep, scale = FALSE) +
+    trait:scale(body_size),
+```
+
+- Random effects structureを設定<br>
+
+  - ‘unstructured’ (us) 共分散行列を個体IDに適用<br>
+  以下を計算するため
+
+      - 個体差による、それぞれの行動形質の分散
+      - これらの分散の共分散
+
+```R
+  random =~ us(trait):ID,
+```
+
+- 残差分散の構造を設定
+
+  - ‘within-individual variation’
+  - 各個体で反復計測しているので、ここでもunstructured covariance matrixを設定
+    - 各形質での残差分散と共分散を計算
+
+```R
+    rcov =~ us(trait):units,
+```
+
+- MCMCプロセスの設定<br>
+収束が悪い時はこれらの値を大きく上げる
+  - 反復試行数 (Iterations) **nitt**<br>
+    収束が悪ければ青天井
+  - 不安定な初期のIterationを切り捨てる数**burnin**<br>
+    収束が悪ければ50000など
+  - 使うIteration間隔 **thin**: Samplingでの自己相関を減らす<br>
+    収束が悪ければ200など
+  
+```R
+    nitt=420000,
+    burnin=20000,
+    thin=100,
+```
+
+- データセット
+  - `MCMCglmm`ではtbl_dfを受け入れないので`as.data.frame`
+
+```R
+    data = as.data.frame(df_syndrome)
+```
+
+---
+
+<div style="margin-bottom:60px;">
+</div>
+
+### MCMCの収束
+
+Traceは一定の傾向を持っていてはいけないー未収束を示す。ある値の上下で終始ギザギザしていると収束が示唆。    
+
+ランダム効果のMCMC連鎖
+
+```{r, fig.height=10}
+mcmc_E_B_us <- readRDS("learn_Personality_stats_mcmc_syndrome.obj")
+plot(mcmc_E_B_us$VCV)
+```
+
+固定効果の収束過程
+
+```{r}
+
+plot(mcmc_E_B_us$Sol)
+
+```
+
+---
+
+[`geweke.diag`](https://www.rdocumentation.org/packages/coda/versions/0.19-4/topics/geweke.diag)
+
+- Markov連鎖の初期と後期での平均値が同じか調べる
+  - 初期設定では、初期10%と後期50%
+- もし連鎖がstationary distributionに達していれば、
+  - 二つの平均は同じ
+  - Geweke統計量はasymptotically standard normal distribution
+
+- test statistic: Z-score
+  - $\frac{Sample\ meansの差}{推定standard\ error}$
+  - SEは、spectral density at zeroから推定
+    - 自己相関が考慮に入っている
+  - calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1
+
+```{r}
+geweke.diag(mcmc_E_B_us$Sol, frac1=0.1, frac2=0.5)
+```
+Z値が０からほど遠いので、このMarchov連鎖は収束していないとみるべき
+
+---
+
+モデルが2つ以上あるときには[`gelman.diag`](https://www.rdocumentation.org/packages/coda/versions/0.19-4/topics/gelman.diag)による判定もできる
+
+```R
+gelman.diag(mcmc.list(m1$Sol, m2$Sol))
+```
+
+
+<div style="margin-bottom:60px;">
+</div>
+
+### Repeatability
+
+反復性を計算するために、新たに ‘個体差で説明された行動形質ばらつきの割合’ の事後分布を作る
+
+- SummaryにあるVariance componentsの名前に基づいて計算
+  - このコードを丸々コピーはできない！
+
+- ここではExplorationが対象
+
+```{r, fig.height = 3}
+
+mcmc_prop_E <- mcmc_E_B_us$VCV[,"traitexploration:traitexploration.ID"]/
+  (mcmc_E_B_us$VCV[,"traitexploration:traitexploration.ID"] +
+     mcmc_E_B_us$VCV[,"traitexploration:traitexploration.units"])
+
+plot(mcmc_prop_E)
+
+mean(mcmc_prop_E)
+
+# 95% CIs
+HPDinterval(mcmc_prop_E)
+
+```
+
+Bayesian 95%信頼区間が０を跨がないことが古典的（頻度主義的）な統計的有意を示すだと言われるが、ここで扱っている**variance componentsは、MCMCglmmでは必ず正の値をとる**
+
+- **信頼区間が０を跨がない≠有意**
+- 下限が０に近ければ、Repeatabilityが弱いと考えるべき
+- なので`lme4`で単回帰を前もって行っている
+
+
+なお、Variance componentsの名前は以下で調べられる
+
+```{r}
+mcmc_E_B_us$VCV %>% 
+  as.tibble() %>% 
+  colnames()
+```
+- 個体差による分散は<br>trait{\*trait name\*}:trait{*trait name*}.**ID**
+- 残差分散は<br>trait{*trait name*}:trait{*trait name*}.**units**
+
+
+---
+<div style="margin-bottom:60px;">
+</div>
+
+### Covariance
+
+Repeatabilityの計算プロセスを共分散に応用できる。
+
+個体間での形質間相関の事後分布：
+
+- $\frac{形質間の共分散}{各形質の分散の平方根を掛け合わせたもの}$
+
+  - 共分散を-1~1にスケーリング
+
+
+```{r, fig.height = 3}
+
+mcmc_cor_EB <- mcmc_E_B_us$VCV[,"traitboldness:traitexploration.ID"]/
+  (sqrt(mcmc_E_B_us$VCV[,"traitboldness:traitboldness.ID"])*
+     sqrt(mcmc_E_B_us$VCV[,"traitexploration:traitexploration.ID"]))
+
+plot(mcmc_cor_EB)
+
+mean(mcmc_cor_EB)
+
+HPDinterval(mcmc_cor_EB)
+
+```
+
+相関は正負どちらもとりうるので、95%信頼区間が０を跨ぐかは頻度主義的な統計的有意を示す。ここでは信頼区間が０を跨いでいるので、有意な行動シンドロームはないと結論付ける。
+
+---
+<div style="margin-bottom:60px;">
+</div>
+
+## さらに形質を加える
+
+仮想データセットでの、行動２形質（反復測定）と適応度（1回計測）の関係を調べる。
+
+```{r}
+# 相対適応度を算出し、rel_fitnessに格納
+df_syndrome %<>%
+  mutate(rel_fitness = fitness/mean(fitness, na.rm=TRUE))
+```
+
+---
+
+### 事前分布を設定
+
+注意
+
+- **1回計測の形質（ここでは適応度）では、残差分散（個体内分散）は０**
+- **1回計測の計測との間のすべての個体内形質相関も０**
+  - `fix`でVariance componentを特定の値に固定
+    - 分散は正の値でないといけないので、個体内分散を小さな正の値で代入（ここでは0.0001）
+    - 個体内分散＝残差分散**R**
+
+```{r}
+prior_E_B_fit_1px = list(
+  R = list(
+    # 反復測定形質が2つの後に1回計測形質の分散を指定するので、3つ目の要素に0.0001を代入
+    V = diag(c(1,1,0.0001),3,3), 
+    nu = 1.002, 
+    # 3つ目のVariance component = 1回計測形質を固定
+    fix = 3
+    ),
+  G = list(
+    G1 = list(
+      V = diag(3), nu = 3, alpha.mu = rep(0,3), alpha.V = diag(25^2,3,3)
+      )
+    )
+  )
+```
+
+---
+
+### MCMCglmmモデル
+
+全体のコード
+
+```R
+mcmc_E_B_fit <- MCMCglmm(
+  cbind(scale(exploration), scale(boldness), rel_fitness) ~ 
+    trait-1 + 
+    at.level(trait,1):scale(assay_rep, scale = FALSE) +
+    at.level(trait,2):scale(assay_rep, scale = FALSE) +
+    trait:scale(body_size),
+  random =~ us(trait):ID,
+  rcov =~ us(trait):units,
+  family = c("gaussian","gaussian","gaussian"),
+  prior = prior_E_B_fit_1px,
+  nitt = 100000,
+  burnin = 10000,
+  thin = 100,
+  verbose = TRUE,
+  pr = TRUE,
+  data = as.data.frame(df_syndrome)
+  )
+# saveRDS(mcmc_E_B_fit, "learn_Personality_stats_mcmc_fit.obj")
+```
+
+個別解説
+
+```
+    at.level(trait,1):scale(assay_rep, scale = FALSE) +
+    at.level(trait,2):scale(assay_rep, scale = FALSE) +
+```
+- `at.level`
+  - specify that fixed effects are estimated only for certain traits
+    - ここでは、反復計測`assay_rep`の影響を反復計測された形質に対してだけ調べている
+    - 一方、繰り返し測った体サイズの影響は全ての形質に対して調べている
+
+```
+  pr = TRUE,
+```
+- 各個体でのランダム効果（ID）の事後分布を保存
+  - REMLでのBLUPに相当
+  - [後で可視化](### BLUPで散布図)
+  - めっちゃファイルサイズデカくなる (もともと<1Mbのモデルでも、>8Mbになる)
+
+---
+
+### 結果
+
+```{r}
+mcmc_E_B_fit <- readRDS("learn_Personality_stats_mcmc_fit.obj")
+
+summary(mcmc_E_B_fit)
+```
+
+- 個体内分散（`~~.units`）において、適応度（1回計測）が関わっているもの（`rel_fitness:rel_fitness.units`）は指定通り0.0001に固定され、effective sample sizeは0。
+
+- 適応度（1回計測）が関わっている個体内の共分散はとても小さく、effective sample sizeも小さくなっているはず
+
+
+行動シンドロームが以前のモデルと近い値になっているか確認
+
+```{r}
+mcmc_E_B_fit_cor_EB <- mcmc_E_B_fit$VCV[,"traitboldness:traitexploration.ID"]/
+  (sqrt(mcmc_E_B_fit$VCV[,"traitboldness:traitboldness.ID"])*
+     sqrt(mcmc_E_B_fit$VCV[,"traitexploration:traitexploration.ID"]))
+
+mean(mcmc_E_B_fit_cor_EB)
+HPDinterval(mcmc_E_B_fit_cor_EB)
+```
+
+適応度と行動形質の相関を抽出
+
+```{r}
+mcmc_E_B_fit_cor_Efit <- mcmc_E_B_fit$VCV[,"traitrel_fitness:traitexploration.ID"]/
+  (sqrt(mcmc_E_B_fit$VCV[,"traitrel_fitness:traitrel_fitness.ID"])*
+     sqrt(mcmc_E_B_fit$VCV[,"traitexploration:traitexploration.ID"]))
+
+mcmc_E_B_fit_cor_Bfit <- mcmc_E_B_fit$VCV[,"traitrel_fitness:traitboldness.ID"]/
+  (sqrt(mcmc_E_B_fit$VCV[,"traitrel_fitness:traitrel_fitness.ID"])*
+     sqrt(mcmc_E_B_fit$VCV[,"traitboldness:traitboldness.ID"]))
+```
+
+形質相関を図示
+
+```{r, fig.height = 3}
+
+df_mcmc_cors <- data_frame(
+  Traits = c(
+    "Exploration, Boldness", "Exploration, Fitness", "Boldness, Fitness"
+    ),
+  Estimate = c(
+    mean(mcmc_E_B_fit_cor_EB),
+    mean(mcmc_E_B_fit_cor_Efit),
+    mean(mcmc_E_B_fit_cor_Bfit)
+    ),
+  Lower = c(
+    HPDinterval(mcmc_E_B_fit_cor_EB)[,"lower"],
+    HPDinterval(mcmc_E_B_fit_cor_Efit)[,"lower"],
+    HPDinterval(mcmc_E_B_fit_cor_Bfit)[,"lower"]
+    ),
+  Upper = c(
+    HPDinterval(mcmc_E_B_fit_cor_EB)[,"upper"],
+    HPDinterval(mcmc_E_B_fit_cor_Efit)[,"upper"],
+    HPDinterval(mcmc_E_B_fit_cor_Bfit)[,"upper"]
+    )
+  )
+
+ggplot(df_mcmc_cors, aes(x = Traits, y = Estimate)) +
+  geom_pointrange(aes(ymin = Lower, ymax = Upper)) +
+  geom_hline(yintercept = 0, linetype = "dotted") +
+  scale_x_discrete(
+    limits = c("Boldness, Fitness", "Exploration, Fitness", 
+               "Exploration, Boldness")
+    ) +
+  labs(x = "Trait combinations",
+       y = "Correlation (Estimate ±95% CIs)") +
+  ylim(-1,1) +
+  coord_flip()
+
+```
+
+---
+<div style="margin-bottom:60px;">
+</div>
+
+### BLUPで散布図
+
+ランダム効果のposterior modes (BLUPs from the MCMCglmm model) をFull-modelから抽出し、個性形質と適応度の関係を図示。図示のためにBLUPを使うのはOK
+
+
+#### 個性と適応度の個体毎の点推定を取り出す
+
+ここではBoldnessー適応度の関連を調べる
+
+```{r}
+df_bf_coefs <- data_frame(
+  # Same as writing as: names(colMeans(mcmc_E_B_fit$Sol))
+  Trait = attr(colMeans(mcmc_E_B_fit$Sol), "names"),
+  # $Solには１属性当たり４つの値が格納されている。なんだこれは？
+  # ここではcoMeansで4つの値の平均を取って今後の分析に使う
+  Value = colMeans(mcmc_E_B_fit$Sol)
+  ) %>%
+  # この時点では全ての項目の推定値がまぜこぜに1列に並んでいる
+  # BLUPは例えば以下のように格納されている：　traitexploration.ID.S_1
+  # これを"."で分割
+  separate(Trait, c("Trait","Type","ID"), sep = "\\.", fill = "right") %>%
+  filter(
+    # ID列に値があるのは個体毎の推定値だけ。これを取り出す
+    Type == "ID",
+    # ここではboldnessと、相対適応度を取り出す
+    Trait %in% c("traitboldness", "traitrel_fitness")
+    ) %>%
+  select(-Type) %>%
+  pivot_wider(names_from = Trait, values_from = Value)
+```
+
+#### 回帰直線を得る
+
+- Boldnessに対する相対適応度を傾き
+  - $\frac{boldnessと相対適応度の共分散}{boldnessの分散}$
+
+```{r}
+B_fit_slope <- mcmc_E_B_fit$VCV[,"traitrel_fitness:traitboldness.ID"]/
+  mcmc_E_B_fit$VCV[,"traitboldness:traitboldness.ID"]
+```
+
+図示
+
+```{r}
+
+ggplot(df_bf_coefs, aes(x = traitboldness, y = traitrel_fitness, group = ID)) +
+  geom_point(alpha = 0.7) +
+  geom_abline(intercept = 0, slope = mean(B_fit_slope)) +
+  labs(
+    x = "Boldness (BLUP)",
+    y = "Relative fitness (BLUP)"
+    )
+
+```
+
+---
+
+<div style="margin-bottom:90px;">
+</div>
+
+# `brms` : Mitchell et al 
+
+[David Mitchell, Christa Beckmann, Peter A Biro: Supplement](https://osf.io/j7vbr/)
+
+## `brms`とは
+
+[概要: Bürkner 2017](https://www.researchgate.net/publication/319337223_brms_An_R_Package_for_Bayesian_Multilevel_Models_Using_Stan)
+
+- Bayesian multilevel modelを扱う
+- Stan, C++を経由
+
+`MCMCglmm`との比較
+
+1. 〇複数のマルコフ連鎖を走らせれる
+1. 〇共分散の事前分布が柔軟に指定できる
+1. 〇Link関数が柔軟
+1. 〇Robust linear modelsができる
+
+など。利点はそれなりに多いが（特に①）、問題はそれを扱えるか...。
+
+まあ`MCMCglmm`でいいか。
+
+---
+
+<div style="margin-bottom:60px;">
+</div>
+
+# ~~ASReml-R~~
+
+Avoid this because it's [not free](https://www.ieu.uzh.ch/en/staff/member/niklaus_pascal/ASReml.html)
