@@ -1,5 +1,5 @@
 ---
-title: "Personality stats"
+title: "個性と行動シンドロームの統計解析"
 output:
   html_document:
     theme: darkly # flatly 
@@ -17,12 +17,14 @@ output:
 
 # 趣旨
 
-個性や行動シンドローム、個性と適応度の関連を調べるうえで、統計の部分で勉強したことをまとめていきます。個性や行動シンドロームの概念的な部分は日本生態学会誌に[総説](https://www.researchgate.net/publication/350485050_dongwunogexingyanjiuwofukansuru)
+個性や行動シンドローム、個性と適応度の関連を調べるうえで、統計解析の部分で勉強したことをまとめていきます。個性や行動シンドロームの概念的な部分は日本生態学会誌に[総説](https://www.researchgate.net/publication/350485050_dongwunogexingyanjiuwofukansuru)
 を書いていますのでそちらを参照ください。
 
 自分で分析を始めたら、その時に詰まったところなどまとめていきます。
 
 個体内で反復測定をしたデータ分析に共通の手法ですので、個性だけでなく、成長過程での形質相関の変化など色々応用できると思います。
+
+Rコードは右上 "Code" ボタン → "Download Rmd" でダウンロードできます。
 
 ---
 <div style="margin-bottom:90px;">
@@ -159,8 +161,6 @@ summary(lmer_b)
 ```
 
 - ここではrandom effectsのvariance componentに興味がある。
-
-  - SDは分散の平方根
 
 - 動物の個性の証拠となるのは、repeatability (= intraclass correlation coefficient)
 
@@ -413,7 +413,6 @@ gelman.diag(mcmc.list(m1$Sol, m2$Sol))
 反復性を計算するために、新たに ‘個体差で説明された行動形質ばらつきの割合’ の事後分布を作る
 
 - SummaryにあるVariance componentsの名前に基づいて計算
-  - このコードを丸々コピーはできない！
 
 - ここではExplorationが対象
 
@@ -436,7 +435,6 @@ Bayesian 95%信頼区間が０を跨がないことが古典的（頻度主義�
 
 - **信頼区間が０を跨がない≠有意**
 - 下限が０に近ければ、Repeatabilityが弱いと考えるべき
-- なので`lme4`で単回帰を前もって行っている
 
 
 なお、Variance componentsの名前は以下で調べられる
