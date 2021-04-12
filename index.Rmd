@@ -10,7 +10,7 @@ output: html_document
 </div>
 
 Postdoctoral fellow at [Prof. Gil G. Rosenthal laboratory](https://swordtail.tamu.edu/), <br>
-Texas A&M University, USA / University of Padova, Italy
+Texas A&M University, USA
 
 Email: k.atsumi115_at_gmail.com
 
