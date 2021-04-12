@@ -37,7 +37,7 @@ output: html_document
 <div style="margin-bottom:30px;">
 </div>
 
-米国テキサスA&M大学、[Gil G. Rosenthal研究室](https://swordtail.tamu.edu/)の博士研究員です。
+米国テキサスA&M大学 / イタリア Padova大学、[Gil G. Rosenthal研究室](https://swordtail.tamu.edu/)の博士研究員です。
 
 Email: k.atsumi115_at_gmail.com
 

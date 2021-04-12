@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>PCR-RFLP protocol</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#section-TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#section-TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="section-TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">渥美圭佑</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    CV/履歴
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="index.html">English</a>
+    </li>
+    <li>
+      <a href="CV_Japanese.html">履歴</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    役立つかも？
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tips_Visa_procedure.html">海外渡航のあれこれ</a>
+    </li>
+    <li>
+      <a href="tips_Proposal.html">学振の申請書</a>
+    </li>
+    <li>
+      <a href="tips_Metaanalysis.html">メタ解析</a>
+    </li>
+    <li>
+      <a href="tips_Citationformat.html">無料で文献管理</a>
+    </li>
+    <li>
+      <a href="learn_Personality_stats.html">動物の個性を統計処理する</a>
+    </li>
+    <li>
+      <a href="tips_RFLP_intro.html">インタラクティブな実験プロトコルby Shiny</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="section-header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">PCR-RFLP protocol</h1>
+
+</div>
+
+
+<pre class="r"><code>rm(list=ls())  # reset workspace
+options(scipen=100)  # do not show numbers using exponential
+
+# install &amp; load packages
+pacman::p_load(
+  tidyverse
+  # , magrittr   # extended pipe
+  , shiny          # Interactive html
+  , shinydashboard # Interactive html
+  , data.table     # Interactive table
+  , DT             # Interactive table
+  # , knitr  
+  # , kableExtra # nice tables
+  # , pander     # nice tables
+)
+
+# Rmarkdown settings
+knitr::opts_chunk$set(
+  prompt  = FALSE,  # Do not add &gt; or + in inline-code
+  message = FALSE, 
+  comment = &quot;&quot;, 
+  warning = FALSE,  # Mute warnings
+  tidy    = TRUE
+  ) 
+options(knitr.kable.NA = &#39;&#39;) # Hide NAs in kable table
+
+# To deploy (upload) to Shiny Server, see
+# https://bookdown.org/yihui/rmarkdown/shiny-deploy.html</code></pre>
+<div style="margin-bottom:60px;">
+
+</div>
+<div id="section-dna-extraction" class="section level1">
+<h1>DNA extraction</h1>
+<p>Using <em>Wizard Genomic DNA Purification Kit</em> by <em>Promega</em>. See also <a href="https://www.promega.com/resources/protocols/technical-manuals/0/wizard-genomic-dna-purification-kit-protocol/#:~:text=The%20Wizard%C2%AE%20Genomic%20DNA,on%20a%20four%2Dstep%20process">official protocol</a>.</p>
+<p><strong>細胞をぶっ壊してDNA等を溶かし出す</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Nuclei Lysis solution 100μl, Proteinase K 3μlを8連チューブに入れ，冷やさない</p></li>
+<li><p>組織を入れる。もしでかいサンプルならハサミでじょきじょき切ると溶けやすくなる</p></li>
+<li><p>55℃/3h~Overnight Incubate</p>
+<ul>
+<li>ときどき撹拌</li>
+<li>蓋が取れやすいので注意</li>
+<li>DNAは結構頑丈なので、組織が解けるまでやるのもOK</li>
+<li>組織が解け残っていたら後々邪魔になるので、軽く遠心→上澄みを移してその上澄みを今後使用もOK</li>
+</ul></li>
+</ol>
+<p><strong>邪魔なタンパク質を除去する</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>室温になってからProtein Precipitation Solution を33μl入れてよく混ぜる</p></li>
+<li><p>5分間氷水または冷凍庫内で冷やす</p></li>
+<li><p>もう一度よく混ぜてから15000rpmで10～15分間遠心</p></li>
+<li><p>イソプロパノールが100μl入った8連チューブを用意</p></li>
+<li><p>遠心が終わったらすぐに上清（DNA入り。大事）を100μl取り出し，イソプロ入りの8連チューブに移す</p>
+<ul>
+<li>沈殿（たんぱく質の塊。ゴミ）をなるべく吸わないよう慎重に</li>
+</ul></li>
+<li><p>よく混ぜる（転倒混和）</p></li>
+</ol>
+<p><strong>サンプルのおそうじ</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>15,000rpmで10 ～15分遠心．IPAによりDNAは変性し、沈殿する。IPAにはゴミが溶け出しているからこれを捨てる。上清をデカンテーションして捨て，キムタオルにトントンと軽くあててイソプロをきる．</p>
+<ul>
+<li>再びEtOHで掃除するので、ここはそんなにまじめにやらなくていい。沈殿落としちゃダメ。</li>
+</ul></li>
+<li><p>70%エタノールを100μl入れ，混ぜない．15,000rpmで10 ～15分遠心</p></li>
+<li><p>デカンテーションののち、上清 (IPAには溶けださなかった水和性の強いゴミ入り) をピペットで慎重に吸い取って捨てる</p>
+<ul>
+<li>DNAの沈殿は柔らかくなっているので注意</li>
+<li>10μlチップを推奨</li>
+<li>DNAのペレットを見ながら慎重に．ペレットが見えない場合，遠心にかけたときの向きから沈殿している場所を予想して，その反対側からピペットを入れる</li>
+<li><strong>エタノールの残る量が少ないほど不純物が減ってDNAの質が良くなる</strong>
+<ul>
+<li>間違ってDNA沈殿を捨てちゃうくらいなら安全のため少し残るぐらいにとどめても良い</li>
+</ul></li>
+</ul></li>
+<li><p>引き出しの中で蓋を開けて風乾 or 65℃3分～乾熱し，残ったエタノールをとばす</p>
+<ul>
+<li>EtOHは残ってると反応を阻害する</li>
+</ul></li>
+<li><p>MilliQ or TEを20～30μl入れる</p></li>
+<li><p>室温に一晩，または65℃で60分おいた後 (固く沈殿しているDNAを液中に溶かし出す) 冷凍</p></li>
+</ol>
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+<div id="section-pcr" class="section level1">
+<h1>PCR</h1>
+<div style="margin-bottom:50px;">
+
+</div>
+<div id="section-mix-reagents" class="section level2">
+<h2>Mix reagents</h2>
+<p><strong>Primer:</strong> Dilute to <strong>5μM</strong></p>
+<p>最終的なプライマー濃度が0.1–1.0μMになるように調整（このProtocolでは0.5μM）</p>
+<pre class="r"><code>PCR_dna &lt;- 0.5
+
+#++++++++++++++++++++++++++++++++++++++#
+# In UI, Sample size, Total volume of RFLP, and amount of PCR products 
+# can be changed
+#++++++++++++++++++++++++++++++++++++++#
+ui_PCR &lt;- fluidPage(
+  # make input panel UI for reagents
+  inputPanel(
+    numericInput(
+      &quot;PCR_n_samples&quot;, label = &quot;Number of samples:&quot;, value = 8
+      ),
+    numericInput(
+      &quot;PCR_total&quot;, label = &quot;Total volume (μl):&quot;, value = 10.0
+      )
+    ),
+  # specify output names
+  tableOutput(&quot;tube&quot;),
+  dataTableOutput(&quot;mix&quot;),
+  textOutput(&quot;text&quot;)
+  )
+
+#++++++++++++++++++++++++++++++++++++++#
+# Return
+# 1. Reagent contents per tube
+# 2. Mix contents (selectable)
+#++++++++++++++++++++++++++++++++++++++#
+server_PCR &lt;- function(input, output) {
+  
+  # Table output for Reagent contents per tube
+  output$tube = renderTable(
+    tibble(
+      Reagents = c(&quot;Taq mix (2X)&quot;, &quot;DNA sample&quot;, &quot;Primer F&quot;, &quot;Primer R&quot;, &quot;Water&quot;, &quot;Total&quot;),
+      `Volume (μl)` = c(
+        input$PCR_total/2, 
+        PCR_dna, 
+        input$PCR_total*0.1, # Primer F
+        input$PCR_total*0.1, # Primer R
+        input$PCR_total*0.3 - PCR_dna, # Water
+        input$PCR_total      # Total
+        )
+      ),
+    # Caption    
+    caption = &quot;Contents / tube&quot;,
+    # Put caption on the top of table
+    caption.placement = getOption(&quot;xtable.caption.placement&quot;, &quot;top&quot;)
+    )
+  
+  # Mix contents (selectable)
+  output$mix = renderDataTable(
+    tibble(
+      Reagents = c(&quot;Taq mix&quot;, &quot;Primer F&quot;, &quot;Primer R&quot;, &quot;Water&quot;),
+      `Volume (μl)` = c(
+        input$PCR_total/2 * 1.15 * input$PCR_n_samples, # Enzyme
+        input$PCR_total*0.1 * 1.15 * input$PCR_n_samples, # Primer F
+        input$PCR_total*0.1 * 1.15 * input$PCR_n_samples, # Primer R
+        (input$PCR_total*0.3 - PCR_dna) * 1.15 * input$PCR_n_samples # Water
+        )
+      ),
+    # Caption
+    caption = &quot;Mix contents: click row after apply&quot;,
+    # Do not show length menu, search box
+    options = list(dom = &#39;t&#39;)
+    )
+  
+  # Volume of Mix to be applied each tube
+  output$text &lt;- renderText({paste(&quot;Apply&quot;, (input$PCR_total - PCR_dna), &quot;μl of mix to each tube&quot;)})
+  
+  }
+
+shinyApp(ui_PCR, server_PCR)</code></pre>
+<p><iframe data-deferred-src="app6d5fa6a8feb7045204483d020c10a41a/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe></p>
+<div style="margin-bottom:50px;">
+
+</div>
+</div>
+<div id="section-thermal-cycler-settings" class="section level2">
+<h2>Thermal cycler settings</h2>
+<p>ここではQuick Taq™ HS DyeMixを使う。 <a href="https://www.toyobo-global.com/seihin/xr/lifescience/products/pcr_018.html#:~:text=Quick%20Taq%E2%84%A2%20HS%20DyeMix%20is%20a%20Taq%2Dbased%202x,shows%20specific%20and%20efficient%20amplification.">official protocol</a>.</p>
+<p>For specific settings of Control Region, followed <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1463-6409.2007.00311.x">Gutiérrez-Rodríguez et al. 2007</a></p>
+<table>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Temp (℃)</strong></td>
+<td><strong>Time (min) </strong></td>
+<td><strong>Cycle</strong></td>
+<td><strong>Rationale</strong></td>
+</tr>
+<tr class="even">
+<td>Pre-denature</td>
+<td>94</td>
+<td>2:00</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Denature</td>
+<td>94</td>
+<td>0:30</td>
+<td>|</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Anneal</td>
+<td>55~63</td>
+<td>0:30</td>
+<td>| x 30</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Extension</td>
+<td>68</td>
+<td>0:55</td>
+<td>|</td>
+<td>Taq amplify DNA 1kb/min<br>Control region is &lt;800bp</td>
+</tr>
+<tr class="even">
+<td>Final extension</td>
+<td>68</td>
+<td>5:00</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Cool down</td>
+<td>16</td>
+<td>∞</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+</div>
+<div id="section-rflp" class="section level1">
+<h1>RFLP</h1>
+<pre class="r"><code>RFLP_enzyme &lt;- 0.1
+
+#++++++++++++++++++++++++++++++++++++++#
+# In UI, Sample size, Total volume of RFLP, and amount of PCR products 
+# can be changed
+#++++++++++++++++++++++++++++++++++++++#
+ui_RFLP &lt;- fluidPage(
+    # make input panel UI for reagents
+    inputPanel(
+      numericInput(
+        &quot;RFLP_n_samples&quot;, label = &quot;Number of samples:&quot;, value = 8
+        )
+      , numericInput(
+        &quot;RFLP_total&quot;, label = &quot;Total volume (μl):&quot;, value = 4.0
+        )
+      , numericInput(
+        &quot;RFLP_dna&quot;, label = &quot;PCR Products volume:&quot;, value = 3.0
+        )
+      ),
+    # specify output names
+    tableOutput(&quot;tube&quot;),
+    dataTableOutput(&quot;mix&quot;)
+    )
+  
+
+#++++++++++++++++++++++++++++++++++++++#
+# Return
+# 1. Reagent contents per tube
+# 2. Mix contents (selectable)
+#++++++++++++++++++++++++++++++++++++++#
+server_RFLP &lt;- function(input, output) {
+  
+  # Table output for Reagent contents per tube
+  output$tube = renderTable(
+    tibble(
+      Reagents = c(&quot;Enzyme&quot;, &quot;PCR products&quot;, &quot;Buffer (x10)&quot;, &quot;Water&quot;, &quot;Total&quot;),
+      `Volume (μl)` = c(
+        RFLP_enzyme, 
+        input$RFLP_dna, 
+        input$RFLP_total*0.1, # Buffer 
+        input$RFLP_total*0.9 - sum(RFLP_enzyme, input$RFLP_dna), # Water 
+        input$RFLP_total      # Total
+        )
+      ),
+    # Caption    
+    caption = &quot;Contents / tube&quot;,
+    # Put caption on the top of table
+    caption.placement = getOption(&quot;xtable.caption.placement&quot;, &quot;top&quot;)
+    )
+  
+  # Mix contents (selectable)
+  output$mix = renderDataTable(
+    tibble(
+      Reagents = c(&quot;Enzyme&quot;, &quot;Buffer (x10)&quot;, &quot;Water&quot;),
+      `Volume (μl)` = c(
+        RFLP_enzyme * 1.15 * input$RFLP_n_samples, # Enzyme
+        input$RFLP_total*0.1 * 1.15 * input$RFLP_n_samples, # Buffer 
+        (input$RFLP_total*0.9-sum(RFLP_enzyme, input$RFLP_dna)) * 1.15 * input$RFLP_n_samples # Water
+        )
+      ),
+    # Caption
+    caption = &quot;Mix contents: click row after apply&quot;,
+    # Do not show length menu, search box
+    options = list(dom = &#39;t&#39;)
+    )
+  
+  }
+
+shinyApp(ui_RFLP, server_RFLP)</code></pre>
+<p><iframe data-deferred-src="app36c0ba869afebe31fc707a37cac04c56/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe></p>
+<p>8連チューブあるいは96穴プレートに分注したら、<strong>37℃で一晩インキュベート</strong></p>
+<hr />
+<div style="margin-bottom:60px;">
+
+</div>
+</div>
+<div id="section-gel-electrophoresis" class="section level1">
+<h1>Gel electrophoresis</h1>
+<div id="section-make-new-gel-mix" class="section level2">
+<h2>Make new gel mix</h2>
+<ul>
+<li>1％
+<ul>
+<li>アガロース 2g<br />
+</li>
+<li>Water 200mL<br />
+</li>
+<li>50×TAE 4ml<br />
+を500mLの耐熱ビンに入れ、電子レンジで加熱</li>
+<li>溶液が沸騰してもこぼれないように必ず溶液の倍以上の容量の耐熱ビンを用意</li>
+</ul></li>
+<li>3％
+<ul>
+<li>アガロース 6gにして、他は同じ</li>
+</ul></li>
+</ul>
+</div>
+<div id="section-preparing-gel" class="section level2">
+<h2>Preparing gel</h2>
+<ol style="list-style-type: decimal">
+<li><p>電子レンジでゲルの素か中古ゲルを加熱</p>
+<ul>
+<li>沸騰してこぼれないようにビンを確認しながら</li>
+</ul></li>
+<li><p>レンジの上にある軍手を使って耐熱ビンを取り出し、瓶を振って混ぜながら冷ます</p>
+<ul>
+<li>やけどに注意！</li>
+</ul></li>
+<li><p>手で触れるくらいまで冷めたら、型に流し込む</p>
+<ul>
+<li>熱すぎると、ゲルも平らにならないし、型が歪むのでしっかりと冷ます</li>
+</ul></li>
+<li><p>TAEを電気泳動器に流し込む</p></li>
+<li><p>アガロースゲルを泳動器の中にセットする</p>
+<ul>
+<li><strong>ゲルの向きは、マイナス側にwell</strong></li>
+</ul></li>
+</ol>
+</div>
+<div id="section-electrophoresis" class="section level2">
+<h2>Electrophoresis</h2>
+<ol style="list-style-type: decimal">
+<li>インキュベートした容器に直接Midori greenを0.3μl分注、スピンダウン。全量を 2.5％ゲルに注入。
+<ul>
+<li>Midori greenは、光でボケない様に小分けにしておく</li>
+</ul></li>
+<li>電気泳動100V、10-15分でスタート。アルミホイルで遮光
+<ul>
+<li>ゲルが厚かったり、アガロースの濃度が濃いと、泳動時間は長くなる。</li>
+</ul></li>
+<li>泳動後、LEDビュワーのステージ上にラップを敷き、ゲルを載せてバンドを確認
+<ul>
+<li>ラップを敷かないと、ステージがTAEで汚れてしまう。</li>
+</ul></li>
+<li>使用したゲルは再利用するので、中古ゲル用耐熱ビンに戻し、菌が増えないようにレンジで加熱し試薬棚に戻す。使用したTAEも中古TAE用のビンに戻す。</li>
+</ol>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("section-TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#section-TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

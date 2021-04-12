@@ -30,7 +30,7 @@ navbar:
           href: tips_Citationformat.html
         - text: "動物の個性を統計処理する"
           href: learn_Personality_stats.html        
-        # - text: "ShinyでRFLPの溶液計算"
-        #   href: tips_RFLP.html
+        - text: "インタラクティブな実験プロトコルby Shiny"
+          href: tips_RFLP_intro.html
           
 output_dir: "docs"

@@ -1,0 +1,37 @@
+---
+title: "R-shinyで実験プロトコルを作ってみた"
+output: html_document
+---
+
+<div style="margin-bottom:30px;">
+</div>
+
+僕は分子実験が大嫌いです。何ならトラウマです。
+
+とはいえ、進化生物学系の実証研究をするなら避けて通れませんね...。
+
+できるだけわかりやすいプロトコルを作ろうと、Rの*shiny*を使って、インタラクティブな分子実験プロトコルを作りました。
+
+この[Link](https://github.com/Kei-Atsumi/Curriculum_vitae/blob/master/tips_RFLP.rmd)でRmdファイルをダウンロードして、<br>
+Rstudioで開いて、<br>
+Run documentボタンを押してみてください。
+
+
+★アピールポイント★
+
+- PCR・RFLP溶液のMixを作る際の各Reagentの液量を、<br>
+サンプル数・系の液量を設定したうえで計算できます
+
+- 入れたReagentをクリックすると色が変わる表になっているので、<br>
+入れ忘れを防げます
+
+<div style="margin-bottom:30px;">
+</div>
+
+DNA抽出～PCR・RFLPまでを全て8連チューブで済ませる、コンパクトな実験を目指したプロトコルです。
+
+Code中の値を色々いじくって、カスタマイズしてください。
+
+めくるめくメキシコの淡水魚Swordtailの種判別を目指したプロトコルです。PCRの設定はもちろん、使うTaqや対象遺伝子座に応じて変えてください。
+
+アメリカまで来て何しとんのかね私は、、

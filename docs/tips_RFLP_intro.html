@@ -11,7 +11,7 @@
 
 
 
-<title>完全無料で文献を管理する</title>
+<title>R-shinyで実験プロトコルを作ってみた</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -382,70 +382,30 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">完全無料で文献を管理する</h1>
+<h1 class="title toc-ignore">R-shinyで実験プロトコルを作ってみた</h1>
 
 </div>
 
 
-<div style="margin-bottom:60px;">
-
-</div>
-<p>ここでは、1円も使わずに、</p>
-<ol style="list-style-type: decimal">
-<li><p>読みたい大量の論文をクラウドする</p></li>
-<li><p>それらの論文を引用文献に自動で加えられるよう管理ソフトに読み込ませる</p></li>
-<li><p>それらの論文を、自分が見つけやすいようにフォルダではなくラベルで管理する</p></li>
-</ol>
-<p>ことを目標にします。</p>
-<div style="margin-bottom:60px;">
-
-</div>
-<div id="読みたい大量の論文をクラウドする" class="section level1">
-<h1>読みたい大量の論文をクラウドする</h1>
 <div style="margin-bottom:30px;">
 
 </div>
-<p>15GBまで無料の<a href="https://ja.wikipedia.org/wiki/MEGA">MEGA</a>が便利です。私が導入した2015年頃は50GB無料だったんですが、、、</p>
-<p>論文を入れるフォルダを決めて、MEGAにそれを読み込ませればOKです。</p>
-<div style="margin-bottom:60px;">
-
-</div>
-</div>
-<div id="文献管理ソフト" class="section level1">
-<h1>文献管理ソフト</h1>
-<div style="margin-bottom:30px;">
-
-</div>
-<p>私はMendeleyを使っています。クラウドソフトに読み込ませているフォルダをMendeleyに読み込ませるだけでOKです。</p>
-<p>Natureによる<a href="https://www.natureasia.com/ja-jp/ndigest/v14/n11/TOOLBOX%3A+%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E3%82%BD%E3%83%95%E3%83%888%E9%81%B8/89727">文献管理ソフト8選 2017</a>を見るとMendeley・Zotero・colwizの3強でしょうか。Readcubeは2016年頃まで使っていましたが、使い勝手が悪く撤退しました。残念なことにZotero・Colwizは使ったことがありません。</p>
-<p>Mendeley無料版でも、</p>
+<p>僕は分子実験が大嫌いです。何ならトラウマです。</p>
+<p>とはいえ、進化生物学系の実証研究をするなら避けて通れませんね…。</p>
+<p>できるだけわかりやすいプロトコルを作ろうと、Rの<em>shiny</em>を使って、インタラクティブな分子実験プロトコルを作りました。</p>
+<p>この<a href="https://github.com/Kei-Atsumi/Curriculum_vitae/blob/master/tips_RFLP.rmd">Link</a>でRmdファイルをダウンロードして、<br> Rstudioで開いて、<br> Run documentボタンを押してみてください。</p>
+<p>★アピールポイント★</p>
 <ul>
-<li><p>Word pluginで、ほぼすべての雑誌フォーマットで引用文献リストを作ってくれる（ちなみにフォーマットは自分で作れます、申請書用と日本生態学会誌用は自作しました）</p></li>
-<li><p>もう読む気もないけど引用文献に入れるかもしれない文献の情報を、ファイルがなくとも残しておける（実ファイルはPCのフォルダから消してOK、容量節約） ことができます。十分ですよね。</p></li>
+<li><p>PCR・RFLP溶液のMixを作る際の各Reagentの液量を、<br> サンプル数・系の液量を設定したうえで計算できます</p></li>
+<li><p>入れたReagentをクリックすると色が変わる表になっているので、<br> 入れ忘れを防げます</p></li>
 </ul>
-<p>論文をMendeley上で読んでそこにメモをつけたりして、それを複数端末で共有しようとすると、有料オプションを使うことになります。でも、あくまで論文を読む・メモをつけるのをAcrobat readerにしておけば、クラウド上で編集内容はすべて同期できるから、有料オプションを使う必要はありません。</p>
-<p>Zoteroはオープンソースである分、Rのようにかなりの発展を遂げるのではないかと期待しています。例えば、Libreoffice対応のPluginがあるのは素晴らしいですね。これでMS officeを使わずに論文が書ける（そもそもTexとRmarkdownを組み合わせて使えばいいのですが）。いつかはZoteroかColwizに移る時が来るのでしょう…。</p>
-<div style="margin-bottom:60px;">
-
-</div>
-</div>
-<div id="論文を自分が見つけやすいようにフォルダではなくラベルで管理する" class="section level1">
-<h1>論文を、自分が見つけやすいようにフォルダではなくラベルで管理する</h1>
 <div style="margin-bottom:30px;">
 
 </div>
-<p>論文って分野だったり手法だったり色んな属性がありますよね。分野も複数にまたがってたり。その属性ごとにファイルを管理しようと思うと、フォルダでやろうとするとどうしても無理が出てきます。やたらとフォルダが増えるとか。</p>
-<p>これを解決するのが、知る人ぞ知る超便利ファイル管理ソフト、<a href="https://www.fenrir-inc.com/jp/fenrirfs/">Fenrir FS</a>。（お金貰ってませんよ！）</p>
-<p>Fenrir FSにフォルダを読み込ませると（ここではクラウド・文献管理ソフトの読み込み対象になっているフォルダ群）、ファイルに対しまず所属フォルダ名と同じ<strong>ラベル</strong>が付きます。ここで重要なのは、Fenrir FS上でラベルを好きなだけ追加できることです。ラベル一覧上で気になるラベルをクリックすると、そのラベルがついたすべてのファイルを閲覧できます。検索窓でワード検索すると、ファイル名・ラベル名が検索対象になって一覧が出てきます。</p>
-<p>ただし、各ファイルに着けたラベルは複数端末では共有できません。</p>
-<p>公式サイトを見るのが早いです。</p>
-<p>最後に、<strong>自分が論文を探すときのことを考えて、ファイル名は機能的に</strong>しましょう。つまり検索に使いそうなキーワードは全てラベルかファイル名に含めておくべきです。Atsumi et al. 2021なんて最悪です。だってそれを見たところで絶対中身わかんない/思い出せないですから。</p>
-<p>例えば自分は、</p>
-<ul>
-<li>{ラベルでカバーしないTopic名}_{論文のタイプ：Review, Metaanalysis, Mathmodel, 他は無し}_{year}_{簡単な内容}_{筆頭著者（+自分が気にしてる著者）}_{雑誌名}</li>
-</ul>
-<p>としています。</p>
-</div>
+<p>DNA抽出～PCR・RFLPまでを全て8連チューブで済ませる、コンパクトな実験を目指したプロトコルです。</p>
+<p>Code中の値を色々いじくって、カスタマイズしてください。</p>
+<p>めくるめくメキシコの淡水魚Swordtailの種判別を目指したプロトコルです。PCRの設定はもちろん、使うTaqや対象遺伝子座に応じて変えてください。</p>
+<p>アメリカまで来て何しとんのかね私は、、</p>
 
 
 
