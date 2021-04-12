@@ -1,0 +1,341 @@
+---
+title: "PCR-RFLP protocol"
+# author: "Keisuke Atsumi"
+runtime: shiny
+output:
+  html_document:
+    # code_download: true
+    code_folding: hide
+    theme: darkly # “defaμlt”, “cerμlean”, “journal”, “flatly”, “darkly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, “yeti”
+    toc: yes
+    toc_float: yes
+---
+
+```{r}
+
+rm(list=ls())  # reset workspace
+options(scipen=100)  # do not show numbers using exponential
+
+# install & load packages
+pacman::p_load(
+  tidyverse
+  # , magrittr   # extended pipe
+  , shiny          # Interactive html
+  , shinydashboard # Interactive html
+  , data.table     # Interactive table
+  , DT             # Interactive table
+  # , knitr  
+  # , kableExtra # nice tables
+  # , pander     # nice tables
+)
+
+# Rmarkdown settings
+knitr::opts_chunk$set(
+  prompt  = FALSE,  # Do not add > or + in inline-code
+  message = FALSE, 
+  comment = "", 
+  warning = FALSE,  # Mute warnings
+  tidy    = TRUE
+  ) 
+options(knitr.kable.NA = '') # Hide NAs in kable table
+
+# To deploy (upload) to Shiny Server, see
+# https://bookdown.org/yihui/rmarkdown/shiny-deploy.html
+
+```
+
+<div style="margin-bottom:60px;">
+</div>
+
+# DNA extraction
+
+Using *Wizard Genomic DNA Purification Kit* by *Promega*. See also [official protocol](https://www.promega.com/resources/protocols/technical-manuals/0/wizard-genomic-dna-purification-kit-protocol/#:~:text=The%20Wizard%C2%AE%20Genomic%20DNA,on%20a%20four%2Dstep%20process).
+
+**細胞をぶっ壊してDNA等を溶かし出す**
+
+1. Nuclei Lysis solution 100μl, Proteinase K 3μlを8連チューブに入れ，冷やさない
+
+1. 組織を入れる。もしでかいサンプルならハサミでじょきじょき切ると溶けやすくなる
+
+1. 55℃/3h~Overnight Incubate
+    - ときどき撹拌
+    - 蓋が取れやすいので注意
+    - DNAは結構頑丈なので、組織が解けるまでやるのもOK
+    - 組織が解け残っていたら後々邪魔になるので、軽く遠心→上澄みを移してその上澄みを今後使用もOK
+
+
+**邪魔なタンパク質を除去する**
+
+1. 室温になってからProtein Precipitation Solution を33μl入れてよく混ぜる
+
+1. 5分間氷水または冷凍庫内で冷やす
+
+1. もう一度よく混ぜてから15000rpmで10～15分間遠心
+
+1. イソプロパノールが100μl入った8連チューブを用意
+
+1. 遠心が終わったらすぐに上清（DNA入り。大事）を100μl取り出し，イソプロ入りの8連チューブに移す
+    - 沈殿（たんぱく質の塊。ゴミ）をなるべく吸わないよう慎重に
+
+1. よく混ぜる（転倒混和）
+
+**サンプルのおそうじ**
+
+1. 15,000rpmで10 ～15分遠心．IPAによりDNAは変性し、沈殿する。IPAにはゴミが溶け出しているからこれを捨てる。上清をデカンテーションして捨て，キムタオルにトントンと軽くあててイソプロをきる．
+    - 再びEtOHで掃除するので、ここはそんなにまじめにやらなくていい。沈殿落としちゃダメ。
+
+1. 70%エタノールを100μl入れ，混ぜない．15,000rpmで10 ～15分遠心
+
+1. デカンテーションののち、上清 (IPAには溶けださなかった水和性の強いゴミ入り) をピペットで慎重に吸い取って捨てる
+    - DNAの沈殿は柔らかくなっているので注意
+    - 10μlチップを推奨
+    - DNAのペレットを見ながら慎重に．ペレットが見えない場合，遠心にかけたときの向きから沈殿している場所を予想して，その反対側からピペットを入れる
+    - **エタノールの残る量が少ないほど不純物が減ってDNAの質が良くなる**
+      - 間違ってDNA沈殿を捨てちゃうくらいなら安全のため少し残るぐらいにとどめても良い
+
+1. 引き出しの中で蓋を開けて風乾 or 65℃3分～乾熱し，残ったエタノールをとばす 
+    - EtOHは残ってると反応を阻害する
+
+1. MilliQ or TEを20～30μl入れる
+
+1. 室温に一晩，または65℃で60分おいた後 (固く沈殿しているDNAを液中に溶かし出す) 冷凍
+
+<div style="margin-bottom:60px;">
+</div>
+
+# PCR
+
+<div style="margin-bottom:50px;">
+</div>
+
+## Mix reagents
+
+**Primer:** Dilute to **5μM**
+
+最終的なプライマー濃度が0.1–1.0μMになるように調整（このProtocolでは0.5μM）
+
+```{r}
+
+PCR_dna <- 0.5
+
+#++++++++++++++++++++++++++++++++++++++#
+# In UI, Sample size, Total volume of RFLP, and amount of PCR products 
+# can be changed
+#++++++++++++++++++++++++++++++++++++++#
+ui_PCR <- fluidPage(
+  # make input panel UI for reagents
+  inputPanel(
+    numericInput(
+      "PCR_n_samples", label = "Number of samples:", value = 8
+      ),
+    numericInput(
+      "PCR_total", label = "Total volume (μl):", value = 10.0
+      )
+    ),
+  # specify output names
+  tableOutput("tube"),
+  dataTableOutput("mix"),
+  textOutput("text")
+  )
+
+#++++++++++++++++++++++++++++++++++++++#
+# Return
+# 1. Reagent contents per tube
+# 2. Mix contents (selectable)
+#++++++++++++++++++++++++++++++++++++++#
+server_PCR <- function(input, output) {
+  
+  # Table output for Reagent contents per tube
+  output$tube = renderTable(
+    tibble(
+      Reagents = c("Taq mix (2X)", "DNA sample", "Primer F", "Primer R", "Water", "Total"),
+      `Volume (μl)` = c(
+        input$PCR_total/2, 
+        PCR_dna, 
+        input$PCR_total*0.1, # Primer F
+        input$PCR_total*0.1, # Primer R
+        input$PCR_total*0.3 - PCR_dna, # Water
+        input$PCR_total      # Total
+        )
+      ),
+    # Caption    
+    caption = "Contents / tube",
+    # Put caption on the top of table
+    caption.placement = getOption("xtable.caption.placement", "top")
+    )
+  
+  # Mix contents (selectable)
+  output$mix = renderDataTable(
+    tibble(
+      Reagents = c("Taq mix", "Primer F", "Primer R", "Water"),
+      `Volume (μl)` = c(
+        input$PCR_total/2 * 1.15 * input$PCR_n_samples, # Enzyme
+        input$PCR_total*0.1 * 1.15 * input$PCR_n_samples, # Primer F
+        input$PCR_total*0.1 * 1.15 * input$PCR_n_samples, # Primer R
+        (input$PCR_total*0.3 - PCR_dna) * 1.15 * input$PCR_n_samples # Water
+        )
+      ),
+    # Caption
+    caption = "Mix contents: click row after apply",
+    # Do not show length menu, search box
+    options = list(dom = 't')
+    )
+  
+  # Volume of Mix to be applied each tube
+  output$text <- renderText({paste("Apply", (input$PCR_total - PCR_dna), "μl of mix to each tube")})
+  
+  }
+
+shinyApp(ui_PCR, server_PCR)
+
+```
+
+<div style="margin-bottom:50px;">
+</div>
+
+## Thermal cycler settings
+
+ここではQuick Taq™ HS DyeMixを使う。 [official protocol](https://www.toyobo-global.com/seihin/xr/lifescience/products/pcr_018.html#:~:text=Quick%20Taq%E2%84%A2%20HS%20DyeMix%20is%20a%20Taq%2Dbased%202x,shows%20specific%20and%20efficient%20amplification.).
+
+For specific settings of Control Region, followed [Gutiérrez-Rodríguez et al. 2007](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1463-6409.2007.00311.x)
+
+|  |  |  |  | |
+| -- | - | - | - | ----------- |
+| **Step** | **Temp (℃)** | **Time (min) ** |  **Cycle**| **Rationale**|
+| Pre-denature      | 94 | 2:00 |         | |
+| Denature          | 94 | 0:30 | \|      | |
+| Anneal            | 55~63 | 0:30 | \| x 30 | |
+| Extension         | 68 | 0:55 | \|      | Taq amplify DNA 1kb/min<br>Control region is <800bp |
+| Final extension   | 68 | 5:00 |         | |
+| Cool down         | 16 | ∞    |         | |
+
+---
+
+<div style="margin-bottom:60px;">
+</div>
+
+# RFLP
+
+```{r}
+
+RFLP_enzyme <- 0.1
+
+#++++++++++++++++++++++++++++++++++++++#
+# In UI, Sample size, Total volume of RFLP, and amount of PCR products 
+# can be changed
+#++++++++++++++++++++++++++++++++++++++#
+ui_RFLP <- fluidPage(
+    # make input panel UI for reagents
+    inputPanel(
+      numericInput(
+        "RFLP_n_samples", label = "Number of samples:", value = 8
+        )
+      , numericInput(
+        "RFLP_total", label = "Total volume (μl):", value = 4.0
+        )
+      , numericInput(
+        "RFLP_dna", label = "PCR Products volume:", value = 3.0
+        )
+      ),
+    # specify output names
+    tableOutput("tube"),
+    dataTableOutput("mix")
+    )
+  
+
+#++++++++++++++++++++++++++++++++++++++#
+# Return
+# 1. Reagent contents per tube
+# 2. Mix contents (selectable)
+#++++++++++++++++++++++++++++++++++++++#
+server_RFLP <- function(input, output) {
+  
+  # Table output for Reagent contents per tube
+  output$tube = renderTable(
+    tibble(
+      Reagents = c("Enzyme", "PCR products", "Buffer (x10)", "Water", "Total"),
+      `Volume (μl)` = c(
+        RFLP_enzyme, 
+        input$RFLP_dna, 
+        input$RFLP_total*0.1, # Buffer 
+        input$RFLP_total*0.9 - sum(RFLP_enzyme, input$RFLP_dna), # Water 
+        input$RFLP_total      # Total
+        )
+      ),
+    # Caption    
+    caption = "Contents / tube",
+    # Put caption on the top of table
+    caption.placement = getOption("xtable.caption.placement", "top")
+    )
+  
+  # Mix contents (selectable)
+  output$mix = renderDataTable(
+    tibble(
+      Reagents = c("Enzyme", "Buffer (x10)", "Water"),
+      `Volume (μl)` = c(
+        RFLP_enzyme * 1.15 * input$RFLP_n_samples, # Enzyme
+        input$RFLP_total*0.1 * 1.15 * input$RFLP_n_samples, # Buffer 
+        (input$RFLP_total*0.9-sum(RFLP_enzyme, input$RFLP_dna)) * 1.15 * input$RFLP_n_samples # Water
+        )
+      ),
+    # Caption
+    caption = "Mix contents: click row after apply",
+    # Do not show length menu, search box
+    options = list(dom = 't')
+    )
+  
+  }
+
+shinyApp(ui_RFLP, server_RFLP)
+
+```
+
+8連チューブあるいは96穴プレートに分注したら、**37℃で一晩インキュベート**
+
+---
+
+<div style="margin-bottom:60px;">
+</div>
+
+# Gel electrophoresis
+
+## Make new gel mix
+
+- 1％  
+    - アガロース 2g  
+    - Water 200mL  
+    - 50×TAE 4ml  
+    を500mLの耐熱ビンに入れ、電子レンジで加熱
+    - 溶液が沸騰してもこぼれないように必ず溶液の倍以上の容量の耐熱ビンを用意
+
+- 3％
+  - アガロース 6gにして、他は同じ
+
+## Preparing gel
+
+1. 電子レンジでゲルの素か中古ゲルを加熱
+    - 沸騰してこぼれないようにビンを確認しながら  
+
+1. レンジの上にある軍手を使って耐熱ビンを取り出し、瓶を振って混ぜながら冷ます
+    - やけどに注意！  
+
+1. 手で触れるくらいまで冷めたら、型に流し込む
+    - 熱すぎると、ゲルも平らにならないし、型が歪むのでしっかりと冷ます  
+
+1. TAEを電気泳動器に流し込む
+
+1. アガロースゲルを泳動器の中にセットする
+    - **ゲルの向きは、マイナス側にwell**
+
+## Electrophoresis
+
+1. インキュベートした容器に直接Midori greenを0.3μl分注、スピンダウン。全量を 2.5％ゲルに注入。
+    - Midori greenは、光でボケない様に小分けにしておく
+
+1. 電気泳動100V、10-15分でスタート。アルミホイルで遮光
+    - ゲルが厚かったり、アガロースの濃度が濃いと、泳動時間は長くなる。
+
+1. 泳動後、LEDビュワーのステージ上にラップを敷き、ゲルを載せてバンドを確認
+    - ラップを敷かないと、ステージがTAEで汚れてしまう。
+
+1. 使用したゲルは再利用するので、中古ゲル用耐熱ビンに戻し、菌が増えないようにレンジで加熱し試薬棚に戻す。使用したTAEも中古TAE用のビンに戻す。
