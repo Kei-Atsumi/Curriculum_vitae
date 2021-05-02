@@ -223,3 +223,9 @@ ConflictでFilterして、それをExport(CSV推奨)し、Rayyan上でレビュ�
 - [Supplementary material](https://github.com/Kei-Atsumi/Meta_F1HybridVariation.scripts/blob/master/R/Supplementary_material_S1.html) of my paper - "Non-additive genetic effects induce novel phenotypic distributions in male mating traits of F1 hybrids" 汚いコードですが、効果量計算、Funnel plotを使ったデータチェックからメタ解析・回帰に至る分析の流れをつかめるかと思います。他にも中川研の論文のSupplementary materialはとても役に立つでしょう
 
 - BMJ 2015 Preferred reporting items for systematic review and meta-analysis protocols (PRISMA-P) 2015: elaboration and explanation [BMJ](https://doi.org/10.1136/bmj.g7647). チェックリストには目を通しておくと良いでしょう
+
+- [Phylopic](http://phylopic.org/)<br>
+よく見る、各分類群のシルエットを無料ダウンロードできるサイトです
+
+- [Rayyan](https://www.rayyan.ai/)<br>
+Systematic reviewの味方

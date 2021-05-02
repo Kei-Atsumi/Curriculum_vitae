@@ -93,11 +93,7 @@ Email: k.atsumi115_at_gmail.com
 <a href="https://scholar.google.com/citations?user=PMk-FAx8vzAC&hl=ja"> <img src="./files/googlescholar.png" width="40" height="40"></a>
 <a href="https://www.researchgate.net/profile/Keisuke-Atsumi"> <img src="./files/researchgate.png" width="40" height="40"></a>
 
-論文リストは[Google scholar](https://www.researchgate.net/profile/Keisuke-Atsumi)にて。
-
-[Researchgate](https://www.researchgate.net/profile/Keisuke-Atsumi)でPDF手に入ります。
-
-- 査読あり、筆頭著者での英語論文：8編  
+- 査読あり、筆頭著者での英語論文：9編  
 
 - 査読あり、筆頭著者での和文総説：1編（日本生態学会誌での特集号を企画）  
 
@@ -121,17 +117,6 @@ Email: k.atsumi115_at_gmail.com
 <!--   scroll_box(width = "170%", height = "500px") -->
 
 <!-- ``` -->
-
-<div style="margin-bottom:30px;">
-</div>
-
-### 未掲載論文
-
-- *Atsumi K*, Ross SRPJ, Kishida O. Interpopulation differences in developmental plasticity of carnivores determine the emergence of a trophic interaction. *submitted*    
-
-- *Atsumi K*, Lagisz M Nakagawa S. Non-additive genetic effects induce novel phenotypic distributions in male mating traits of F1 hybrids. *Evolution - accepted*   
-
-いずれも*EcoEvoRxiv*にプレプリントとして公開しております。
 
 <div style="margin-bottom:30px;">
 </div>
