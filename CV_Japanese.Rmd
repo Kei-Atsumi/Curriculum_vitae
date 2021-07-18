@@ -37,7 +37,7 @@ output: html_document
 <div style="margin-bottom:30px;">
 </div>
 
-米国テキサスA&M大学、[Gil G. Rosenthal研究室](https://swordtail.tamu.edu/)の博士研究員です。
+イタリア パドヴァ大学、[Gil G. Rosenthal研究室](https://swordtail.tamu.edu/)の博士研究員です。
 
 Email: k.atsumi115_at_gmail.com
 
@@ -72,7 +72,9 @@ Email: k.atsumi115_at_gmail.com
 
 | | |
 | -- | ------ |
-| 2021.3 - | 米国・テキサスA&M大学（[Gil Rosenthal研究室](https://swordtail.tamu.edu/)）に<br>日本学術振興会 海外特別研究員として滞在 |
+| 2021.7- | イタリア パドヴァ大学（[Gil Rosenthal研究室](https://swordtail.tamu.edu/)）に<br>日本学術振興会 海外特別研究員として滞在 |
+| 2021.5-6 | メキシコ・[Centro de Investigaciones Científicas de las Huastecas “Aguazarca”](https://www.cichaz.org/)に滞在 |
+| 2021.3-7 | 米国・テキサスA&M大学（[Gil Rosenthal研究室](https://swordtail.tamu.edu/)）に<br>日本学術振興会 海外特別研究員として滞在 |
 | 2017.10-12、2019.10-12 | 豪州・ニューサウスウェールズ大学<br>（[Shinichi Nakagawa研究室](http://www.i-deel.org/)）に留学 |
 | 2018.4 - 2020.3 | 日本学術振興会 博士課程特別研究員DC2 |
 | 2016.5 - 2017.2 | 北海道大学 リサーチアシスタント |

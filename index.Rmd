@@ -10,11 +10,10 @@ output: html_document
 </div>
 
 Postdoctoral fellow at [Prof. Gil G. Rosenthal laboratory](https://swordtail.tamu.edu/), <br>
-Texas A&M University, USA
+University of Padova, Italy
 
 Email: k.atsumi115_at_gmail.com
 
-Born in 1992 in Nagoya, Japan
 
 <div style="margin-bottom:30px;">
 </div>
@@ -30,9 +29,9 @@ Born in 1992 in Nagoya, Japan
 
 | | |  |
 | -- | -- | -------- |
-| 2016 - 2020 | Ph.D. | Grad. Environmental Earth Science, <b>Hokkaido Univ.</b></br> Supervisor, [Dr. Itsuro Koizumi](https://noah.ees.hokudai.ac.jp/envmi/koizumilab/en/) |
-| 2014 - 2016 | M.Sc. | Grad. Agricultural and Life Sciences, <b>Univ. Tokyo</b> |
-| 2010 - 2014 | B.Sc. | Fac. Fisheries Science, <b>Hokkaido Univ.</b> |
+| 2016 - 2020 | Ph.D. | Grad. Environmental Earth Science, <b>Hokkaido Univ.</b>, Japan</br> Supervisor, [Dr. Itsuro Koizumi](https://noah.ees.hokudai.ac.jp/envmi/koizumilab/en/) |
+| 2014 - 2016 | M.Sc. | Grad. Agricultural and Life Sciences, <b>Univ. Tokyo</b>, Japan |
+| 2010 - 2014 | B.Sc. | Fac. Fisheries Science, <b>Hokkaido Univ.</b>, Japan |
 
 <div style="margin-bottom:30px;">
 </div>
@@ -41,8 +40,10 @@ Born in 1992 in Nagoya, Japan
 
 | | |
 | -- | ------- |
-| 2021.3 - | Postdoctoral fellow at Texas A&M University - [Gil Rosenthal lab](https://swordtail.tamu.edu/), supported by JSPS |
-| 2017.10-12、2019.10-12 | Visiting scholar at University of New South Wales - [Shinichi Nakagawa lab](http://www.i-deel.org/), Sydney, to conduct meta-analysis of phenotypic distribution of F1 hybrids |
+| 2021.7- | Postdoctoral fellow at University of Padova - [Gil Rosenthal lab](https://swordtail.tamu.edu/), supported by JSPS |
+| 2021.3-7 | Postdoctoral fellow at Texas A&M University - [Gil Rosenthal lab](https://swordtail.tamu.edu/), supported by JSPS |
+| 2021.5-6 | [Centro de Investigaciones Científicas de las Huastecas “Aguazarca”](https://www.cichaz.org/), Mexico |
+| 2017.10-12</br>2019.10-12 | Visiting scholar at University of New South Wales - [Shinichi Nakagawa lab](http://www.i-deel.org/), Sydney, to conduct meta-analysis of phenotypic distribution of F1 hybrids |
 | 2018.4 - 2020.3 | JSPS research fellow at Hokkaido University (DC2, doctoral students) |
 | 2016.5 - 2017.2 | Research assistant for the experiment investigating trigger of ocean-migration of masu trout, Hokkaido University |
 | 2016.5 - 2017.2 | Teaching assistant, Hokkaido University |

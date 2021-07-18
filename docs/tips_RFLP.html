@@ -13,7 +13,7 @@
 
 <title>PCR-RFLP protocol</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
@@ -553,7 +553,7 @@ server_PCR &lt;- function(input, output) {
   }
 
 shinyApp(ui_PCR, server_PCR)</code></pre>
-<p><iframe data-deferred-src="app676af6a1fda030697f469983214a0899/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe></p>
+<p><iframe data-deferred-src="app616923beecff6e6b5a53df340a7bd967/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe></p>
 <div style="margin-bottom:50px;">
 
 </div>
@@ -692,7 +692,7 @@ server_RFLP &lt;- function(input, output) {
   }
 
 shinyApp(ui_RFLP, server_RFLP)</code></pre>
-<p><iframe data-deferred-src="app3a9b67c648505aa4b13b405d30f6d203/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe></p>
+<p><iframe data-deferred-src="appc4c045341380743da6c5a84e16d84046/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe></p>
 <p>8連チューブあるいは96穴プレートに分注したら、<strong>37℃で一晩インキュベート</strong></p>
 <hr />
 <div style="margin-bottom:60px;">
@@ -805,6 +805,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

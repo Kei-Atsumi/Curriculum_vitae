@@ -14,7 +14,7 @@
 
 <title>Curriculum Vitae</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
@@ -386,7 +386,7 @@ div.tocify {
 <h1 class="title toc-ignore">Curriculum Vitae</h1>
 <h3 class="subtitle">渥美 圭佑</h3>
 <h4 class="author">環境科学 博士</h4>
-<h4 class="date">21/05/20</h4>
+<h4 class="date">21/07/18</h4>
 
 </div>
 
@@ -417,7 +417,7 @@ div.tocify {
 <div style="margin-bottom:30px;">
 
 </div>
-<p>米国テキサスA&amp;M大学、<a href="https://swordtail.tamu.edu/">Gil G. Rosenthal研究室</a>の博士研究員です。</p>
+<p>イタリア パドヴァ大学、<a href="https://swordtail.tamu.edu/">Gil G. Rosenthal研究室</a>の博士研究員です。</p>
 <p>Email: k.atsumi115_at_gmail.com</p>
 <div style="margin-bottom:30px;">
 
@@ -465,9 +465,21 @@ div.tocify {
 <div id="職歴ほか" class="section level3">
 <h3>職歴ほか</h3>
 <table>
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
 <tbody>
 <tr class="odd">
-<td>2021.3 -</td>
+<td>2021.7-</td>
+<td>イタリア パドヴァ大学（<a href="https://swordtail.tamu.edu/">Gil Rosenthal研究室</a>）に<br>日本学術振興会 海外特別研究員として滞在</td>
+</tr>
+<tr class="even">
+<td>2021.5-6</td>
+<td>メキシコ・<a href="https://www.cichaz.org/">Centro de Investigaciones Científicas de las Huastecas “Aguazarca”</a>に滞在</td>
+</tr>
+<tr class="odd">
+<td>2021.3-7</td>
 <td>米国・テキサスA&amp;M大学（<a href="https://swordtail.tamu.edu/">Gil Rosenthal研究室</a>）に<br>日本学術振興会 海外特別研究員として滞在</td>
 </tr>
 <tr class="even">
@@ -747,6 +759,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
