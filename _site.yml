@@ -32,5 +32,7 @@ navbar:
           href: learn_Personality_stats.html        
         - text: "インタラクティブな実験プロトコルby Shiny"
           href: tips_RFLP_intro.html
+        - text: "異種間交配関連のリンク集"
+          href: tips_HybridizationLecture2021.html
           
 output_dir: "docs"

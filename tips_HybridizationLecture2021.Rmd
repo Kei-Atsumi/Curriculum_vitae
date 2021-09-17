@@ -1,0 +1,43 @@
+---
+title: "交雑に関する講義のリンク集"
+output: html_document
+---
+
+さらに興味のある方は以下のリンク欄をどうぞ！
+
+<div style="margin-bottom:30px;">
+</div>
+
+# 倍数性変化による雑種種分化
+
+- [倍数性進化とは？](https://www.tr.yamagata-u.ac.jp/~sasanuma/baisuuseishinnka/baisuuseishinnka.html)
+
+<div style="margin-bottom:30px;">
+</div>
+
+# 進化能力UP
+
+- [異なる種同士をかけ合わせた「雑種」が持つ特徴に共通点はあるか？ – 動物分類群を横断したメタ解析で明らかになったこと](https://academist-cf.com/journal/?p=15727) 
+
+<div style="margin-bottom:30px;">
+</div>
+
+# 遺伝子汚染の悩ましい話
+
+- [雑種から生まれたオオカミ](https://www.toho-u.ac.jp/sci/bio/column/022600.html)
+
+- [異なる地域のどんぐりを植えて生じる悪影響 ―ミズナラの種苗移動による成長低下と遺伝的交雑―](https://www.ffpri.affrc.go.jp/press/2021/20210114/index.html)
+
+<div style="margin-bottom:30px;">
+</div>
+
+# 現生人類×絶滅人類
+
+- [人はみな｢少々ネアンデルタール人｣。アフリカ人にもDNA。全地球規模で異種交配](https://www.gizmodo.jp/2020/03/neanderthal.html)
+
+- [ネアンデルタール人より受け継がれた新型コロナウイルス感染症の重症化に関わる遺伝要因](https://www.igakuken.or.jp/r-info/covid-19-info24.html)
+
+- [チベット人の高地適応能力、絶滅人類系統から獲得か](https://www.afpbb.com/articles/-/3019567)
+
+<div style="margin-bottom:30px;">
+</div>
