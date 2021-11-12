@@ -93,6 +93,8 @@ Email: k.atsumi115_at_gmail.com
 
 - Systematic review using *Rayyan*
 
+- Semi-automated biodiversity monitoring using computer vision and deep learning
+
 - Genome analysis using *plink*
 
 - Image processing using *inkscape*, *gimp* and *sai*
