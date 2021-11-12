@@ -1,4 +1,5 @@
 name: "Keisuke Atsumi"
+google_analytics: "G-CXPBKYPS1S"
 output:
   html_document:
     theme: darkly

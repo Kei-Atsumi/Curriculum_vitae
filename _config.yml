@@ -1,0 +1,29 @@
+# Enter your Google Analytics web tracking code (e.g. UA-000000000-0) to activate tracking
+google_analytics:
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CXPBKYPS1S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CXPBKYPS1S');
+</script>
+
+# Your website URL (e.g. http://example.github.io or http://www.example.com)
+# Used for Sitemap.xml and your RSS feed
+url: "https://https://kei-atsumi.github.io"
+
+# Use the following plug-ins
+plugins:
+  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
+  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
+  
+# Exclude these files from your production _site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - AUTHORS
+  - LICENSE
+  - README.md
+  - CNAME
