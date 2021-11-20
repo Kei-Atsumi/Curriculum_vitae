@@ -35,6 +35,9 @@ navbar:
           href: tips_RFLP_intro.html
         - text: "異種間交配関連のリンク集"
           href: tips_HybridizationLecture2021.html
+  include:
+    head: tag.html
+
           
 output_dir: "docs"
 
