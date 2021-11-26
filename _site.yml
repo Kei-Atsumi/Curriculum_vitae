@@ -41,5 +41,6 @@ navbar:
           
 output_dir: "docs"
 
+
 plugins:
  - jekyll-sitemap
