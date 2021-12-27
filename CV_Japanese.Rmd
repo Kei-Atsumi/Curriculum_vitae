@@ -139,10 +139,23 @@ Email: k.atsumi115_at_gmail.com
 | | | |
 | ------ | --- | -- |
 | 題目 | 掲載元 | 発行・実施年 |
+| [たとえば、こんなシチズンサイエンス](https://peatix.com/event/3083313) | シチズンサイエンスの教室／第2回\n日本財団･京都大学RE:CONNECT x greenz.jp | 2021 |
 | 異なる種同士をかけ合わせた「雑種」が持つ特徴に共通点はあるか？ –<br> 動物分類群を横断したメタ解析で明らかになったこと | [academist journal](https://academist-cf.com/journal/?p=15727)<br>(academist) | 2021 |
 | ウグイ類のメスが派手な理由とは：<br>魚たちのお見合い実験奮闘記 | [BuNa](https://buna.info/article/2242/)（文一総合出版) | 2019 |
 | 釣り人の写真は貴重な資料！<br>Web上の写真をもとに川魚ウグイの繁殖生態を明らかにする | [academist journal](https://academist-cf.com/journal/?p=4492)<br>(academist) | 2017 |
 | 寄生虫を使ってウグイの育ちを調べる | 西岡公園<br>札幌市カルチャーナイト | 2018 |
+
+<div style="margin-bottom:30px;">
+</div>
+
+### 教育
+
+| | | |
+| ------ | --- | -- |
+| 題目 | 機関 | 実施年 |
+| 特別講義「異種間交配は生き物に何をもたらしそもそもなぜ起こるのか？」 | 麻生大学 | 2021 |
+| Chioggia臨海実験所での統計分析の補佐 | パドヴァ大学 (イタリア)| 2021 |
+
 
 <div style="margin-bottom:30px;">
 </div>
