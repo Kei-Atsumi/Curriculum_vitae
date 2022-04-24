@@ -14,7 +14,7 @@
 
 <title>Curriculum Vitae</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
@@ -65,6 +65,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -85,6 +86,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -313,7 +317,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -323,7 +327,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     CV/履歴
      
     <span class="caret"></span>
@@ -340,7 +344,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     役立つかも？
      
     <span class="caret"></span>
@@ -377,7 +381,7 @@ div.tocify {
 <div id="header">
 
 <div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
 <ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
@@ -389,7 +393,7 @@ div.tocify {
 <h1 class="title toc-ignore">Curriculum Vitae</h1>
 <h3 class="subtitle">Keisuke Atsumi</h3>
 <h4 class="author">Ph.D. environmental science</h4>
-<h4 class="date">21/12/27</h4>
+<h4 class="date">22/04/24</h4>
 
 </div>
 
@@ -397,7 +401,7 @@ div.tocify {
 <div style="margin-bottom:30px;">
 
 </div>
-<p>Postdoctoral fellow at <a href="https://swordtail.tamu.edu/">Prof. Gil G. Rosenthal laboratory</a>, <br> University of Padova, Italy</p>
+<p>Data scientist at <a href="https://biome.co.jp/">Biome Inc.</a>, Kyoto, Japan</p>
 <p>Email: k.atsumi115_at_gmail.com</p>
 <div style="margin-bottom:30px;">
 
@@ -413,9 +417,10 @@ div.tocify {
 </div>
 <p>In my childhood I wanted to be a shark taxonomist that would allow me to see various kinds of fishes and roam across the world. Yet, in doing undergraduate study I faced lot of difficulty to do so and I became more interested in evolutionary biology.</p>
 <p>In the PhD course at Hokkaido University, Japan, I decided to work on <a href="https://en.wikipedia.org/wiki/Tribolodon">freshwater fish</a> to investigate <em>how female ornamentation works and why interspecific mating happens</em>. While I did behavioral <em>experiment/field survey/</em><a href="https://link.springer.com/article/10.1007/s11284-017-1466-z"><em>citizen science</em></a> for the fish, I also conducted <em>meta-analysis</em> to uncover general pattens of <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/evo.14224"><em>F1 hybrids’ phenotypic distribution</em></a>.</p>
-<p>In the late years of my PhD I became interested in ecology as well - how the strength of predator-prey interactions are determined, and did lots of experiments (sadly they are <a href="https://ecoevorxiv.org/uz7rj/">not published yet</a>).</p>
-<p>On 2021, thanks to <a href="https://www.jsps.go.jp/english/index.html">JSPS</a>, I got a chance to be a postdoc at the United States. However, the covid happened which prevented me to move to US and start the planned study. During the desperate period, I became interested in connecting evolutionary biology/ecology to society/economy because I watched <a href="https://www.bs-tvtokyo.co.jp/plus10/">NIKKEI TV</a> everyday.</p>
-<p>Now I am in Italia and trying to <em>monitor swordtail fishes in Mexico using machine-learning</em>. While I keep my interest in evolutionary biology/ecology, I am setting <em>connecting biology with society through citizen science</em> as one of my career goals.</p>
+<p>In the late years of my PhD I became interested in ecology as well. To understand how the strength of predator-prey interaction between larvae of salamander and frog are determined, I did lots of experiments (sadly they are <a href="https://ecoevorxiv.org/uz7rj/">not published yet</a>).</p>
+<p>On 2021, thanks to <a href="https://www.jsps.go.jp/english/index.html">JSPS</a>, I got a chance to be a postdoc at the United States/Italy. However, due to covid-19 pandemic, I could not move to US and start the planned study. During the desperate period, I became interested in connecting evolutionary biology/ecology to society/economy because I watched <a href="https://www.bs-tvtokyo.co.jp/plus10/">NIKKEI TV</a> everyday.</p>
+<p>Now I came back to Japan and became a data scientist at a startup company <a href="https://biome.co.jp/">Biome Inc.</a>. While I keep my interest in evolutionary biology/ecology, I set <em>connecting biology with society through citizen science</em> as one of my career goals.</p>
+<p>Here I note that contents of this website does not relate with any organizations I am involved.</p>
 <div style="margin-bottom:60px;">
 
 </div>
@@ -461,38 +466,42 @@ div.tocify {
 </colgroup>
 <tbody>
 <tr class="odd">
-<td>2021.7-</td>
-<td>Postdoctoral fellow at University of Padova - <a href="https://swordtail.tamu.edu/">Gil Rosenthal lab</a>, supported by JSPS</td>
+<td>2022.4-</td>
+<td>Data scientist at <a href="https://biome.co.jp/">Biome Inc.</a></td>
 </tr>
 <tr class="even">
+<td>2021.7-2022.3</td>
+<td>Postdoctoral fellow at University of Padova - <a href="https://swordtail.tamu.edu/">Gil Rosenthal lab</a>, supported by JSPS</td>
+</tr>
+<tr class="odd">
 <td>2021.3-7</td>
 <td>Postdoctoral fellow at Texas A&amp;M University - <a href="https://swordtail.tamu.edu/">Gil Rosenthal lab</a>, supported by JSPS</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>2021.5-6</td>
 <td><a href="https://www.cichaz.org/">Centro de Investigaciones Científicas de las Huastecas “Aguazarca”</a>, Mexico</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>2017.10-12</br>2019.10-12</td>
 <td>Visiting scholar at University of New South Wales - <a href="http://www.i-deel.org/">Shinichi Nakagawa lab</a>, Sydney, to conduct meta-analysis of phenotypic distribution of F1 hybrids</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>2018.4 - 2020.3</td>
 <td>JSPS research fellow at Hokkaido University (DC2, doctoral students)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>2016.5 - 2017.2</td>
 <td>Research assistant for the experiment investigating trigger of ocean-migration of masu trout, Hokkaido University</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>2016.5 - 2017.2</td>
 <td>Teaching assistant, Hokkaido University</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>2015 - 2016</td>
 <td>Research assistant at National Museum of Nature and Science, Tsukuba (maintain fish specimens)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>2013 - 2014</td>
 <td>Volunteer as a curator of Hokkaido University Museum, Hakodate (make, maintain and exhibit fish specimens)</td>
 </tr>

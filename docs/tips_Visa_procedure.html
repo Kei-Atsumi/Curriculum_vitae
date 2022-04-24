@@ -13,7 +13,7 @@
 
 <title>海外渡航のあれこれ</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -312,7 +316,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -322,7 +326,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     CV/履歴
      
     <span class="caret"></span>
@@ -339,7 +343,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     役立つかも？
      
     <span class="caret"></span>
@@ -376,7 +380,7 @@ div.tocify {
 <div id="header">
 
 <div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
 <ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
@@ -402,7 +406,7 @@ div.tocify {
 <p>海外学振合格、おめでとうございます。4月に派遣開始をご希望であれば、時間はありません。<strong>海外学振採用の証明が来たら速やかにスキャンして受け入れ先ボスに連絡</strong>しましょう。</p>
 <p>テキサスA&amp;M大学（TAMU）の場合は、5VSという書類への記入から手続きは開始。5VSがFacultyで受理されると、それが外国人受け入れをつかさどるISFSに5VSが渡ります。</p>
 <p>このISFSが大学での受け入れの可否を決め、OKであればDS2019という書類がもらえます。DS2019はビザ取得での必要書類で、国土安全保障省への情報登録であるDS160とともに大使館の面接予約に必要です。DS2019には多くの必要書類があります（後述）。</p>
-<p>DS2019が取れる見込みが立ったら、国土安全保障省への情報登録であるDS160記入を始めましょう。すごい根掘り葉掘り聞いてくるので時間がかかります。さすが敵の多い覇権国。DS160登録完了には、SEVIS料金を払わねばなりません。このSEVIS支払いにはDS2019に記入されるSEVIS IDが必要です。さて、DS160の有効期限は約1か月です。なので、DS160の有効期限内にDS2019が届かないと、SEVISを払えないためにDS160登録が完了せず、せっかく時間をかけて書いたDS160が無駄になります。DS160登録が終わると、いよいよビザ面接です。ここでもお金がかかります（この強欲め）。</p>
+<p>DS2019が取れる見込みが立ったら、国土安全保障省への情報登録であるDS160記入を始めましょう。すごい根掘り葉掘り聞いてくるので時間がかかります。DS160登録完了には、SEVIS料金を払わねばなりません。このSEVIS支払いにはDS2019に記入されるSEVIS IDが必要です。さて、DS160の有効期限は約1か月です。なので、DS160の有効期限内にDS2019が届かないと、SEVISを払えないためにDS160登録が完了せず、せっかく時間をかけて書いたDS160が無駄になります。DS160登録が終わると、いよいよビザ面接です。ここでもお金がかかります（この強欲め）。</p>
 <p>ビザ面接がつつがなく終わると、1~3週間でビザが届きます。</p>
 <p>曲者なのはDS2019申請に必要な書類たち。</p>
 <ul>
@@ -418,7 +422,7 @@ div.tocify {
 </ul>
 <p>保険の加入と、英語能力の証明が必要なのです。</p>
 <p>保険には大学が求める様々な条件がありそれを満たす保険に入る必要があります。いろんな方に聞くと、保険はJALやANAが提携する海外旅行保険が良いらしいです。僕は、<a href="https://www.global-protection.co.jp/support1.php">JALが提携しているAIGの海外赴任者総合保障制度</a>のオプションプランに入りました。滞在先機関と海外学振である旨を伝えればそれにあったプランを提供してくれます。保険は年額約30万円しますが日本語オペレーターに対応をお願いできるようで、その安心料です。</p>
-<p>ポスドクで行く人間がなんで英語能力証明しないかんのだ。私は時間がなかったのでいつでも受けられる英語面接にしましたが、そんなのに$75払うなら前もってTOEFLとか受けとけばよかったとすごく後悔しました。ボスに前もって聞いたときは「英語能力証明は必要ないだって君はポスドク見込みなんだから」って言ってきたのに…ボスが手続き内容を知らないと思って手続きを進めるべきでした。</p>
+<p>ポスドクで行く人間がなんで英語能力証明しないかんのだ。私は時間がなかったのでいつでも受けられる英語面接にしましたが、そんなのに$75払うなら前もってTOEFLとか受けとけばよかったとすごく後悔しました。</p>
 <p>さて、逆算しましょう。</p>
 <ol style="list-style-type: decimal">
 <li><p>1~3週間ビザが届くまでにかかるという事は、渡航の1か月前にはビザ面接をしたいですよね。</p></li>
@@ -464,7 +468,7 @@ div.tocify {
 <p>失敗談です。</p>
 <p>アメリカ観光ESTAを使い、テキサスA&amp;M大学に下見に来た時。彼らの調査に同行してメキシコの調査地に陸路で向かい、そのままメキシコシティから日本に帰ってきたときの話です。</p>
 <p>Laredoでメキシコに陸路入国するとき、私の頭の中は入国でいっぱいで、アメリカを出国している、ということを忘れていました。もちろん、出国には手続きが必要です…。</p>
-<p>日本は治安も良いアメリカの最重要同盟国。というわけで、いろんなアメリカ入国関係の手続きが自動化されています。入国証明書I94がその一つ。I94は、日本人短期滞在者で、空路で入国・帰国する場合には、完全に自動化されているので存在に気付かないでしょう。</p>
+<p>日本国籍保持者は基本的に、いろんなアメリカ入国関係の手続きが自動化されています。入国証明書I94がその一つ。I94は、日本人短期滞在者で、空路で入国・帰国する場合には、完全に自動化されているので存在に気付かないでしょう。</p>
 <p>これが陸路だと問題になります。メキシコ入国手続きだけ済ませても、アメリカ出国手続き（I94を印刷して、返却）しないと、アメリカを出国したことにならないのです。 詳細はこちら：<a href="https://japan2.usembassy.gov/pdfs/wwwf-cbp-i94autoj-faq.pdf" class="uri">https://japan2.usembassy.gov/pdfs/wwwf-cbp-i94autoj-faq.pdf</a></p>
 <p>これを忘れると、アメリカから帰ってしばらくしたころに、「君のアメリカ滞在許可期間そろそろ終わるよ」ってゆう恐ろしいメールがやってきます。ここでやらなければならないことは、アメリカのColeman Data Solutionsという期間に、I94を紙で郵送することです（理由書も添えました）。もちろん、国際郵便なので結構お金かかります。</p>
 <p>賢明なみなさまがこのようなやらかしをしませんように。</p>

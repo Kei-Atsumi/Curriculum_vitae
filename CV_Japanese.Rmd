@@ -6,38 +6,13 @@ date: '`r format(Sys.time(), "%y/%m/%d")`'
 output: html_document
 ---
 
-<!-- ```{r setup, include=FALSE} -->
-
-<!-- rm(list=ls())  # reset workspace -->
-<!-- options(scipen=100)  # do not show numbers using exponential -->
-
-<!-- # install & load packages -->
-<!-- pacman::p_load( -->
-<!--   openxlsx   # open excel -->
-<!--   , tidyverse -->
-<!--   , magrittr   # extended pipe -->
-<!--   , knitr   -->
-<!--   , kableExtra # nice tables -->
-<!--   , pander     # nice tables -->
-<!-- ) -->
-
-<!-- # Rmarkdown settings -->
-<!-- knitr::opts_chunk$set( -->
-<!--   prompt  = FALSE,  # Do not add > or + in inline-code -->
-<!--   message = FALSE,  -->
-<!--   comment = "",  -->
-<!--   warning = FALSE,  # Mute warnings -->
-<!--   tidy    = TRUE, -->
-<!--   echo = FALSE -->
-<!--   )  -->
-<!-- options(knitr.kable.NA = '') # Hide NAs in kable table -->
-
-<!-- ``` -->
-
 <div style="margin-bottom:30px;">
 </div>
 
-イタリア パドヴァ大学、[Gil G. Rosenthal研究室](https://swordtail.tamu.edu/)の博士研究員です。
+[株式会社バイオーム](https://biome.co.jp/)のデータサイエンティストになりました！！
+
+なお、このウェブサイトの内容は全て個人的なもので、所属組織とは無関係です。
+
 
 Email: k.atsumi115_at_gmail.com
 
@@ -72,7 +47,8 @@ Email: k.atsumi115_at_gmail.com
 
 | | |
 | -- | ------ |
-| 2021.7- | イタリア パドヴァ大学（[Gil Rosenthal研究室](https://swordtail.tamu.edu/)）に<br>日本学術振興会 海外特別研究員として滞在 |
+| 2022.4- | [株式会社バイオーム](https://biome.co.jp/)にてデータサイエンティスト |
+| 2021.7-2022.3 | イタリア パドヴァ大学（[Gil Rosenthal研究室](https://swordtail.tamu.edu/)）に<br>日本学術振興会 海外特別研究員として滞在 |
 | 2021.5-6 | メキシコ・[Centro de Investigaciones Científicas de las Huastecas “Aguazarca”](https://www.cichaz.org/)に滞在 |
 | 2021.3-7 | 米国・テキサスA&M大学（[Gil Rosenthal研究室](https://swordtail.tamu.edu/)）に<br>日本学術振興会 海外特別研究員として滞在 |
 | 2017.10-12、2019.10-12 | 豪州・ニューサウスウェールズ大学<br>（[Shinichi Nakagawa研究室](http://www.i-deel.org/)）に留学 |
